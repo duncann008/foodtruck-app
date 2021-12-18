@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
+import Calendar from '../FullCalendar/FullCalendar';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -8,7 +9,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
-
+  
   const onLogin = (event) => {
     history.push('/login');
   };
@@ -19,6 +20,7 @@ function LandingPage() {
 
       <div className="grid">
         <div className="grid-col grid-col_8">
+          <Calendar />
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
             id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
