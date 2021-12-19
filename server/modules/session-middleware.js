@@ -15,15 +15,15 @@ const warnings = require('../constants/warnings');
 
 const serverSessionSecret = () => {
   if (
-    !process.env.SERVER_SESSION_SECRET ||
-    process.env.SERVER_SESSION_SECRET.length < 8 ||
-    process.env.SERVER_SESSION_SECRET === warnings.exampleBadSecret
+    !process.env._SECRET ||
+    process.env._SECRET.length < 8 ||
+    process.env._SECRET === warnings.exampleBadSecret
   ) {
     // Warning if user doesn't have a good secret
     console.log(warnings.badSecret);
   }
 
-  return process.env.SERVER_SESSION_SECRET;
+  return process.env._SECRET;
 };
 
 module.exports = cookieSession({
