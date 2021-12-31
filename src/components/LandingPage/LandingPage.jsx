@@ -20,7 +20,7 @@ function LandingPage() {
 
       <div className="grid">
         <div className="grid-col grid-col_8">
-          <Calendar />
+          {/* <Calendar /> */}
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
             id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
