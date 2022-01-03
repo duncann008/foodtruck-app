@@ -9,13 +9,13 @@ function MenuItem({item}) {
     const user = useSelector(store => store.user);
 
     const goToMenuItemDetails = () => {
-      if (user.id) {
-        history.push(`/menuItem/${item.id}`);
-      }
-      else  {
-        return;
-      }
-    }
+        if (user.id) {
+            history.push(`/menuItem/${item.id}`);
+        }
+        else  {
+            return;
+        }
+        }
   
     return (
       <div onClick={goToMenuItemDetails} key={item.id}>
