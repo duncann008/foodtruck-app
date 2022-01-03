@@ -1,6 +1,6 @@
-const menuListReducer = (state = [], action) => {
+const cartReducer = (state = [], action) => {
     switch (action.type) {
-      case 'SET_MENU_LIST':
+      case 'SET_CART':
         return action.payload;
       default:
         return state;
@@ -8,4 +8,4 @@ const menuListReducer = (state = [], action) => {
   };
   
  
-  export default menuListReducer;
+  export default cartReducer;

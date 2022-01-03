@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
+import MenuItem from '../MenuItem/MenuItem';
 
 function MenuList() {
 
@@ -12,27 +13,15 @@ function MenuList() {
         dispatch({ type: 'FETCH_MENU_LIST' });
         
     }, []);
-    console.log(menuList);
     
-    const routeToItem = (id) => {
-        dispatch({
-            type: 'FETCH_MENU_ITEM',
-            payload:id
-        });
-    }
+    
+    
 
     return (
         <div>
             {menuList.map(item => {
                     return (
-                        <div key={item.id}>
-                            <h3>{item.item}</h3>
-                            <img
-                                src={item.image_url} 
-                                alt={item.item}
-                                />
-                            <p>{item.price}</p>
-                        </div>
+                        <MenuItem key={item.id} item={item} />
                     );
                 })}
         </div>

@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import MenuList from '../MenuList/MenuList';
 
 import './App.css';
+import MenuItemDetails from '../MenuItemDetails/MenuItemDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,8 +50,12 @@ function App() {
             <AboutPage />
           </Route>
           <Route
-            exact path="/menuList">
+            exact path="/menu">
               <MenuList />
+          </Route>
+          <Route
+            exact path="/menuItem/:id">
+              <MenuItemDetails />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

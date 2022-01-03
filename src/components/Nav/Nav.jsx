@@ -12,9 +12,7 @@ function Nav() {
       <Link to="/home">
         <h2 className="nav-title">Prime Solo Project</h2>
       </Link>
-      <Link to="/menuList">
-        <h4 className="nav-title">View Menu</h4>
-      </Link>
+      
       <div>
         {/* If no user is logged in, show these links */}
         {user.id === null &&
@@ -23,6 +21,13 @@ function Nav() {
             Login / Register
           </Link>
         }
+        <Link className="navLink" to="/menu">
+          View Menu
+        </Link>
+        <Link className="navLink" to="/about">
+          About Us
+        </Link>
+        
 
         {/* If a user is logged in, show these links */}
         {user.id && (
@@ -39,9 +44,7 @@ function Nav() {
           </>
         )}
 
-        <Link className="navLink" to="/about">
-          About
-        </Link>
+        
       </div>
     </div>
   );
