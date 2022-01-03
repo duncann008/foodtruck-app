@@ -1,11 +1,20 @@
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function MenuItem({item}) {
     
     const history = useHistory();
+    const dispatch = useDispatch();
+    const user = useSelector(store => store.user);
 
     const goToMenuItemDetails = () => {
-      history.push(`/menuItem/${item.id}`);
+      if (user.id) {
+        history.push(`/menuItem/${item.id}`);
+      }
+      else  {
+        return;
+      }
     }
   
     return (
@@ -16,6 +25,7 @@ function MenuItem({item}) {
           alt={item.item}
           height="300"
           />
+      <p>{item.description}</p>
       <p>{item.price}</p>
   </div>
     )

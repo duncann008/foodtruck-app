@@ -11,7 +11,7 @@ function MenuList() {
     
     useEffect(() => {
         dispatch({ type: 'FETCH_MENU_LIST' });
-        
+        dispatch({type: 'CLEAR_MENU_ITEM' });
     }, []);
     
     
