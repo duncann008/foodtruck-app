@@ -24,6 +24,16 @@ function MenuItemDetails() {
             <li>Shell: {menuItem.Shell}</li>
             <li>Meat: {menuItem.Meat}</li>
             <li>Cheese: {menuItem.Cheese}</li>
+            <li>Beans: {menuItem.Beans}</li>
+            <li>Rice: {menuItem.Rice}</li>
+            <li>Lettuce: {menuItem.Lettuce}</li>
+            <li>Salsa: {menuItem.Salsa}</li>
+            <li>Sour Cream: {menuItem.SourCream}</li>
+            <li>Pico de Gallo: {menuItem.PicodeGallo}</li>
+            <li>Cilantro: {menuItem.Cilantro}</li>
+            <li>Diced Onions: {menuItem.DicedOnions}</li>
+            <li>Sauce: {menuItem.Sauce}</li>
+            <li>Lime: {menuItem.Lime}</li>
         </ul>
     </div>
 
