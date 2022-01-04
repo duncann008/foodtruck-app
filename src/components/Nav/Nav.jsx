@@ -40,12 +40,12 @@ function Nav() {
               Home
             </Link> */}
             <Link className="navLink" to="/menu">
-              Place Order
+              Start Order
             </Link>
             <Link className="navLink" to="/about">
               About Us
             </Link>
-            <Link className="navLink" to="/info">
+            <Link className="navLink" to="/MyAccount">
               My Account
             </Link>
 

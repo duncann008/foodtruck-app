@@ -16,6 +16,7 @@ function Cart() {
                 <li key={index}>{item.item}<br></br>{item.price}</li>
             )}
             </ul>
+            <button>Place Order</button>
         </div>
     )}
 
