@@ -21,9 +21,11 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MenuList from '../MenuList/MenuList';
 import Cart from '../Cart/Cart';
+import CartDropdown from '../CartDropdown/CartDropdown';
 
 import './App.css';
 import MenuItemDetails from '../MenuItemDetails/MenuItemDetails';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +40,7 @@ function App() {
     <Router>
       <div>
         <Nav />
+        
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -52,15 +55,17 @@ function App() {
           </Route>
           <Route
             exact path="/menu">
+              <CartDropdown />
               <MenuList />
           </Route>
           <Route
             exact path="/menuItem/:id">
-              <MenuItemDetails />
+              <CartDropdown />
+              <MenuItemDetails />              
           </Route>
           <Route
             exact path="/cart">
-              <Cart />
+              <Cart /> 
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
