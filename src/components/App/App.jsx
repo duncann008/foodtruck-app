@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MenuList from '../MenuList/MenuList';
+import Cart from '../Cart/Cart';
 
 import './App.css';
 import MenuItemDetails from '../MenuItemDetails/MenuItemDetails';
@@ -56,6 +57,10 @@ function App() {
           <Route
             exact path="/menuItem/:id">
               <MenuItemDetails />
+          </Route>
+          <Route
+            exact path="/cart">
+              <Cart />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

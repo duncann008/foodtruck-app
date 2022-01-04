@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 function MenuItemDetails() {
   const dispatch = useDispatch();
   const params = useParams();
+  const cartReducer = useSelector(store => store.cartReducer);
 
   useEffect(() => {
     dispatch({
@@ -24,7 +25,12 @@ function MenuItemDetails() {
     }
   };
 
-  console.log(ingredients(menuItem.Sauce));
+  const addToCart = () => {
+    dispatch({
+      type: 'SET_CART',
+      payload: menuItem
+    })
+  }
 
   return (
 
@@ -47,6 +53,15 @@ function MenuItemDetails() {
             {ingredients(menuItem.Sauce) ? <li>Sauce: {menuItem.Sauce}</li> : ''}
             {ingredients(menuItem.Lime) ? <li>Lime: {menuItem.Lime}</li> : ''}
         </ul>
+        <label for="Quantity">Quantity:</label>
+        <select name="Quantity" id="Quantity">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <button onClick={addToCart}>Add To Cart</button>
     </div>
 
   )
