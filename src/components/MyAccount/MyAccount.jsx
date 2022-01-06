@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { object } from 'prop-types';
 
 // This is one of our simplest components
 // It doesn't have local state
@@ -62,20 +63,17 @@ function MyAccount() {
       type: 'SET_CONTACT_INFO',
       payload: contactInfo
   })
-    console.log(contactInfo);
   }
 
   return (
     <div className="container">
       <h1>My Account</h1>
       <p>Contact Info</p>
-      <ul>
-      {contactInfoReducer.map((item, index) =>    
-                <li key={index}>{item.first_name} {item.last_name}</li>
-                
-            )}
-      </ul>
-      <form onSubmit={saveButton}>
+      {contactInfoReducer.map((item) =>    
+          <p>{item.first_name} {item.last_name} {item.phone_number} {item.email}</p>
+          
+      )}     
+      <form onSubmit={(event) => saveButton(event)}>  
               <label for="first_name">First Name</label>
               <input type="text" id="first_name" onChange={handleFirstNameAdd} placeholder="First Name" /><br />
               <label for="last_name">Last Name</label>

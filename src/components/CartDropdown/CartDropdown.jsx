@@ -8,6 +8,7 @@ function CartDropdown() {
     const history = useHistory();
     const dispatch = useDispatch();
     const cartReducer = useSelector(store => store.cartReducer);
+    const user = useSelector((store) => store.user);
 
     const sumPriceTotal = () =>  {
         let totalArray = [];
@@ -30,14 +31,21 @@ function CartDropdown() {
         history.push('/cart');
     }
     
+    const removeItemFromCart = (index) =>    {
+        dispatch({
+            type: 'REMOVE_FROM_CART',
+            payload: cartReducer[index]
+        })
+    }
+
+    console.log(cartReducer[0]);
 
     return  (
         <div className='dropdownCart'>
             THIS IS THE DROPDOWN
             <ul>
             {cartReducer.map((item, index) =>    
-                <li key={index}>{item.item}<br></br>${item.price}</li>
-            )}
+                <li key={index}>{item.item} ${item.price}<button onClick={() => {removeItemFromCart(index)}}>X</button></li>)}
             </ul>
             <p>Total Price: {sumPriceTotal()}</p>
             <button onClick={goToCheckout}>Checkout</button>

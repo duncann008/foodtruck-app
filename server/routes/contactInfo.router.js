@@ -11,7 +11,7 @@ contactRouter.get('/:id', (req, res) => {
 
     pool.query(query, [values])
         .then( result => {
-        res.send(result.rows);
+        res.send(result.rows[0]);
         })
         .catch(err => {
         console.log('ERROR: GET Contact Info', err);

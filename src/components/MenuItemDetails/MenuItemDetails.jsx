@@ -6,6 +6,7 @@ function MenuItemDetails() {
   const dispatch = useDispatch();
   const params = useParams();
   const cartReducer = useSelector(store => store.cartReducer);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({
@@ -26,8 +27,9 @@ function MenuItemDetails() {
   };
 
   const addToCart = () => {
+    menuItem.user_id = user.id;
     dispatch({
-      type: 'SET_CART',
+      type: 'ADD_TO_CART',
       payload: menuItem
     })
   }
