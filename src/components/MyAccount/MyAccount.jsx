@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { object } from 'prop-types';
+
 
 // This is one of our simplest components
 // It doesn't have local state

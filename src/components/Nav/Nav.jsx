@@ -22,7 +22,7 @@ function Nav() {
                 Menu
               </Link>
               <Link className="navLink" to="/about">
-                About Us
+                About Us/Contact
               </Link>
               <Link className="navLink" to="/login">
                 Login / Register
@@ -43,7 +43,7 @@ function Nav() {
               Start Order
             </Link>
             <Link className="navLink" to="/about">
-              About Us
+              About Us/Contact
             </Link>
             <Link className="navLink" to="/MyAccount">
               My Account
