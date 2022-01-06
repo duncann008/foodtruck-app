@@ -69,21 +69,17 @@ function MyAccount() {
     <div className="container">
       <h1>My Account</h1>
       <p>Contact Info</p>
-      {contactInfoReducer.map((item) =>    
-          <p>{item.first_name} {item.last_name} {item.phone_number} {item.email}</p>
-          
-      )}     
       <form onSubmit={(event) => saveButton(event)}>  
-              <label for="first_name">First Name</label>
-              <input type="text" id="first_name" onChange={handleFirstNameAdd} placeholder="First Name" /><br />
-              <label for="last_name">Last Name</label>
-              <input type="text" id="last_name" onChange={handleLastNameAdd} placeholder="Last Name" /><br />
-              <label for="phone_number">Phone Number</label>
-              <input type="number" id="phone_number" onChange={handlePhoneNumberAdd} placeholder="Phone Number" /><br />
-              <label for="email">Email</label>
-              <textarea type="text" id="email" onChange={handleEmailAdd} placeholder="Email Address(optional)" /><br />          
-              <button className="saveButton" type="submit">Save</button>
-            </form>
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" onChange={handleFirstNameAdd} placeholder="First Name" value={contactInfoReducer.first_name}/><br />
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" onChange={handleLastNameAdd} placeholder="Last Name" value={contactInfoReducer.last_name}/><br />
+        <label for="phone_number">Phone Number</label>
+        <input type="number" id="phone_number" onChange={handlePhoneNumberAdd} placeholder="Phone Number" value={contactInfoReducer.phone_number}/><br />
+        <label for="email">Email</label>
+        <input type="text" id="email" onChange={handleEmailAdd} placeholder="Email Address(optional)" value={contactInfoReducer.email}/><br />          
+        <button className="saveButton" type="submit">Save</button>
+      </form>
     </div>
   );
 }
