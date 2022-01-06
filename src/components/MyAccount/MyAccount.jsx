@@ -70,13 +70,13 @@ function MyAccount() {
       <h1>My Account</h1>
       <p>Contact Info</p>
       <form onSubmit={(event) => saveButton(event)}>  
-        <label for="first_name">First Name</label>
+        <label htmlfor="first_name">First Name</label>
         <input type="text" id="first_name" onChange={handleFirstNameAdd} placeholder="First Name" value={contactInfoReducer.first_name}/><br />
-        <label for="last_name">Last Name</label>
+        <label htmlfor="last_name">Last Name</label>
         <input type="text" id="last_name" onChange={handleLastNameAdd} placeholder="Last Name" value={contactInfoReducer.last_name}/><br />
-        <label for="phone_number">Phone Number</label>
+        <label htmlfor="phone_number">Phone Number</label>
         <input type="number" id="phone_number" onChange={handlePhoneNumberAdd} placeholder="Phone Number" value={contactInfoReducer.phone_number}/><br />
-        <label for="email">Email</label>
+        <label htmlfor="email">Email</label>
         <input type="text" id="email" onChange={handleEmailAdd} placeholder="Email Address(optional)" value={contactInfoReducer.email}/><br />          
         <button className="saveButton" type="submit">Save</button>
       </form>

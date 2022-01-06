@@ -11,7 +11,7 @@ function LogOutButton(props) {
   const logOut = () =>  {
     dispatch({ type: 'LOGOUT' });
     history.push('/home');
-    dispatch({ type: 'CLEAR_CART'})
+    // dispatch({ type: 'CLEAR_CART'})
   }
   
   return (

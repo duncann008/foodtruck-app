@@ -34,6 +34,16 @@ function MenuItemDetails() {
     })
   }
 
+  const saveButton = (event) => {
+    event.preventDefault();
+    dispatch({
+      type: 'UPDATE_MENU_ITEM',
+      payload: PUTSTUFFHERE
+  })
+  }
+
+
+  if (user.role === 'user')  {
   return (
 
     <div>
@@ -55,7 +65,7 @@ function MenuItemDetails() {
             {ingredients(menuItem.Sauce) ? <li>Sauce: {menuItem.Sauce}</li> : ''}
             {ingredients(menuItem.Lime) ? <li>Lime: {menuItem.Lime}</li> : ''}
         </ul>
-        <label for="Quantity">Quantity:</label>
+        <label htmlFor="Quantity">Quantity:</label>
         <select name="Quantity" id="Quantity">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -66,7 +76,39 @@ function MenuItemDetails() {
         <button onClick={addToCart}>Add To Cart</button>
     </div>
 
-  )
+  )}
+  else 
+    return (
+      <div>
+      <h1>{menuItem.item}</h1>
+        <img src={menuItem.image_url} height="200" />
+        <p>Included Ingredients:</p>
+        <form onSubmit={(event) => saveButton(event)}>
+          <label htmlFor="Shell">Shell:</label>
+          <input id="Shell" onChange defaultValue={menuItem.Shell} /><br />
+          <label htmlFor="Meat">Meat:</label>
+          <input id="Meat" onChange defaultValue={menuItem.Meat} /><br />
+          <label htmlFor="Cheese">Cheese:</label>
+          <input id="Cheese" onChange defaultValue={menuItem.Cheese} /><br />
+          <button>Save</button>
+        </form>
+        {/* <ul>
+            <li>Shell: {menuItem.Shell}</li>
+            <li>Meat: {menuItem.Meat}</li>
+            <li>Cheese: {menuItem.Cheese}</li>
+            <li>Beans: {menuItem.Beans}</li>
+            <li>Rice: {menuItem.Rice}</li>
+            <li>Lettuce: {menuItem.Lettuce}</li>
+            <li>Salsa: {menuItem.Salsa}</li>
+            <li>Sour Cream: {menuItem.SourCream}</li>
+            <li>Pico de Gallo: {menuItem.PicodeGallo}</li>
+            <li>Cilantro: {menuItem.Cilantro}</li>
+            <li>Diced Onions: {menuItem.DicedOnions}</li>
+            <li>Sauce: {menuItem.Sauce}</li>
+            <li>Lime: {menuItem.Lime}</li>
+        </ul> */}
+      </div>
+    )
 }
 
 

@@ -79,20 +79,20 @@ function AboutPage() {
   return (
     <div className="container">
         <form onSubmit={(event) => aboutUsSaveButton(event)}>
-          <label for="aboutUs">About Us</label>
-          <textarea id="aboutUs" onChange={(event) => handleAboutUsAdd(event)} defaultValue={aboutUsReducer} />
+          <label hmtlFor="aboutUs">About Us</label>
+          <textarea id="aboutUs" onChange={(event) => handleAboutUsAdd(event)} value="someSTring" />
           <button>Save</button>
         </form>
         <form onSubmit={(event) => ownerContactSaveButton(event)}>  
-          <label for="owner">Owner Name</label>
+          <label htmlFor="owner">Owner Name</label>
           <input className="contactOwner" type="text" id="owner" onChange={handleOwnerNameAdd} placeholder="Owner Name" defaultValue={contactOwnerReducer.owner_name} /><br />
-          <label for="truck_number">Truck Number</label>
+          <label htmlFor="truck_number">Truck Number</label>
           <input className="contactOwner" type="number" id="truck_number" onChange={handleTruckNumberAdd} placeholder="Truck Number" defaultValue={contactOwnerReducer.truck_number} /><br />
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input className="contactOwner" type="text" id="email" onChange={handleEmailAdd} placeholder="Email Address" defaultValue={contactOwnerReducer.email} /><br />
-          <label for="Instagram">Instagram</label>
+          <label htmlFor="Instagram">Instagram</label>
           <input className="contactOwner" type="text" id="Instagram" onChange={handleInstagramAdd} placeholder="Instagram" defaultValue={contactOwnerReducer.instagram} /><br />
-          <label for="Twitter">Twitter</label>
+          <label htmlFor="Twitter">Twitter</label>
           <input className="contactOwner" type="text" id="Twitter" onChange={handleTwitterAdd} placeholder="Twitter" defaultValue={contactOwnerReducer.twitter} /><br />          
           <button className="saveButton" type="submit">Save</button>
         </form>
