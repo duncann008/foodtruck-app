@@ -19,6 +19,7 @@ function AboutPage() {
   const [ownerContact, setOwnerContact] = useState({owner_name: '', truck_number: '', email: '', instagram: '', twitter: ''});
 
   const handleAboutUsAdd = (event) => {
+    console.log(event.target.value);
     setAboutUs(event.target.value);
   }
 
@@ -32,7 +33,7 @@ function AboutPage() {
   const handleTruckNumberAdd = (event) => {
     setOwnerContact({
       ...ownerContact,
-      first_name: event.target.value,
+      truck_number: event.target.value,
     });
   }
 
@@ -46,12 +47,12 @@ function AboutPage() {
   const handleInstagramAdd = (event) => {
     setOwnerContact({
       ...ownerContact,
-      last_name: event.target.value,
+      instagram: event.target.value,
     });
   }
 
   const handleTwitterAdd = (event) => {
-    setContactInfo({
+    setOwnerContact({
       ...ownerContact,
       twitter: event.target.value,
     });
@@ -74,31 +75,25 @@ function AboutPage() {
   }
 
 
-  // document.getElementById("owner").value = `${contactOwnerReducer.owner_name}`
-  // const defaultOwnerName = () =>  {
-  //   // let ownerNameValue = contactOwnerReducer.owner_name;
-  //   document.getElementById("owner").value = `${contactOwnerReducer.owner_name}`;
-  // }
-
   if (user.role === 'admin'){
   return (
     <div className="container">
         <form onSubmit={(event) => aboutUsSaveButton(event)}>
           <label for="aboutUs">About Us</label>
-          <textarea id="aboutUs" onChange={handleAboutUsAdd}>{aboutUsReducer}</textarea>
+          <textarea id="aboutUs" onChange={(event) => handleAboutUsAdd(event)} defaultValue={aboutUsReducer} />
           <button>Save</button>
         </form>
         <form onSubmit={(event) => ownerContactSaveButton(event)}>  
           <label for="owner">Owner Name</label>
-          <textarea rows="1" className="contactOwner" type="text" id="owner" onChange={handleOwnerNameAdd} placeholder="Owner Name">{contactOwnerReducer.owner_name}</textarea><br />
+          <input className="contactOwner" type="text" id="owner" onChange={handleOwnerNameAdd} placeholder="Owner Name" defaultValue={contactOwnerReducer.owner_name} /><br />
           <label for="truck_number">Truck Number</label>
-          <textarea rows="1" className="contactOwner" type="number" id="truck_number" onChange={handleTruckNumberAdd} placeholder="Truck Number">{contactOwnerReducer.truck_number}</textarea><br />
+          <input className="contactOwner" type="number" id="truck_number" onChange={handleTruckNumberAdd} placeholder="Truck Number" defaultValue={contactOwnerReducer.truck_number} /><br />
           <label for="email">Email</label>
-          <textarea rows="1" className="contactOwner" type="text" id="email" onChange={handleEmailAdd} placeholder="Email Address">{contactOwnerReducer.email}</textarea><br />
+          <input className="contactOwner" type="text" id="email" onChange={handleEmailAdd} placeholder="Email Address" defaultValue={contactOwnerReducer.email} /><br />
           <label for="Instagram">Instagram</label>
-          <textarea rows="1" className="contactOwner"type="text" id="Instagram" onChange={handleInstagramAdd} placeholder="Instagram">{contactOwnerReducer.instagram}</textarea><br />
+          <input className="contactOwner" type="text" id="Instagram" onChange={handleInstagramAdd} placeholder="Instagram" defaultValue={contactOwnerReducer.instagram} /><br />
           <label for="Twitter">Twitter</label>
-          <textarea rows="1" className="contactOwner" type="text" id="Twitter" onChange={handleTwitterAdd} placeholder="Twitter">{contactOwnerReducer.twitter}</textarea><br />          
+          <input className="contactOwner" type="text" id="Twitter" onChange={handleTwitterAdd} placeholder="Twitter" defaultValue={contactOwnerReducer.twitter} /><br />          
           <button className="saveButton" type="submit">Save</button>
         </form>
     </div>
@@ -109,7 +104,14 @@ function AboutPage() {
     return (
       <div className="container">
       <div>
-        <p>{aboutUs}</p>
+        <p>{aboutUsReducer}</p>
+      </div>
+      <div>
+        <p>{contactOwnerReducer.owner_name}</p>
+        <p>{contactOwnerReducer.truck_number}</p>
+        <p>{contactOwnerReducer.email}</p>
+        <p>{contactOwnerReducer.instagram}</p>
+        <p>{contactOwnerReducer.twitter}</p>
       </div>
     </div>
     )

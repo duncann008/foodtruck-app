@@ -21,11 +21,9 @@ function Cart() {
   
     return  (
         <div>
-            <ul>
-                {contactInfoReducer.map((item, index) =>    
-                    <li key={index}>{item.first_name} {item.last_name}</li>
-                )}
-            </ul>
+            <p>{contactInfoReducer.first_name} {contactInfoReducer.last_name}</p>
+            <p>{contactInfoReducer.phone_number}</p>
+            <p>{contactInfoReducer.email}</p>
             <ul>
                 {cartReducer.map((item, index) =>    
                     <li key={index}>{item.item}<br></br>{item.price}</li>
