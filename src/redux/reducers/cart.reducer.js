@@ -9,6 +9,9 @@ const cartReducer = (state = [], action) => {
         let updateState = [...state];
         const finalState = updateState.filter(newThing => payload != newThing);
         return finalState;
+      case 'CLEAR_CART':
+        state = [];
+        return state;
       default:
         return state;
     }

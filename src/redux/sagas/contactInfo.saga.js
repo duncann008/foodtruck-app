@@ -12,13 +12,14 @@ function* fetchUserContactInfo(action) {
         console.log('get contact info:', contactInfo.data);
         yield put({ type: 'SET_CONTACT_INFO', payload: contactInfo.data });
 
-    } catch {
+    } catch (err) {
         console.log('GET Contact Info error:', err);
     }
 }
 
 
 function* setContactInfo(action) {
+    console.log(action.payload)
     try {
         yield axios({
             method: 'POST',
@@ -28,14 +29,32 @@ function* setContactInfo(action) {
         
         yield put({ type: 'FETCH_CONTACT_INFO' });
 
-    } catch {
-        console.log('POST error');
+    } catch(err) {
+        console.log('POST error', err);
     }
 }
+
+function* editContactInfo(action) {
+    try {
+        yield axios({
+            method: 'PUT',
+            url: '/contactInfo/${action.payload.id}',
+            data: action.payload
+        })
+        
+        yield put({ type: 'FETCH_CONTACT_INFO' });
+
+    } catch(err) {
+        console.log('PUT error', err);
+    }
+}
+
 
 function* contactInfoSaga() {
   yield takeEvery('FETCH_CONTACT_INFO', fetchUserContactInfo);
   yield takeEvery('SET_CONTACT_INFO', setContactInfo);
+  yield takeEvery('EDIT_CONTACT_INFO', editContactInfo);
+
 }
 
 export default contactInfoSaga;

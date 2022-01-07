@@ -22,7 +22,7 @@ function Nav() {
                 Menu
               </Link>
               <Link className="navLink" to="/about">
-                About Us
+                About Us/Contact
               </Link>
               <Link className="navLink" to="/login">
                 Login / Register
@@ -34,7 +34,7 @@ function Nav() {
         
 
         {/* If a user is logged in, show these links */}
-        {user.id && (
+        {user.role === 'user' && (
           <>
             {/* <Link className="navLink" to="/user">
               Home
@@ -43,11 +43,31 @@ function Nav() {
               Start Order
             </Link>
             <Link className="navLink" to="/about">
-              About Us
+              About Us/Contact
             </Link>
             <Link className="navLink" to="/MyAccount">
               My Account
             </Link>
+
+            <LogOutButton className="navLink" />
+          </>
+        )}
+
+        {/* If an admin is logged in, show these links */}
+        {user.role === 'admin' && (
+          <>
+            {/* <Link className="navLink" to="/user">
+              Home
+            </Link> */}
+            <Link className="navLink" to="/menu">
+              Menu
+            </Link>
+            <Link className="navLink" to="/about">
+              About Us/Contact
+            </Link>
+            {/* <Link className="navLink" to="/MyAccount">
+              My Account
+            </Link> */}
 
             <LogOutButton className="navLink" />
           </>

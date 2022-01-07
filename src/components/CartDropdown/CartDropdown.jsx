@@ -40,6 +40,7 @@ function CartDropdown() {
 
     console.log(cartReducer[0]);
 
+    if (user.role === user) {
     return  (
         <div className='dropdownCart'>
             THIS IS THE DROPDOWN
@@ -51,6 +52,12 @@ function CartDropdown() {
             <button onClick={goToCheckout}>Checkout</button>
         </div>
     )}
+    else {
+        return (
+            <></>
+        )
+    }
+}
 
     
 export default CartDropdown;
