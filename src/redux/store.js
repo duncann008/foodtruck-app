@@ -6,7 +6,8 @@ import storage from 'redux-persist/lib/storage';
 
 import rootReducer from './reducers/_root.reducer'; // imports ./redux/reducers/index.js
 import rootSaga from './sagas/_root.saga'; // imports ./redux/sagas/index.js
-import aboutUsReducer from './reducers/aboutUs.reducer';
+
+
 
 const sagaMiddleware = createSagaMiddleware();
 

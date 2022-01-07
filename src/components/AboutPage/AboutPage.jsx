@@ -15,87 +15,73 @@ function AboutPage() {
   const user = useSelector((store) => store.user);
   const contactOwnerReducer = useSelector(store => store.contactOwnerReducer);
 
-  const [aboutUs, setAboutUs] = useState('');
-  const [ownerContact, setOwnerContact] = useState({owner_name: '', truck_number: '', email: '', instagram: '', twitter: ''});
 
-  const handleAboutUsAdd = (event) => {
-    console.log(event.target.value);
-    setAboutUs(event.target.value);
-  }
-
-  const handleOwnerNameAdd = (event) => {
-    setOwnerContact({
-      ...ownerContact,
-      owner_name: event.target.value,
-    });
-  }
-
-  const handleTruckNumberAdd = (event) => {
-    setOwnerContact({
-      ...ownerContact,
-      truck_number: event.target.value,
-    });
-  }
-
-  const handleEmailAdd = (event) => {
-    setOwnerContact({
-      ...ownerContact,
-      email: event.target.value,
-    });
-  }
-
-  const handleInstagramAdd = (event) => {
-    setOwnerContact({
-      ...ownerContact,
-      instagram: event.target.value,
-    });
-  }
-
-  const handleTwitterAdd = (event) => {
-    setOwnerContact({
-      ...ownerContact,
-      twitter: event.target.value,
-    });
-  }
-
-  const aboutUsSaveButton = (event) => {
-    event.preventDefault();
+  const handleAboutUsChange = (event) => {
     dispatch({
-      type: 'SET_ABOUT_US',
-      payload: aboutUs
-  })
+      type: 'EDIT_ABOUT_US',
+      payload: event.target.value
+    })
   }
 
-  const ownerContactSaveButton = (event) => {
-    event.preventDefault();
+  const handleOwnerNameChange = (event) => {
     dispatch({
-      type: 'SET_OWNER_CONTACT',
-      payload: ownerContact
-  })
+      type: 'EDIT_OWNER_NAME',
+      payload: event.target.value
+    })
   }
+
+  const handleTruckNumberChange = (event) => {
+    dispatch({
+      type: 'EDIT_TRUCK_NUMBER',
+      payload: event.target.value
+    })
+  }
+
+  const handleEmailChange = (event) => {
+    dispatch({
+      type: 'EDIT_EMAIL',
+      payload: event.target.value
+    })
+  }
+
+  const handleInstagramChange = (event) => {
+    dispatch({
+      type: 'EDIT_INSTAGRAM',
+      payload: event.target.value
+    })
+  }
+
+  const handleTwitterChange = (event) => {
+    dispatch({
+      type: 'EDIT_TWITTER',
+      payload: event.target.value
+    })
+  }
+
 
 
   if (user.role === 'admin'){
   return (
     <div className="container">
-        <form onSubmit={(event) => aboutUsSaveButton(event)}>
+          <p>All typed changes are saved automatically.</p>
+        
           <label hmtlFor="aboutUs">About Us</label>
-          <textarea id="aboutUs" onChange={(event) => handleAboutUsAdd(event)} value="someSTring" />
-          <button>Save</button>
-        </form>
-        <form onSubmit={(event) => ownerContactSaveButton(event)}>  
+          <textarea id="aboutUs" onChange={handleAboutUsChange} value={aboutUsReducer || ''} /><br />
+          
+    
+         
           <label htmlFor="owner">Owner Name</label>
-          <input className="contactOwner" type="text" id="owner" onChange={handleOwnerNameAdd} placeholder="Owner Name" defaultValue={contactOwnerReducer.owner_name} /><br />
+          <input className="contactOwner" type="text" id="owner" onChange={handleOwnerNameChange} placeholder="Owner Name" value={contactOwnerReducer.owner_name || ''} /><br />
           <label htmlFor="truck_number">Truck Number</label>
-          <input className="contactOwner" type="number" id="truck_number" onChange={handleTruckNumberAdd} placeholder="Truck Number" defaultValue={contactOwnerReducer.truck_number} /><br />
+          <input className="contactOwner" type="number" id="truck_number" onChange={handleTruckNumberChange} placeholder="Truck Number" value={contactOwnerReducer.truck_number || ''} /><br />
           <label htmlFor="email">Email</label>
-          <input className="contactOwner" type="text" id="email" onChange={handleEmailAdd} placeholder="Email Address" defaultValue={contactOwnerReducer.email} /><br />
+          <input className="contactOwner" type="text" id="email" onChange={handleEmailChange} placeholder="Email Address" value={contactOwnerReducer.email || ''} /><br />
           <label htmlFor="Instagram">Instagram</label>
-          <input className="contactOwner" type="text" id="Instagram" onChange={handleInstagramAdd} placeholder="Instagram" defaultValue={contactOwnerReducer.instagram} /><br />
+          <input className="contactOwner" type="text" id="Instagram" onChange={handleInstagramChange} placeholder="Instagram" value={contactOwnerReducer.instagram || ''} /><br />
           <label htmlFor="Twitter">Twitter</label>
-          <input className="contactOwner" type="text" id="Twitter" onChange={handleTwitterAdd} placeholder="Twitter" defaultValue={contactOwnerReducer.twitter} /><br />          
-          <button className="saveButton" type="submit">Save</button>
-        </form>
+          <input className="contactOwner" type="text" id="Twitter" onChange={handleTwitterChange} placeholder="Twitter" value={contactOwnerReducer.twitter || ''} /><br />          
+          
+        
     </div>
     
   );

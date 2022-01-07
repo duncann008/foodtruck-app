@@ -1,6 +1,6 @@
 const aboutUsReducer = (state = '', action) => {
     switch (action.type) {
-        case 'SET_ABOUT_US':
+        case 'EDIT_ABOUT_US':
             return action.payload;
         default:
             return state;
