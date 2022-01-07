@@ -40,7 +40,7 @@ function CartDropdown() {
 
     console.log(cartReducer[0]);
 
-    if (user.role === user) {
+    if (user.role === 'user') {
     return  (
         <div className='dropdownCart'>
             THIS IS THE DROPDOWN

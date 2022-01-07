@@ -57,15 +57,13 @@ function MyAccount() {
   }
 
   const saveButton = (event) => {
-    event.preventDefault();
     dispatch({
       type: 'EDIT_CONTACT_INFO',
       payload: {
-              id: params.id,
               first_name: contactInfoReducer.first_name,
               last_name: contactInfoReducer.last_name,
               phone_number: contactInfoReducer.phone_number,
-              first_name: contactInfoReducer.email,
+              email: contactInfoReducer.email,
               user_id: user.id
       }
   })

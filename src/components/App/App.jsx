@@ -58,11 +58,11 @@ function App() {
               <CartDropdown />
               <MenuList />
           </Route>
-          <Route
+          <ProtectedRoute
             exact path="/menuItem/:id">
               <CartDropdown />
               <MenuItemDetails />              
-          </Route>
+          </ProtectedRoute>
           <Route
             exact path="/cart">
               <Cart /> 

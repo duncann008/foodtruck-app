@@ -43,29 +43,19 @@ contactRouter.post('/', (req, res) => {
   })
 });
 
-contactRouter.put('/:id', (req, res) => {
+contactRouter.put('/', (req, res) => {
 
-  const contactIdToUpdate = req.params.id;
-  let contactInfo = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    phone_number: req.body.phone_number,
-    email: req.body.email
-  }
   const sqlText = `
     UPDATE "contact_info"
-      SET first_name = $2, 
-      SET last_name = $3,
-      SET phone_number = $4,
-      SET email = $5
-        WHERE "id" = $1;
+      SET "first_name" = $2, "last_name" = $3, "phone_number" = $4, "email" = $5
+        WHERE "user_id" = $1;
     `
 
-    const sqlValues = [contactIdToUpdate, contactInfo];
+    const sqlValues = [req.body.user_id, req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email];
 
     pool.query(sqlText, sqlValues)
-  .then(result => {
-    result.sendStatus(200);
+  .then(res => {
+    console.log('PUT happened')
 }).catch(err => {
     console.log(err);
     res.sendStatus(500)

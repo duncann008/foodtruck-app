@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './AboutPage.css';
 
@@ -15,6 +14,7 @@ function AboutPage() {
   const user = useSelector((store) => store.user);
   const contactOwnerReducer = useSelector(store => store.contactOwnerReducer);
 
+  
 
   const handleAboutUsChange = (event) => {
     dispatch({
@@ -60,9 +60,10 @@ function AboutPage() {
 
 
 
-  if (user.role === 'admin'){
-  return (
-    <div className="container">
+  switch(user.role){
+    case 'admin':
+      return (
+        <div className="container">
           <p>All typed changes are saved automatically.</p>
         
           <label hmtlFor="aboutUs">About Us</label>
@@ -85,14 +86,16 @@ function AboutPage() {
     </div>
     
   );
-  }
-  else {
+  
+  default:
     return (
       <div className="container">
       <div>
+        <h1>About Us:</h1>
         <p>{aboutUsReducer}</p>
       </div>
       <div>
+        <h1>Contact Us:</h1>
         <p>{contactOwnerReducer.owner_name}</p>
         <p>{contactOwnerReducer.truck_number}</p>
         <p>{contactOwnerReducer.email}</p>
