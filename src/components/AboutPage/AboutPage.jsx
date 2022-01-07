@@ -65,7 +65,7 @@ function AboutPage() {
       return (
         <div className="container">
           <p>All typed changes are saved automatically.</p>
-        
+          
           <label hmtlFor="aboutUs">About Us</label>
           <textarea id="aboutUs" onChange={handleAboutUsChange} value={aboutUsReducer || ''} /><br />
           
@@ -89,8 +89,9 @@ function AboutPage() {
   
   default:
     return (
-      <div className="container">
+      <div className="updateForm">
       <div>
+      <a href="https://imgflip.com/i/60g2w6"><img height="300px"src="https://i.imgflip.com/60g2w6.jpg"/></a>
         <h1>About Us:</h1>
         <p>{aboutUsReducer}</p>
       </div>

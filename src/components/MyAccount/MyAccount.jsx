@@ -56,7 +56,8 @@ function MyAccount() {
     })
   }
 
-  const saveButton = () => {
+  const saveButton = (event) => {
+    event.preventDefault();
     dispatch({
       type: 'EDIT_CONTACT_INFO',
       payload: {
@@ -75,13 +76,13 @@ function MyAccount() {
       <p>Contact Info</p>
       <form onSubmit={saveButton}>  
         <label htmlfor="first_name">First Name</label>
-        <input type="text" id="first_name" onChange={handleFirstNameChange} placeholder="First Name" value={contactInfoReducer.first_name}/><br />
+        <input type="text" id="first_name" onChange={handleFirstNameChange} placeholder="First Name" value={contactInfoReducer.first_name || ''}/><br />
         <label htmlfor="last_name">Last Name</label>
-        <input type="text" id="last_name" onChange={handleLastNameChange} placeholder="Last Name" value={contactInfoReducer.last_name}/><br />
+        <input type="text" id="last_name" onChange={handleLastNameChange} placeholder="Last Name" value={contactInfoReducer.last_name || ''}/><br />
         <label htmlfor="phone_number">Phone Number</label>
-        <input type="number" id="phone_number" onChange={handlePhoneNumberChange} placeholder="Phone Number" value={contactInfoReducer.phone_number}/><br />
+        <input type="number" id="phone_number" onChange={handlePhoneNumberChange} placeholder="Phone Number" value={contactInfoReducer.phone_number || ''}/><br />
         <label htmlfor="email">Email</label>
-        <input type="text" id="email" onChange={handleUserEmailChange} placeholder="Email Address(optional)" value={contactInfoReducer.email}/><br />          
+        <input type="text" id="email" onChange={handleUserEmailChange} placeholder="Email Address(optional)" value={contactInfoReducer.email || ''}/><br />          
         <button className="saveButton" type="submit">Save</button>
       </form>
     </div>
