@@ -5,9 +5,9 @@ const contactRouter = express.Router();
 /**
  * GET route template
  */
-contactRouter.get('/:id', (req, res) => {
+contactRouter.get('/', (req, res) => {
     const query = `SELECT * FROM "contact_info" WHERE "user_id" = $1`;
-    const values = req.params.id;
+    const values = req.user.id;
 
     pool.query(query, [values])
         .then( result => {

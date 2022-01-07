@@ -6,7 +6,7 @@ function* fetchUserContactInfo(action) {
     try {
         const contactInfo = yield axios({
             method: 'GET',
-            url: `/contactInfo/${action.payload}`
+            url: `/contactInfo`
         });
         console.log('get contact info:', contactInfo.data);
         yield put({ type: 'SET_CONTACT_INFO', payload: contactInfo.data });

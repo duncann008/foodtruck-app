@@ -56,7 +56,7 @@ function MyAccount() {
     })
   }
 
-  const saveButton = (event) => {
+  const saveButton = () => {
     dispatch({
       type: 'EDIT_CONTACT_INFO',
       payload: {
