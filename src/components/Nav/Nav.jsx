@@ -24,9 +24,9 @@ function Nav() {
               <Link className="navLink" to="/about">
                 About Us/Contact
               </Link>
-              <Link className="navLink" to="/login">
+              {/* <Link className="navLink" to="/login">
                 Login / Register
-              </Link>
+              </Link> */}
             </>
         )}
         

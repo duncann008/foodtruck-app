@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
-
 function* fetchUserContactInfo(action) {
     console.log(action);
     try {
@@ -35,10 +34,11 @@ function* setContactInfo(action) {
 }
 
 function* editContactInfo(action) {
+    console.log(action.payload)
     try {
         yield axios({
             method: 'PUT',
-            url: '/contactInfo/${action.payload.id}',
+            url: `/contactInfo`,
             data: action.payload
         })
         

@@ -11,13 +11,9 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      <div>THIS IS WHERE LOCATION GOES</div>
-      <ul>
-        <li>Place Order</li>
-        <li>View Menu</li>
-        <li>View Schedule</li>
-      </ul>
-      {/* <p>Your ID is: {user.id}</p> */}
+      <div>Why does this page exist?</div>
+      <p>Current Location</p>
+      <p>Schedule</p>
       {/* <LogOutButton className="btn" /> */}
     </div>
   );
