@@ -17,7 +17,7 @@ menuItemRouter.get('/:id', (req, res) => {
     pool.query(query, [values])
         .then( result => {
         res.send(result.rows[0]);
-        console.log('It worked?');  
+          
         })
         .catch(err => {
         console.log('ERROR: GET menuItem', err);

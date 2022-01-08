@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function MenuItemDetails() {
   const dispatch = useDispatch();
   const params = useParams();
   const cartReducer = useSelector(store => store.cartReducer);
   const user = useSelector((store) => store.user);
+  const history = useHistory();
+  
 
   useEffect(() => {
     dispatch({
@@ -26,13 +30,23 @@ function MenuItemDetails() {
     }
   };
 
-  const addToCart = () => {
+  const handleQuantityChange = (event) => {
+    menuItem.quantity = event.target.value;
+    return menuItem;
+  }
+
+  const addToCart = (event) => {
+    event.preventDefault();
     menuItem.user_id = user.id;
+    handleQuantityChange
     dispatch({
       type: 'ADD_TO_CART',
       payload: menuItem
     })
+    console.log(menuItem)
   }
+
+  
 
   const saveButton = (event) => {
     event.preventDefault();
@@ -41,6 +55,10 @@ function MenuItemDetails() {
       payload: PUTSTUFFHERE
   })
   }
+
+  const backToMenu = () =>  {
+    history.push('/menu');
+}
 
 
   if (user.role === 'user')  {
@@ -65,15 +83,17 @@ function MenuItemDetails() {
             {ingredients(menuItem.Sauce) ? <li>Sauce: {menuItem.Sauce}</li> : ''}
             {ingredients(menuItem.Lime) ? <li>Lime: {menuItem.Lime}</li> : ''}
         </ul>
-        <label htmlFor="Quantity">Quantity:</label>
-        <select name="Quantity" id="Quantity">
+        <form onSubmit={addToCart}>
+        <select name="Quantity" id="Quantity" onChange={handleQuantityChange}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        <button onClick={addToCart}>Add To Cart</button>
+        <button type="submit">Add To Cart</button>
+        </form>
+        <button onClick={backToMenu}>Back to Menu</button>
     </div>
 
   )}

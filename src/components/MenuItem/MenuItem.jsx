@@ -26,7 +26,7 @@ function MenuItem({item}) {
           height="300"
           />
       <p>{item.description}</p>
-      <p>{item.price}</p>
+      <p>${item.price}</p>
   </div>
     )
   }

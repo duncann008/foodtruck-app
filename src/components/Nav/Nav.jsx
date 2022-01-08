@@ -42,11 +42,11 @@ function Nav() {
             <Link className="navLink" to="/menu">
               Start Order
             </Link>
-            <Link className="navLink" to="/about">
-              About Us/Contact
-            </Link>
             <Link className="navLink" to="/MyAccount">
               My Account
+            </Link>
+            <Link className="navLink" to="/about">
+              About Us/Contact
             </Link>
 
             <LogOutButton className="navLink" />

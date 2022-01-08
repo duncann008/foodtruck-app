@@ -10,6 +10,7 @@ function CartDropdown() {
     const cartReducer = useSelector(store => store.cartReducer);
     const user = useSelector((store) => store.user);
 
+
     const sumPriceTotal = () =>  {
         let totalArray = [];
         cartReducer.map((item) =>   {
@@ -27,7 +28,7 @@ function CartDropdown() {
         return finalTotal;
     }
 
-    const goToCheckout = () =>  {
+    const goToCart = () =>  {
         history.push('/cart');
     }
     
@@ -38,18 +39,22 @@ function CartDropdown() {
         })
     }
 
-    console.log(cartReducer[0]);
 
     if (user.role === 'user') {
     return  (
         <div className='dropdownCart'>
-            THIS IS THE DROPDOWN
-            <ul>
+            
             {cartReducer.map((item, index) =>    
-                <li key={index}>{item.item} ${item.price}<button onClick={() => {removeItemFromCart(index)}}>X</button></li>)}
-            </ul>
+                <p key={index}>{item.item} <select name="Quantity" id="Quantity" defaultValue={item.quantity}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>${item.price}<button onClick={() => {removeItemFromCart(index)}}>X</button></p>)}
+            
             <p>Total Price: {sumPriceTotal()}</p>
-            <button onClick={goToCheckout}>Checkout</button>
+            <button onClick={goToCart}>Cart</button>
         </div>
     )}
     else {

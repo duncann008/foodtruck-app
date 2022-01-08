@@ -25,6 +25,7 @@ import CartDropdown from '../CartDropdown/CartDropdown';
 
 import './App.css';
 import MenuItemDetails from '../MenuItemDetails/MenuItemDetails';
+import Checkout from '../Checkout/Checkout';
 
 
 function App() {
@@ -67,6 +68,10 @@ function App() {
             exact path="/cart">
               <Cart /> 
           </Route>
+          <ProtectedRoute 
+            exact path="/checkout">
+              <Checkout />
+          </ProtectedRoute>
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.

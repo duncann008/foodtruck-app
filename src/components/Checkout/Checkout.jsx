@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-function Cart() {
+function Checkout() {
     
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
     const cartReducer = useSelector(store => store.cartReducer);
-    
+    const contactInfoReducer = useSelector((store) => store.contactInfoReducer);
 
     useEffect(() => {
         dispatch({
@@ -35,28 +35,24 @@ function Cart() {
         return finalTotal;
     }
 
-    const goToCheckout = () =>  {
-        history.push('/checkout');
-    }
-
-    const backToMenu = () =>  {
-        history.push('/menu');
-    }
   
     return  (
         <div>
-            <button onClick={backToMenu}>Back to Menu</button>
+            <h1>Contact Info:</h1>
+            <p>Name: {contactInfoReducer.first_name} {contactInfoReducer.last_name}</p>
+            <p>Phone Number: {contactInfoReducer.phone_number}</p>
+            <p>Email: {contactInfoReducer.email}</p>
             <h1>Order Details:</h1>
-            
             <ul>
                 {cartReducer.map((item, index) =>    
-                    <li key={index}>{item.item}   -   {item.price}<button onClick={() => {removeItemFromCart(index)}}>X</button></li>
+                    <li key={index}>{item.item}   -   {item.price}</li>
                 )}
             </ul>
             <p>Total Price: {sumPriceTotal()}</p>
-            <button onClick={goToCheckout}>Checkout</button>
+            <button>Back to Menu</button>
+            <button>Place Order</button>
         </div>
     )}
 
     
-export default Cart;
+export default Checkout;
