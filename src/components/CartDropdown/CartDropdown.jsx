@@ -17,7 +17,7 @@ function CartDropdown() {
             let price = Number(item.price)
             let quantity = Number(item.quantity)
             let totalPrice = price * quantity;
-
+            console.log(item.quantity)
             totalArray.push(totalPrice)
         })
         let total = 0;

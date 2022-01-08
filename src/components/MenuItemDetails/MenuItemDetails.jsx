@@ -10,6 +10,7 @@ function MenuItemDetails() {
   const cartReducer = useSelector(store => store.cartReducer);
   const user = useSelector((store) => store.user);
   const history = useHistory();
+  const [itemQuantity, setItemQuantity] = useState(1);
   
 
   useEffect(() => {
@@ -31,14 +32,15 @@ function MenuItemDetails() {
   };
 
   const handleQuantityChange = (event) => {
-    menuItem.quantity = event.target.value;
+    setItemQuantity(event.target.value)
+    menuItem.quantity = itemQuantity;
     return menuItem;
   }
 
   const addToCart = (event) => {
     event.preventDefault();
     menuItem.user_id = user.id;
-    handleQuantityChange
+    handleQuantityChange(event);
     dispatch({
       type: 'ADD_TO_CART',
       payload: menuItem
