@@ -1,9 +1,21 @@
 #aboutUs {
     width: 300px;
-    height: 400px;
+    height: 200px;
     resize: none;
 }
 
 .contactOwner {
     resize: none;
+}
+
+.updateForm {
+    text-align: center;
+    float: left;
+    width: 50%;
+}
+
+.previewForm  {
+    text-align: center;
+    float: right;
+    width: 50%
 }

@@ -63,7 +63,8 @@ function AboutPage() {
   switch(user.role){
     case 'admin':
       return (
-        <div className="container">
+        <>
+        <div className="updateForm">
           <p>All typed changes are saved automatically.</p>
           
           <label hmtlFor="aboutUs">About Us</label>
@@ -84,12 +85,30 @@ function AboutPage() {
           
         
     </div>
+    <div className="previewForm">
+    <div>
+    <h1>Preview:</h1>
+    <a href="https://imgflip.com/i/60g2w6"><img height="300px"src="https://i.imgflip.com/60g2w6.jpg"/></a>
+      <h1>About Us:</h1>
+      <p>{aboutUsReducer}</p>
+    </div>
+    <div>
+      <h1>Contact Us:</h1>
+      <p>{contactOwnerReducer.owner_name}</p>
+      <p>{contactOwnerReducer.truck_number}</p>
+      <p>{contactOwnerReducer.email}</p>
+      <p>{contactOwnerReducer.instagram}</p>
+      <p>{contactOwnerReducer.twitter}</p>
+    </div>
+  </div>
+  </>
     
   );
   
   default:
     return (
-      <div className="updateForm">
+      <>
+      <div>
       <div>
       <a href="https://imgflip.com/i/60g2w6"><img height="300px"src="https://i.imgflip.com/60g2w6.jpg"/></a>
         <h1>About Us:</h1>
@@ -104,6 +123,7 @@ function AboutPage() {
         <p>{contactOwnerReducer.twitter}</p>
       </div>
     </div>
+    </>
     )
   }
   
