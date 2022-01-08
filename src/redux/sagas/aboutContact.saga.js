@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
-function* fetchAboutContact(action) {
+function* fetchAboutContact() {
     try {
         const aboutContact = yield axios({
             method: 'GET',
             url: `/aboutContact`
         });
-        yield put({ payload: aboutContact.data });
+        yield put({ type: 'SET_ABOUT_CONTACT', payload: aboutContact.data });
 
     } catch (err) {
         console.log('GET Contact Info error:', err);
@@ -16,7 +16,6 @@ function* fetchAboutContact(action) {
 
 
 function* setAboutContact(action) {
-    console.log(action.payload)
     try {
         yield axios({
             method: 'POST',

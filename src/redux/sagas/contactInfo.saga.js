@@ -8,7 +8,7 @@ function* fetchUserContactInfo() {
             url: `/contactInfo`
         });
     
-        yield put({ type: 'SET_CONTACT_INFO', payload: contactInfo.data });
+        yield put({ type: 'GET_CONTACT_INFO', payload: contactInfo.data });
 
     } catch (err) {
         console.log('GET Contact Info error:', err);
