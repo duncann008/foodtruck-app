@@ -21,8 +21,11 @@ function Checkout() {
       const sumPriceTotal = () =>  {
         let totalArray = [];
         cartReducer.map((item) =>   {
-            let number = Number(item.price)
-            totalArray.push(number)
+            let price = Number(item.price)
+            let quantity = Number(item.quantity)
+            let totalPrice = price * quantity;
+
+            totalArray.push(totalPrice)
         })
         let total = 0;
         for (let i=0; i < totalArray.length; i++)   {
@@ -43,11 +46,11 @@ function Checkout() {
             <p>Phone Number: {contactInfoReducer.phone_number}</p>
             <p>Email: {contactInfoReducer.email}</p>
             <h1>Order Details:</h1>
-            <ul>
+            
                 {cartReducer.map((item, index) =>    
-                    <li key={index}>{item.item}   -   {item.price}</li>
+                    <p key={index}>{item.quantity}  -  {item.item}   -   ${item.price * item.quantity}</p>
                 )}
-            </ul>
+            
             <p>Total Price: {sumPriceTotal()}</p>
             <button>Back to Menu</button>
             <button>Place Order</button>

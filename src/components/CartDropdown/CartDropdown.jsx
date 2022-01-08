@@ -14,8 +14,11 @@ function CartDropdown() {
     const sumPriceTotal = () =>  {
         let totalArray = [];
         cartReducer.map((item) =>   {
-            let number = Number(item.price)
-            totalArray.push(number)
+            let price = Number(item.price)
+            let quantity = Number(item.quantity)
+            let totalPrice = price * quantity;
+
+            totalArray.push(totalPrice)
         })
         let total = 0;
         for (let i=0; i < totalArray.length; i++)   {
@@ -31,6 +34,11 @@ function CartDropdown() {
     const goToCart = () =>  {
         history.push('/cart');
     }
+
+    const handleQuantityChange = (event) => {
+        menuItem.quantity = event.target.value;
+        return menuItem;
+      }
     
     const removeItemFromCart = (index) =>    {
         dispatch({
@@ -45,7 +53,7 @@ function CartDropdown() {
         <div className='dropdownCart'>
             
             {cartReducer.map((item, index) =>    
-                <p key={index}>{item.item} <select name="Quantity" id="Quantity" defaultValue={item.quantity}>
+                <p key={index}>{item.item} <select name="Quantity" id="Quantity" defaultValue={item.quantity} onChange={handleQuantityChange}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

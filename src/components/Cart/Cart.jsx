@@ -18,11 +18,19 @@ function Cart() {
         })
       }, [])
 
+      const handleQuantityChange = (event) => {
+        menuItem.quantity = event.target.value;
+        return menuItem;
+      }
+
       const sumPriceTotal = () =>  {
         let totalArray = [];
         cartReducer.map((item) =>   {
-            let number = Number(item.price)
-            totalArray.push(number)
+            let price = Number(item.price)
+            let quantity = Number(item.quantity)
+            let totalPrice = price * quantity;
+
+            totalArray.push(totalPrice)
         })
         let total = 0;
         for (let i=0; i < totalArray.length; i++)   {
@@ -47,14 +55,20 @@ function Cart() {
         <div>
             <button onClick={backToMenu}>Back to Menu</button>
             <h1>Order Details:</h1>
-            
-            <ul>
+            <form onSubmit={goToCheckout}>
                 {cartReducer.map((item, index) =>    
-                    <li key={index}>{item.item}   -   {item.price}<button onClick={() => {removeItemFromCart(index)}}>X</button></li>
+                    <p key={index}>{item.item}<select name="Quantity" id="Quantity" defaultValue={item.quantity} onChange={handleQuantityChange}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>   -   {item.price}<button onClick={() => {removeItemFromCart(index)}}>X</button></p>
                 )}
-            </ul>
+            
             <p>Total Price: {sumPriceTotal()}</p>
-            <button onClick={goToCheckout}>Checkout</button>
+            <button type="submit">Checkout</button>
+            </form>
         </div>
     )}
 

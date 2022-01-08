@@ -43,7 +43,7 @@ function MenuItemDetails() {
       type: 'ADD_TO_CART',
       payload: menuItem
     })
-    console.log(menuItem)
+    history.push('/menu');
   }
 
   
