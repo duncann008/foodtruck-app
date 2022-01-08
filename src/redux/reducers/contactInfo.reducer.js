@@ -1,7 +1,6 @@
 const contactInfoReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_CONTACT_INFO':
-            console.log(action.payload)
             return action.payload;
         case 'EDIT_FIRST_NAME':
             return { ...state, first_name: action.payload};

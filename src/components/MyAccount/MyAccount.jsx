@@ -61,11 +61,11 @@ function MyAccount() {
     dispatch({
       type: 'EDIT_CONTACT_INFO',
       payload: {
-              first_name: contactInfoReducer.first_name,
-              last_name: contactInfoReducer.last_name,
-              phone_number: contactInfoReducer.phone_number,
-              email: contactInfoReducer.email,
-              user_id: user.id
+          first_name: contactInfoReducer.first_name,
+          last_name: contactInfoReducer.last_name,
+          phone_number: contactInfoReducer.phone_number,
+          email: contactInfoReducer.email,
+          user_id: user.id
       }
   })
   }

@@ -1,5 +1,11 @@
-const contactOwnerReducer = (state = {}, action) => {
+const aboutContactReducer = (state = {}, action) => {
     switch (action.type) {
+        case 'SET_ABOUT_CONTACT':
+            return action.payload;
+        case 'EDIT_IMAGE_URL':
+            return { ...state, image_url: action.payload};
+        case 'EDIT_ABOUT_US':
+            return { ...state, about_us: action.payload};
         case 'EDIT_OWNER_NAME':
             return { ...state, owner_name: action.payload};
         case 'EDIT_TRUCK_NUMBER':
@@ -15,4 +21,4 @@ const contactOwnerReducer = (state = {}, action) => {
     }
 }
 
-export default contactOwnerReducer;
+export default aboutContactReducer;
