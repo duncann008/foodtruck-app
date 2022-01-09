@@ -17,11 +17,19 @@ function Cart() {
           payload: user.id
         })
       }, [])
+      
 
       const handleQuantityChange = (event) => {
         menuItem.quantity = event.target.value;
         return menuItem;
       }
+
+      const removeItemFromCart = (index) =>    {
+        dispatch({
+            type: 'REMOVE_FROM_CART',
+            payload: cartReducer[index]
+        })
+    }
 
       const sumPriceTotal = () =>  {
         let totalArray = [];
@@ -63,7 +71,7 @@ function Cart() {
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                  </select>   -   {item.price}<button onClick={() => {removeItemFromCart(index)}}>X</button></p>
+                  </select>   -   {item.price}<button type="button" onClick={() => {removeItemFromCart(index)}}>X</button></p>
                 )}
             
             <p>Total Price: {sumPriceTotal()}</p>

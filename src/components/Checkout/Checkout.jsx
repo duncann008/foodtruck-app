@@ -2,6 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import orderReducer from '../../redux/reducers/order.reducer';
 
 function Checkout() {
     
@@ -10,6 +11,7 @@ function Checkout() {
     const user = useSelector((store) => store.user);
     const cartReducer = useSelector(store => store.cartReducer);
     const contactInfoReducer = useSelector((store) => store.contactInfoReducer);
+    const orderReducer = useSelector(store => store.orderReducer);
 
     useEffect(() => {
         dispatch({
@@ -17,6 +19,13 @@ function Checkout() {
           payload: user.id
         })
       }, [])
+
+      const handleNotesChange = (event) => {
+        dispatch({
+          type: 'SET_NOTES',
+          payload: event.target.value
+        })
+      }
 
       const sumPriceTotal = () =>  {
         let totalArray = [];
@@ -52,6 +61,8 @@ function Checkout() {
                 )}
             
             <p>Total Price: {sumPriceTotal()}</p>
+            <label hmtlFor="notes">Notes, comments, etc:</label>
+            <textarea id="notes" onChange={handleNotesChange} /><br />
             <button>Back to Menu</button>
             <button>Place Order</button>
         </div>

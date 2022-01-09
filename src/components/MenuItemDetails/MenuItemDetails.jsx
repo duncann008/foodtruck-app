@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import menuItemReducer from '../../redux/reducers/menuItem.reducer';
 
 function MenuItemDetails() {
   const dispatch = useDispatch();
@@ -48,13 +49,96 @@ function MenuItemDetails() {
     history.push('/menu');
   }
 
-  
+  const handleShellChange = (event) => {
+    dispatch({
+      type: 'EDIT_SHELL',
+      payload: event.target.value
+    })
+  }
+  const handleMeatChange = (event) => {
+    dispatch({
+      type: 'EDIT_MEAT',
+      payload: event.target.value
+    })
+  }
+  const handleCheeseChange = (event) => {
+    dispatch({
+      type: 'EDIT_CHEESE',
+      payload: event.target.value
+    })
+  }
+  const handleBeansChange = (event) => {
+    dispatch({
+      type: 'EDIT_BEANS',
+      payload: event.target.value
+    })
+  }
+  const handleRiceChange = (event) => {
+    dispatch({
+      type: 'EDIT_RICE',
+      payload: event.target.value
+    })
+  }
+  const handleLettuceChange = (event) => {
+    dispatch({
+      type: 'EDIT_LETTUCE',
+      payload: event.target.value
+    })
+  }
+  const handleSalsaChange = (event) => {
+    dispatch({
+      type: 'EDIT_SALSA',
+      payload: event.target.value
+    })
+  }
+  const handleSourCreamChange = (event) => {
+    dispatch({
+      type: 'EDIT_SOUR_CREAM',
+      payload: event.target.value
+    })
+  }
+  const handlePicoChange = (event) => {
+    dispatch({
+      type: 'EDIT_PICO',
+      payload: event.target.value
+    })
+  }
+  const handleCilantroChange = (event) => {
+    dispatch({
+      type: 'EDIT_CILANTRO',
+      payload: event.target.value
+    })
+  }
+  const handleOnionsChange = (event) => {
+    dispatch({
+      type: 'EDIT_ONIONS',
+      payload: event.target.value
+    })
+  }
+  const handleSauceChange = (event) => {
+    dispatch({
+      type: 'EDIT_SAUCE',
+      payload: event.target.value
+    })
+  }
+  const handleCornChange = (event) => {
+    dispatch({
+      type: 'EDIT_CORN',
+      payload: event.target.value
+    })
+  }
+  const handleLimeChange = (event) => {
+    dispatch({
+      type: 'EDIT_LIME',
+      payload: event.target.value
+    })
+  }
 
   const saveButton = (event) => {
     event.preventDefault();
     dispatch({
-      type: 'UPDATE_MENU_ITEM',
-      payload: PUTSTUFFHERE
+      type: 'EDIT_MENU_ITEM',
+      payload: menuItem
   })
   }
 
@@ -108,28 +192,35 @@ function MenuItemDetails() {
         <p>Included Ingredients:</p>
         <form onSubmit={(event) => saveButton(event)}>
           <label htmlFor="Shell">Shell:</label>
-          <input id="Shell" onChange defaultValue={menuItem.Shell} /><br />
+          <input id="Shell" onChange={handleShellChange} defaultValue={menuItem.Shell} /><br />
           <label htmlFor="Meat">Meat:</label>
-          <input id="Meat" onChange defaultValue={menuItem.Meat} /><br />
+          <input id="Meat" onChange={handleMeatChange} defaultValue={menuItem.Meat} /><br />
+          <label htmlFor="Beans">Beans:</label>
+          <input id="Beans" onChange={handleBeansChange} defaultValue={menuItem.Beans} /><br />
           <label htmlFor="Cheese">Cheese:</label>
-          <input id="Cheese" onChange defaultValue={menuItem.Cheese} /><br />
-          <button>Save</button>
+          <input id="Cheese" onChange={handleCheeseChange} defaultValue={menuItem.Cheese} /><br />
+          <label htmlFor="Rice">Rice:</label>
+          <input id="Rice" onChange={handleRiceChange} defaultValue={menuItem.Rice} /><br />
+          <label htmlFor="Lettuce">Lettuce:</label>
+          <input id="Lettuce" onChange={handleLettuceChange} defaultValue={menuItem.Lettuce} /><br />
+          <label htmlFor="Salsa">Salsa:</label>
+          <input id="Salsa" onChange={handleSalsaChange} defaultValue={menuItem.Salsa} /><br />
+          <label htmlFor="SourCream">Sour Cream:</label>
+          <input id="SourCream" onChange={handleSourCreamChange} defaultValue={menuItem.SourCream} /><br />
+          <label htmlFor="Pico">Pico de Gallo:</label>
+          <input id="Pico" onChange={handlePicoChange} defaultValue={menuItem.PicodeGallo} /><br />
+          <label htmlFor="Cilantro">Cilantro:</label>
+          <input id="Cilantro" onChange={handleCilantroChange} defaultValue={menuItem.Cilantro} /><br />
+          <label htmlFor="DicedOnions">Diced Onions:</label>
+          <input id="DicedOnions" onChange={handleOnionsChange} defaultValue={menuItem.DicedOnions} /><br />
+          <label htmlFor="Sauce">Sauce:</label>
+          <input id="Sauce" onChange={handleSauceChange} defaultValue={menuItem.Sauce} /><br />
+          <label htmlFor="Lime">Lime:</label>
+          <input id="Lime" onChange={handleLimeChange} defaultValue={menuItem.Lime} /><br />
+          <label htmlFor="Corn">Corn:</label>
+          <input id="Corn" onChange={handleCornChange} defaultValue={menuItem.Corn} /><br />
+          <button type="submit">Save</button>
         </form>
-        {/* <ul>
-            <li>Shell: {menuItem.Shell}</li>
-            <li>Meat: {menuItem.Meat}</li>
-            <li>Cheese: {menuItem.Cheese}</li>
-            <li>Beans: {menuItem.Beans}</li>
-            <li>Rice: {menuItem.Rice}</li>
-            <li>Lettuce: {menuItem.Lettuce}</li>
-            <li>Salsa: {menuItem.Salsa}</li>
-            <li>Sour Cream: {menuItem.SourCream}</li>
-            <li>Pico de Gallo: {menuItem.PicodeGallo}</li>
-            <li>Cilantro: {menuItem.Cilantro}</li>
-            <li>Diced Onions: {menuItem.DicedOnions}</li>
-            <li>Sauce: {menuItem.Sauce}</li>
-            <li>Lime: {menuItem.Lime}</li>
-        </ul> */}
       </div>
     )
 }

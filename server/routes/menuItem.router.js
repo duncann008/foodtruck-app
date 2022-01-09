@@ -33,4 +33,24 @@ menuItemRouter.post('/', (req, res) => {
   // POST route code here
 });
 
+menuItemRouter.put('/', (req, res) => {
+    
+    const sqlText = `
+      UPDATE "default_ingredients"
+        SET "Shell" = $2
+          WHERE "id" = $1;
+      `
+  
+      const sqlValues = [req.body.id, req.body.Shell];
+  
+      pool.query(sqlText, sqlValues)
+    .then(res => {
+      console.log('PUT happened')
+  }).catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    })
+  });
+
+
 module.exports = menuItemRouter;

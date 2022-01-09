@@ -17,8 +17,25 @@ function* fetchMenuItem(action) {
     }
 }
 
+function* editMenuItem(action) {
+    
+    try {
+        yield axios({
+            method: 'PUT',
+            url: `/menuItem`,
+            data: action.payload
+        })
+        
+        yield put({ type: 'FETCH_MENU_ITEM' });
+
+    } catch(err) {
+        console.log('PUT error', err);
+    }
+}
+
 function* menuItemSaga() {
   yield takeEvery('FETCH_MENU_ITEM', fetchMenuItem);
+  yield takeEvery('EDIT_MENU_ITEM', editMenuItem);
 }
 
 export default menuItemSaga;
