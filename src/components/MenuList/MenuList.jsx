@@ -16,15 +16,14 @@ function MenuList() {
     }, []);
     
     
-    
 
     return (
         <div>
-            {menuList.map(item => {
-                    return (
-                        <MenuItem key={item.id} item={item} />
-                    );
-                })}
+          {menuList.map(item => {
+            return (
+              <MenuItem key={item.id} item={item} />
+                );
+              })}
         </div>
     )
 }
