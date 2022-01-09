@@ -2,6 +2,8 @@ const menuItemReducer = (state = {}, action) => {
     switch (action.type) {
       case 'SET_MENU_ITEM':
         return action.payload;
+      case 'GET_MENU_ITEM':
+        return action.payload;
       case 'EDIT_MENU_ITEM':
         return action.payload;
       case 'EDIT_SHELL':

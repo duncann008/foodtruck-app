@@ -29,19 +29,77 @@ menuItemRouter.get('/:id', (req, res) => {
 /**
  * POST route template
  */
-menuItemRouter.post('/', (req, res) => {
-  // POST route code here
-});
+ menuItemRouter.post('/', (req, res) => {
+    // POST route code here
+    const sqlText = `
+    INSERT INTO "default_ingredients" ("Shell", "Meat", "Beans", "Cheese", "Rice", "Lettuce", "Salsa", "SourCream", "PicodeGallo", "Cilantro", "DicedOnions", "Sauce", "Corn", "Lime", "menu_id")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+    RETURNING "id";`
+  
+    const sqlValues = [
+        req.body.Shell, 
+        req.body.Meat, 
+        req.body.Beans, 
+        req.body.Cheese, 
+        req.body.Rice, 
+        req.body.Lettuce, 
+        req.body.Salsa, 
+        req.body.SourCream, 
+        req.body.PicodeGallo, 
+        req.body.Cilantro, 
+        req.body.DicedOnions, 
+        req.body.Sauce,
+        req.body.Corn,
+        req.body.Lime
+    ]
+  
+    pool.query(sqlText, sqlValues)
+    .then(result => {
+      console.log('Contact Info Added:', result.rows[0].id);
+  }).catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    })
+  });
 
 menuItemRouter.put('/', (req, res) => {
     
     const sqlText = `
       UPDATE "default_ingredients"
-        SET "Shell" = $2
+        SET "Shell" = $2,
+            "Meat" = $3, 
+            "Beans" = $4, 
+            "Cheese" = $5, 
+            "Rice" = $6, 
+            "Lettuce" = $7, 
+            "Salsa" = $8, 
+            "SourCream" = $9, 
+            "PicodeGallo" = $10, 
+            "Cilantro" = $11, 
+            "DicedOnions" = $12, 
+            "Sauce" = $13, 
+            "Corn" = $14, 
+            "Lime" = $15
           WHERE "id" = $1;
       `
   
-      const sqlValues = [req.body.id, req.body.Shell];
+      const sqlValues = [
+        req.body.id,
+        req.body.Shell,
+        req.body.Meat, 
+        req.body.Beans, 
+        req.body.Cheese, 
+        req.body.Rice, 
+        req.body.Lettuce, 
+        req.body.Salsa, 
+        req.body.SourCream, 
+        req.body.PicodeGallo, 
+        req.body.Cilantro, 
+        req.body.DicedOnions, 
+        req.body.Sauce,
+        req.body.Corn,
+        req.body.Lime
+    ];
   
       pool.query(sqlText, sqlValues)
     .then(res => {

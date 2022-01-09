@@ -10,10 +10,26 @@ function* fetchMenuItem(action) {
             url: `/menuItem/${action.payload}`
         });
         
-        yield put({ type: 'SET_MENU_ITEM', payload: menuItem.data });
+        yield put({ type: 'GET_MENU_ITEM', payload: menuItem.data });
 
     } catch {
         console.log('GET MenuItem error:', err);
+    }
+}
+
+function* setMenuItem(action) {
+    
+    try {
+        yield axios({
+            method: 'POST',
+            url: '/menuItem',
+            data: action.payload
+        })
+        
+        yield put({ type: 'FETCH_MENU_ITEM' });
+
+    } catch(err) {
+        console.log('POST error', err);
     }
 }
 
@@ -36,6 +52,7 @@ function* editMenuItem(action) {
 function* menuItemSaga() {
   yield takeEvery('FETCH_MENU_ITEM', fetchMenuItem);
   yield takeEvery('EDIT_MENU_ITEM', editMenuItem);
+  yield takeEvery('SET_MENU_ITEM', setMenuItem);
 }
 
 export default menuItemSaga;

@@ -21,8 +21,27 @@ menuRouter.get('/', (req, res) => {
 /**
  * POST route template
  */
-menuRouter.post('/', (req, res) => {
+ menuRouter.post('/', (req, res) => {
   // POST route code here
+  const sqlText = `
+  INSERT INTO "menu" ("item", "image_url", "price", "description")
+  VALUES ($1, $2, $3, $4)
+  RETURNING "id";`
+
+  const sqlValues = [
+      req.body.item, 
+      req.body.image_url, 
+      req.body.price, 
+      req.body.description
+  ]
+
+  pool.query(sqlText, sqlValues)
+  .then(result => {
+    console.log('Menu List increased');
+}).catch(err => {
+    console.log(err);
+    res.sendStatus(500)
+  })
 });
 
 module.exports = menuRouter;

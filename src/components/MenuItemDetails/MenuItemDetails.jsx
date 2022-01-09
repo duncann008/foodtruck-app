@@ -189,6 +189,7 @@ function MenuItemDetails() {
       <h1>{menuItem.item}</h1>
         <img src={menuItem.image_url} height="200" />
         <p>Description: {menuItem.description}</p>
+        <p>Price: ${menuItem.price}</p>
         <p>Included Ingredients:</p>
         <form onSubmit={(event) => saveButton(event)}>
           <label htmlFor="Shell">Shell:</label>
