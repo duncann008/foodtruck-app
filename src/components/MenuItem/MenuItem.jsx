@@ -16,9 +16,10 @@ function MenuItem({item}) {
             return;
         }
         }
-  
+ 
+if (user.role === 'admin')  {
     return (
-      <div onClick={goToMenuItemDetails} key={item.id}>
+      <div>
       <h3>{item.item}</h3>
       <img
           src={item.image_url} 
@@ -27,9 +28,24 @@ function MenuItem({item}) {
           />
       <p>{item.description}</p>
       <p>${item.price}</p>
-  </div>
+      <button onClick={goToMenuItemDetails}>Edit Ingredients</button>
+    </div>
     )
-  }
-
+    }
+else   {
+    return (
+        <div onClick={goToMenuItemDetails} key={item.id}>
+        <h3>{item.item}</h3>
+        <img
+            src={item.image_url} 
+            alt={item.item}
+            height="300"
+            />
+        <p>{item.description}</p>
+        <p>${item.price}</p>
+      </div>
+      )
+}
+}
     
 export default MenuItem;

@@ -60,7 +60,7 @@ function Nav() {
               Home
             </Link> */}
             <Link className="navLink" to="/menu">
-              Menu
+              Edit Menu
             </Link>
             <Link className="navLink" to="/about">
               About Us/Contact

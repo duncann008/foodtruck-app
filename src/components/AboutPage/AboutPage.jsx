@@ -92,7 +92,7 @@ function AboutPage() {
         <>
         <div className="updateForm">
           <form onSubmit={saveButton}>
-          <label htmlFor="image_url">Image URL</label>
+            <label htmlFor="image_url">Image URL</label>
             <input className="aboutContact" type="text" id="image_url" onChange={handleImageUrlChange} placeholder="Image URL" value={aboutContactReducer.image_url || ''} /><br />
             <label hmtlFor="aboutUs">About Us</label>
             <textarea id="aboutUs" onChange={handleAboutUsChange} value={aboutContactReducer.about_us || ''} /><br />        

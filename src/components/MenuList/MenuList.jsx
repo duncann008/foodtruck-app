@@ -8,6 +8,7 @@ function MenuList() {
     const dispatch = useDispatch();
     const menuList = useSelector(store => store.menuListReducer);
     const history = useHistory();
+    const user = useSelector(store => store.user)
     
     useEffect(() => {
         dispatch({ type: 'FETCH_MENU_LIST' });
