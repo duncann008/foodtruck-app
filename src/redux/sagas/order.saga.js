@@ -17,7 +17,7 @@ function* fetchOrders() {
 
 
 function* setOrder(action) {
-  console.log(action.payload)
+  
   try {
       yield axios({
           method: 'POST',

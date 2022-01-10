@@ -17,11 +17,11 @@ const aboutContactReducer = (state = {}, action) => {
         case 'EDIT_TWITTER':
             return { ...state, twitter: action.payload};
         case 'EDIT_CURRENT_LOCATION':
-            return {...state, current_location: action.payload}
+            return {...state, current_location: action.payload};
         case 'EDIT_NEXT_LOCATION':
-            return {...state, next_location: action.payload}
+            return {...state, next_location: action.payload};
         case 'EDIT_SCHEDULE':
-            return {...state, schedule: action.payload}
+            return {...state, schedule: action.payload};
         default:
             return state;
     }

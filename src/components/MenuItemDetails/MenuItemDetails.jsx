@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
+
 function MenuItemDetails() {
   const dispatch = useDispatch();
   const params = useParams();
@@ -13,6 +14,7 @@ function MenuItemDetails() {
   const history = useHistory();
   const [itemQuantity, setItemQuantity] = useState(1);
   const Swal = require('sweetalert2')
+ 
 
   useEffect(() => {
     dispatch({
@@ -197,6 +199,7 @@ function MenuItemDetails() {
     })
     
 }
+  console.log(orderReducer);
 
 
   if (user.role === 'user')  {

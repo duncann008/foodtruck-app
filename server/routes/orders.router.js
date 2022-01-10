@@ -6,7 +6,13 @@ const ordersRouter = express.Router();
  * GET route template
  */
 ordersRouter.get('/', (req, res) => {
-    const query = `SELECT * FROM orders`;
+    const query = `
+      SELECT * FROM "orders"
+      JOIN "order_item"
+      ON "orders"."id"="order_item"."order_id"
+      JOIN "menu"
+      ON "order_item"."menu_id"="menu"."id"
+        WHERE "fulfilled" = false`;
     pool.query(query)
         .then( result => {
         res.send(result.rows);
