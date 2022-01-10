@@ -259,7 +259,7 @@ function MenuItemDetails() {
           <input id="Lime" onChange={handleLimeChange} defaultValue={menuItem.Lime} /><br />
           <label htmlFor="Corn">Corn:</label>
           <input id="Corn" onChange={handleCornChange} defaultValue={menuItem.Corn} /><br />
-          <button type="submit">Save</button>
+          <button type="submit">Save</button><button type="button" onClick={backToMenu}>Back To Menu</button>
         </form>
       </div>
     )
