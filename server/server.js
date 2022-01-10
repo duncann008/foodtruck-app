@@ -13,6 +13,7 @@ const menuRouter = require('./routes/menuList.router');
 const menuItemRouter = require('./routes/menuItem.router');
 const contactInfoRouter = require('./routes/contactInfo.router');
 const aboutRouter = require('./routes/aboutContact.router');
+const ordersRouter = require('./routes/orders.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/menuList', menuRouter);
 app.use('/menuItem', menuItemRouter);
 app.use('/contactInfo', contactInfoRouter);
 app.use('/aboutContact', aboutRouter);
+app.use('/orders', ordersRouter);
 
 // Serve static files
 app.use(express.static('build'));
