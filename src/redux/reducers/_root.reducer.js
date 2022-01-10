@@ -7,7 +7,7 @@ import cartReducer from './cart.reducer';
 import contactInfoReducer from './contactInfo.reducer';
 import aboutContactReducer from './aboutContact.reducer';
 import orderReducer from './order.reducer';
-
+import addMenuItemReducer from './addMenuItem.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,7 +23,8 @@ const rootReducer = combineReducers({
   cartReducer,
   contactInfoReducer,
   aboutContactReducer,
-  orderReducer
+  orderReducer,
+  addMenuItemReducer
  
   
 });

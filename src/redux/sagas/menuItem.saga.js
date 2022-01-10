@@ -17,8 +17,8 @@ function* fetchMenuItem(action) {
     }
 }
 
-function* setMenuItem(action) {
-    
+function* addMenuItem(action) {
+    console.log(action.payload)
     try {
         yield axios({
             method: 'POST',
@@ -52,7 +52,7 @@ function* editMenuItem(action) {
 function* menuItemSaga() {
   yield takeEvery('FETCH_MENU_ITEM', fetchMenuItem);
   yield takeEvery('EDIT_MENU_ITEM', editMenuItem);
-  yield takeEvery('SET_MENU_ITEM', setMenuItem);
+  yield takeEvery('ADD_MENU_ITEM', addMenuItem);
 }
 
 export default menuItemSaga;

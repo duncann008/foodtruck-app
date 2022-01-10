@@ -26,6 +26,7 @@ import CartDropdown from '../CartDropdown/CartDropdown';
 import './App.css';
 import MenuItemDetails from '../MenuItemDetails/MenuItemDetails';
 import Checkout from '../Checkout/Checkout';
+import AddMenuItem from '../AddMenuItem/AddMenuItem';
 
 
 function App() {
@@ -59,6 +60,10 @@ function App() {
               <CartDropdown />
               <MenuList />
           </Route>
+          <ProtectedRoute
+            exact path="/addMenuItem">
+              <AddMenuItem />
+          </ProtectedRoute>
           <ProtectedRoute
             exact path="/menuItem/:id">
               <CartDropdown />

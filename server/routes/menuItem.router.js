@@ -31,10 +31,25 @@ menuItemRouter.get('/:id', (req, res) => {
  */
  menuItemRouter.post('/', (req, res) => {
     // POST route code here
-    const sqlText = `
+  const sqlTextPost = `
+    INSERT INTO "menu" ("id", "item", "image_url", "price", "description")
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING "id";
+  `
+
+  const sqlValues = [
+    req.body.menu_id,
+    req.body.item,
+    req.body.image_url, 
+    req.body.price, 
+    req.body.description 
+  ];
+
+  pool.query(sqlTextPost, sqlValues)
+  .then(result => {
+    const sqlTextPost = `
     INSERT INTO "default_ingredients" ("Shell", "Meat", "Beans", "Cheese", "Rice", "Lettuce", "Salsa", "SourCream", "PicodeGallo", "Cilantro", "DicedOnions", "Sauce", "Corn", "Lime", "menu_id")
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
-    RETURNING "id";`
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);`
   
     const sqlValues = [
         req.body.Shell, 
@@ -50,17 +65,20 @@ menuItemRouter.get('/:id', (req, res) => {
         req.body.DicedOnions, 
         req.body.Sauce,
         req.body.Corn,
-        req.body.Lime
+        req.body.Lime,
+        req.body.menu_id
     ]
   
-    pool.query(sqlText, sqlValues)
-    .then(result => {
-      console.log('Contact Info Added:', result.rows[0].id);
+    pool.query(sqlTextPost, sqlValues)
+  }).then(result => {
+      console.log('POSTed to both tables');
   }).catch(err => {
       console.log(err);
       res.sendStatus(500)
     })
   });
+
+
 
 menuItemRouter.put('/', (req, res) => {
 
