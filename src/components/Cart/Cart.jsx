@@ -9,7 +9,7 @@ function Cart() {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
     const cartReducer = useSelector(store => store.cartReducer);
-    
+    const menuItem = useSelector(store => store.menuItemReducer);
 
     useEffect(() => {
         dispatch({
@@ -19,9 +19,14 @@ function Cart() {
       }, [])
       
 
-      const handleQuantityChange = (event) => {
-        menuItem.quantity = event.target.value;
-        return menuItem;
+      const handleQuantityChange = (event, index) => {
+        let convertedQuantity = Number(event.target.value);
+        cartReducer[index].quantity = convertedQuantity;
+        let quantityEdit = {arrayIndex: index, thePayload: cartReducer[index].quantity}
+        dispatch({
+          type: 'EDIT_CART_QUANTITY',
+          payload: quantityEdit
+        })
       }
 
       const removeItemFromCart = (index) =>    {
@@ -65,7 +70,7 @@ function Cart() {
             <h1>Order Details:</h1>
             <form onSubmit={goToCheckout}>
                 {cartReducer.map((item, index) =>    
-                    <p key={index}>{item.item}<select name="Quantity" id="Quantity" defaultValue={item.quantity} onChange={handleQuantityChange}>
+                    <p key={index}>{item.item}<select name="Quantity" id="Quantity" defaultValue={item.quantity} onChange={(event) => {handleQuantityChange(event, index)}}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

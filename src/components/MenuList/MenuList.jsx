@@ -24,6 +24,8 @@ function MenuList() {
               <MenuItem key={item.id} item={item} />
                 );
               })}
+        <br />
+        <button>Add Item</button>
         </div>
     )
 }

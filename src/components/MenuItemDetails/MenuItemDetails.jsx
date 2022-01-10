@@ -34,7 +34,7 @@ function MenuItemDetails() {
 
   const handleQuantityChange = (event) => {
     setItemQuantity(event.target.value)
-    menuItem.quantity = itemQuantity;
+    menuItem.quantity = Number(itemQuantity);
     return menuItem;
   }
 
@@ -42,6 +42,7 @@ function MenuItemDetails() {
     event.preventDefault();
     menuItem.user_id = user.id;
     handleQuantityChange(event);
+    console.log(menuItem)
     dispatch({
       type: 'ADD_TO_CART',
       payload: menuItem

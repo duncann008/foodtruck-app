@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import './CartDropdown.css';
 
+
 function CartDropdown() {
     
     const history = useHistory();
     const dispatch = useDispatch();
     const cartReducer = useSelector(store => store.cartReducer);
     const user = useSelector((store) => store.user);
+    const menuItem = useSelector(store => store.menuItemReducer)
 
 
     const sumPriceTotal = () =>  {
