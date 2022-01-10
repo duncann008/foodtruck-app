@@ -49,13 +49,20 @@ menuRouter.get('/', (req, res) => {
 menuRouter.delete('/:id', (req, res) =>  {
   
   const sqlText = `
-    DELETE FROM "menu"
-      WHERE "id" = $1;
-  `;
+    DELETE FROM "default_ingredients"
+      WHERE "menu_id" = $1;
+      `;
   const sqlValues = [req.params.id];
   pool.query(sqlText, sqlValues)
-    .then((dbResult) => {
-      res.sendStatus(200);
+  .then((dbResult) => {
+      
+    const sqlText = `
+      DELETE FROM "menu"
+        WHERE "id" = $1;
+  `;
+    const sqlValues = [req.params.id];
+    pool.query(sqlText, sqlValues)
+    res.sendStatus(200);
     })
     .catch((dbErr) => {
       console.error(dbErr);
