@@ -30,7 +30,7 @@ function* setMenuList(action) {
 }
 
 function* editMenuList(action) {
-  
+  console.log(action.payload)
   try {
       yield axios({
           method: 'PUT',

@@ -45,34 +45,6 @@ menuRouter.get('/', (req, res) => {
 });
 
 
-menuRouter.put('/', (req, res) => {
-    
-  const sqlText = `
-    UPDATE "menu"
-      SET "item" = $2,
-          "image_url" = $3, 
-          "price" = $4, 
-          "description" = $5 
-        WHERE "id" = $1;
-    `
-
-    const sqlValues = [
-      req.body.id,
-      req.body.item,
-      req.body.image_url, 
-      req.body.price, 
-      req.body.description 
-  ];
-
-    pool.query(sqlText, sqlValues)
-  .then(res => {
-    console.log('PUT happened')
-}).catch(err => {
-    console.log(err);
-    res.sendStatus(500)
-  })
-});
-
 
 menuRouter.delete('/:id', (req, res) =>  {
   

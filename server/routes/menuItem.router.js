@@ -63,6 +63,27 @@ menuItemRouter.get('/:id', (req, res) => {
   });
 
 menuItemRouter.put('/', (req, res) => {
+
+  const sqlText = `
+  UPDATE "menu"
+    SET "item" = $2,
+        "image_url" = $3, 
+        "price" = $4, 
+        "description" = $5 
+      WHERE "id" = $1;
+  `
+
+  const sqlValues = [
+    req.body.id,
+    req.body.item,
+    req.body.image_url, 
+    req.body.price, 
+    req.body.description 
+];
+
+  pool.query(sqlText, sqlValues)
+  .then(res => {
+    console.log('MENU PUT happened')
     
     const sqlText = `
       UPDATE "default_ingredients"
@@ -102,8 +123,10 @@ menuItemRouter.put('/', (req, res) => {
     ];
   
       pool.query(sqlText, sqlValues)
-    .then(res => {
-      console.log('PUT happened')
+    .then(result => {
+      console.log('Ingredients PUT working.')
+    })
+    
   }).catch(err => {
       console.log(err);
       res.sendStatus(500)

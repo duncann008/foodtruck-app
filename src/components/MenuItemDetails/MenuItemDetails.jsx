@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import menuItemReducer from '../../redux/reducers/menuItem.reducer';
+
 
 function MenuItemDetails() {
   const dispatch = useDispatch();
@@ -48,6 +48,34 @@ function MenuItemDetails() {
     })
     history.push('/menu');
   }
+
+  const handleItemChange = (event) => {
+    dispatch({
+        type: 'EDIT_ITEM',
+        payload: event.target.value
+    })
+}
+
+  const handleImageUrlChange = (event) => {
+    dispatch({
+        type: 'EDIT_IMAGE_URL',
+        payload: event.target.value
+    })
+}
+  const handlePriceChange = (event) => {
+    dispatch({
+        type: 'EDIT_PRICE',
+        payload: event.target.value
+    })
+}
+
+  const handleDescriptionChange = (event) => {
+    dispatch({
+        type: 'EDIT_DESCRIPTION',
+        payload: event.target.value
+    })
+}
+
 
   const handleShellChange = (event) => {
     dispatch({
@@ -134,7 +162,7 @@ function MenuItemDetails() {
     })
   }
 
-  const saveButton = (event) => {
+  const saveItemButton = (event) => {
     event.preventDefault();
     dispatch({
       type: 'EDIT_MENU_ITEM',
@@ -186,12 +214,22 @@ function MenuItemDetails() {
   else 
     return (
       <div>
-      <h1>{menuItem.item}</h1>
-        <img src={menuItem.image_url} height="200" />
-        <p>Description: {menuItem.description}</p>
-        <p>Price: ${menuItem.price}</p>
         <p>Included Ingredients:</p>
-        <form onSubmit={(event) => saveButton(event)}>
+        <form onSubmit={(event) => saveItemButton(event)}>
+          <label htmlFor="Item">Name:</label>
+          <input id="Item" onChange={handleItemChange} defaultValue={menuItem.item || ''} /><br />
+          <img
+              src={menuItem.image_url} 
+              alt={menuItem.item}
+              height="300"
+              />
+          <br />
+          <label htmlFor="ImageURL">Image URL:</label>
+          <input id="ImageURL" onChange={handleImageUrlChange} defaultValue={menuItem.image_url || ''} /><br />
+          <label hmtlFor="Description">Description:</label>
+          <textarea id="Description" onChange={handleDescriptionChange} value={menuItem.description || ''} /><br />
+          <label htmlFor="Price">Price: $</label>
+          <input id="Price" onChange={handlePriceChange} defaultValue={menuItem.price || ''} /><br />
           <label htmlFor="Shell">Shell:</label>
           <input id="Shell" onChange={handleShellChange} defaultValue={menuItem.Shell} /><br />
           <label htmlFor="Meat">Meat:</label>
