@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 
 function MenuItemDetails() {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ function MenuItemDetails() {
   const user = useSelector((store) => store.user);
   const history = useHistory();
   const [itemQuantity, setItemQuantity] = useState(1);
-  
+  const Swal = require('sweetalert2')
 
   useEffect(() => {
     dispatch({
@@ -172,7 +172,30 @@ function MenuItemDetails() {
   }
 
   const backToMenu = () =>  {
-    history.push('/menu');
+    Swal.fire({
+      title: 'Do you want to save? Any unsaved changes will be lost.',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: 'Cancel Item Creation',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({
+          type: 'EDIT_MENU_ITEM',
+          payload: menuItem
+      })
+        Swal.fire('Saved!', '', 'success')
+      } else if (result.isDenied) {
+        history.push('/menu');
+      }
+    })
+    
 }
 
 

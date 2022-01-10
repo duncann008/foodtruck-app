@@ -7,7 +7,7 @@ function MenuItem({item}) {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
-    
+    const Swal = require('sweetalert2');
 
     const goToMenuItemDetails = () => {
         if (user.id) {
@@ -21,13 +21,33 @@ function MenuItem({item}) {
     
 
     const deleteFromMenu = (event) =>    {
-      
       event.preventDefault();
-      dispatch({
-          type: 'DELETE_FROM_MENU',
-          payload: item
+      Swal.fire({
+        title: `Do you want to delete ${item.item}? This cannot be undone.`,
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Delete ${item.item}`,
+        denyButtonText: 'Cancel',
+        customClass: {
+          actions: 'my-actions',
+          cancelButton: 'order-1 right-gap',
+          confirmButton: 'order-2',
+          denyButton: 'order-3',
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch({
+            type: 'DELETE_FROM_MENU',
+            payload: item
+        })
+          Swal.fire(`Deleted: ${item.item}!`, '', 'success')
+        } else if (result.isDenied) {
+          
+        }
       })
-  }
+    }
+         
+  
   
  
   if (user.role === 'admin')  {
