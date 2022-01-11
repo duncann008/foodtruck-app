@@ -5,15 +5,31 @@ const ordersRouter = express.Router();
 /**
  * GET route template
  */
+const setQuery = (paramRole, paramId) =>  {
+ if (paramRole === 'admin')  {
+  return `
+   SELECT * FROM "orders"
+   JOIN "order_item"
+   ON "orders"."id"="order_item"."order_id"
+   JOIN "menu"
+   ON "order_item"."menu_id"="menu"."id"
+     WHERE "fulfilled" = false`;
+ }
+ else  {
+   return `
+   SELECT * FROM "orders"
+   JOIN "order_item"
+   ON "orders"."id"="order_item"."order_id"
+   JOIN "menu"
+   ON "order_item"."menu_id"="menu"."id"
+     WHERE "fulfilled" = false AND "user_id" = ${paramId}`;
+ }
+}
+
+
 ordersRouter.get('/', (req, res) => {
-    const query = `
-      SELECT * FROM "orders"
-      JOIN "order_item"
-      ON "orders"."id"="order_item"."order_id"
-      JOIN "menu"
-      ON "order_item"."menu_id"="menu"."id"
-        WHERE "fulfilled" = false`;
-    pool.query(query)
+  const query = setQuery(req.user.role, req.user.id);
+   pool.query(query)
         .then( result => {
         res.send(result.rows);
         })
