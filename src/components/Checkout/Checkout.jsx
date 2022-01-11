@@ -91,6 +91,7 @@ function Checkout() {
             style: 'currency',
             currency: 'USD',
           });
+
         return total;
     }
 
@@ -120,7 +121,7 @@ function Checkout() {
       if (favorite === true)  {
         dispatch({
           type: 'SET_FAVORITE',
-          // payload:
+          payload: favoriteArray
         })
       }
       history.push('/confirmation')
@@ -151,7 +152,7 @@ function Checkout() {
                     <p key={index}>{item.quantity}  -  {item.item}   -   ${item.price * item.quantity}</p>
                 )}
             
-            <p>Total Price: {sumPriceTotal()}</p>
+            <p>Total Price: ${sumPriceTotal()}</p>
             <label hmtlFor="notes">Notes, comments, requests:</label><br />
             <textarea id="notes" onChange={handleNotesChange} value={notes} /><br />
             <input type="checkbox" id="favorites" name="favorites" value="true" onChange={(event) => handleFavoritesAdd(event)} />

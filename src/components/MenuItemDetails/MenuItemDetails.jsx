@@ -34,20 +34,25 @@ function MenuItemDetails() {
     }
   };
 
+  let cartItem = {};
+
   const handleQuantityChange = (event) => {
     setItemQuantity(event.target.value)
-    menuItem.quantity = Number(itemQuantity);
-    return menuItem;
+    cartItem.quantity = Number(itemQuantity);
+    return cartItem;
   }
 
   const addToCart = (event) => {
     event.preventDefault();
-    menuItem.user_id = user.id;
+    cartItem.user_id = user.id;
     handleQuantityChange(event);
-    console.log(menuItem)
+    cartItem.menu_id =  menuItem.menu_id;
+    cartItem.item = menuItem.item;
+    cartItem.price = menuItem.price;
+    console.log(cartItem)
     dispatch({
       type: 'ADD_TO_CART',
-      payload: menuItem
+      payload: cartItem
     })
     history.push('/menu');
   }
