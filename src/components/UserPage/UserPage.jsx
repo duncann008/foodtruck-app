@@ -16,7 +16,20 @@ function UserPage() {
     })
   }, [])
 
+  let timeArray = [];
 
+  orderListReducer.map(item => {
+    if (timeArray.includes(item.order_id)) {
+      return;
+    }
+    else  {
+      timeArray.push({order_id: item.order_id, time_of_order: item.time_of_order})
+      // timeArray.push(item.order_id)
+      // timeArray.push(item.time_of_order);
+    }
+  })
+
+  console.log(timeArray);
   
   return (
     <div className="container">
