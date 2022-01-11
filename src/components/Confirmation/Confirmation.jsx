@@ -16,6 +16,11 @@ function Confirmation() {
       dispatch({
         type: 'FETCH_CONFIRMATION'
       })
+      return  () => {
+        dispatch({
+          type: 'CLEAR_CART'
+        })
+      }
     }, [])
     
     const routeBackHome = () => {
@@ -31,6 +36,7 @@ function Confirmation() {
                     <p key={index}>{item.quantity}  -  {item.item}   -   ${item.price * item.quantity}</p>
                 )}
           <p>Notes, comments, requests: {confirmationReducer.notes}</p>
+          <button onClick></button>
         </div>
     )
 }

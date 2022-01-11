@@ -48,11 +48,27 @@ function* setOrderItems(action) {
   }
 }
 
+function* fulfillOrder(action) {
+  
+  try {
+      yield axios({
+          method: 'PUT',
+          url: `/orders/${action.payload}`
+      })
+      
+      yield put({ type: 'FETCH_ORDERS' });
+
+  } catch(err) {
+      console.log('PUT error', err);
+  }
+}
+
 
 function* ordersSaga() {
   yield takeEvery('SET_ORDER', setOrder);
   yield takeEvery('SET_ORDER_ITEMS', setOrderItems);
   yield takeEvery('FETCH_ORDERS', fetchOrders);
+  yield takeEvery('FULFILL_ORDER', fulfillOrder);
 }
 
 export default ordersSaga;

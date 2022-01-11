@@ -10,6 +10,8 @@ const orderReducer = (state = {}, action) => {
             return { ...state, time_of_order: action.payload};
         case 'SET_TOTAL_PRICE':
             return { ...state, total_price: action.payload};
+        case 'SET_FULFILLED':
+            return { ...state, fulfilled: action.payload};
         default:
             return state;
     }

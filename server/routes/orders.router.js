@@ -84,4 +84,25 @@ ordersRouter.get('/', (req, res) => {
   })
 });
 
+ordersRouter.put('/:id', (req, res) => {
+  
+  
+  const query = `
+  
+  UPDATE "orders"
+	SET "fulfilled" = true
+		WHERE "id" = $1;`
+  const value = [req.params.id];
+
+   pool.query(query, value)
+        .then( result => {
+        res.send(result.rows);
+        })
+        .catch(err => {
+        console.log('ERROR: Orders PUT', err);
+        res.sendStatus(500)
+        })
+
+});
+
 module.exports = ordersRouter;

@@ -18,12 +18,15 @@ function MyAccount() {
   const params = useParams();
   const user = useSelector((store) => store.user);
   const contactInfoReducer = useSelector((store) => store.contactInfoReducer);
-
+  const orderListReducer = useSelector(store => store.orderListReducer);
 
   useEffect(() => {
     dispatch({
       type: 'FETCH_CONTACT_INFO',
       payload: user.id
+    }),
+    dispatch({
+      type: 'FETCH_ORDERS'
     })
   }, [])
  
@@ -70,10 +73,12 @@ function MyAccount() {
   })
   }
 
+  let timeArray = [];
+
   return (
     <div className="container">
       <h1>My Account</h1>
-      <p>Contact Info</p>
+      <h3>Contact Info</h3>
       <form onSubmit={saveButton}>  
         <label htmlfor="first_name">First Name</label>
         <input type="text" id="first_name" onChange={handleFirstNameChange} placeholder="First Name" value={contactInfoReducer.first_name || ''}/><br />
@@ -85,6 +90,20 @@ function MyAccount() {
         <input type="text" id="email" onChange={handleUserEmailChange} placeholder="Email Address(optional)" value={contactInfoReducer.email || ''}/><br />          
         <button className="saveButton" type="submit">Save</button>
       </form>
+      <h3>Recent Orders</h3>
+      {orderListReducer.map((item, index) =>   {
+          if (timeArray.includes(item.order_id)) {
+            return <p key={index}>{item.item}  -  {item.quantity}</p>;
+          }
+          else  {
+            timeArray.push(item.order_id)
+            return <div>
+              <p>Order #{item.order_id}  Time: {item.time_of_order}</p>
+              <p key={index}>{item.item}  -  {item.quantity}</p>
+            </div>;
+          }
+              
+        })}
     </div>
   );
 }

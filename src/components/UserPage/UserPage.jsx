@@ -11,6 +11,7 @@ function UserPage() {
   const dispatch = useDispatch();
   const orderListReducer = useSelector(store => store.orderListReducer);
   const aboutContactReducer = useSelector(store => store.aboutContactReducer);
+  const Swal = require('sweetalert2')
 
   useEffect(() => {
     dispatch({
@@ -53,6 +54,38 @@ function UserPage() {
     })
   }
 
+  
+
+  const fulfillOrder = (param) =>  {
+    Swal.fire({
+      title: `Complete Order #${param}?`,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Complete',
+      denyButtonText: 'Cancel',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({
+          type: 'FULFILL_ORDER',
+          payload: param
+        })
+      } else if (result.isDenied) {
+        return;
+      }
+    })
+    
+}
+
+  const startOrder = () =>  {
+    history.push('/menu')
+    }
+
 if (user.role === 'admin')  {
   return (
     <div className="container">
@@ -76,7 +109,9 @@ if (user.role === 'admin')  {
           else  {
             timeArray.push(item.order_id)
             return <div>
+              <br />
               <p>Order #{item.order_id}  Time: {item.time_of_order}</p>
+              <button onClick={() => fulfillOrder(item.order_id)}>COMPLETE</button>
               <p key={index}>{item.item}  -  {item.quantity}</p>
             </div>;
           }
@@ -95,20 +130,8 @@ if (user.role === 'admin')  {
         <p>Next Location: {aboutContactReducer.next_location}</p>
       </div> 
       {/* <LogOutButton className="btn" /> */}
-      <p>Most Recent Orders:</p>
-      {orderListReducer.map((item, index) =>   {
-          if (timeArray.includes(item.order_id)) {
-            return <p key={index}>{item.item}  -  {item.quantity}</p>;
-          }
-          else  {
-            timeArray.push(item.order_id)
-            return <div>
-              <p>Order #{item.order_id}  Time: {item.time_of_order}</p>
-              <p key={index}>{item.item}  -  {item.quantity}</p>
-            </div>;
-          }
-              
-        })}
+      <button>WHAT DO HERE?</button>
+      
     </div>
     )}
 }
