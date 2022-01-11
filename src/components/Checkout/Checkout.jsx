@@ -14,6 +14,7 @@ function Checkout() {
     const contactInfoReducer = useSelector((store) => store.contactInfoReducer);
     const orderReducer = useSelector(store => store.orderReducer)
     const [notes, setNotes] = useState('');
+    const [favorite, setFavorite] = useState(false);
     
 
     useEffect(() => {
@@ -93,6 +94,18 @@ function Checkout() {
         return total;
     }
 
+    const handleFavoritesAdd = () => {
+      setFavorite(!favorite);
+    }
+
+    let favoriteArray = []
+    cartReducer.map((item) =>  {
+      favoriteArray.push({
+        menu_id: item.menu_id,
+        quantity: item.quantity
+      })
+    })
+    console.log(favoriteArray)
     const placeOrder = () =>  {
       console.log(notes)
       dispatch({
@@ -104,10 +117,18 @@ function Checkout() {
           menuItemArray: cartReducer
         }
       })
-      
+      if (favorite === true)  {
+        dispatch({
+          type: 'SET_FAVORITE',
+          // payload:
+        })
+      }
       history.push('/confirmation')
       
     }
+
+
+
 
   
     return  (
@@ -131,8 +152,10 @@ function Checkout() {
                 )}
             
             <p>Total Price: {sumPriceTotal()}</p>
-            <label hmtlFor="notes">Notes, comments, requests:</label>
+            <label hmtlFor="notes">Notes, comments, requests:</label><br />
             <textarea id="notes" onChange={handleNotesChange} value={notes} /><br />
+            <input type="checkbox" id="favorites" name="favorites" value="true" onChange={(event) => handleFavoritesAdd(event)} />
+            <label for="favorites">Favorite This Order</label><br />
             <button>Back to Menu</button>
             <button onClick={placeOrder}>Place Order</button>
         </div>

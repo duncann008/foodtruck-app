@@ -110,7 +110,7 @@ if (user.role === 'admin')  {
             timeArray.push(item.order_id)
             return <div>
               <br />
-              <p>Order #{item.order_id}  Time: {item.time_of_order}</p>
+              <p>Order #{item.order_id}  Time: {item.time_of_order}<br /> Notes: {item.notes}</p>
               <button onClick={() => fulfillOrder(item.order_id)}>COMPLETE</button>
               <p key={index}>{item.item}  -  {item.quantity}</p>
             </div>;
