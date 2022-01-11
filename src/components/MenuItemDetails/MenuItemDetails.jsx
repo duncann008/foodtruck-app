@@ -199,7 +199,7 @@ function MenuItemDetails() {
     })
     
 }
-  console.log(orderReducer);
+  
 
 
   if (user.role === 'user')  {

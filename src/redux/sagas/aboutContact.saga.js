@@ -48,7 +48,7 @@ function* editAboutContact(action) {
 
 function* aboutContactSaga() {
   yield takeEvery('FETCH_ABOUT_CONTACT', fetchAboutContact);
-  yield takeEvery('SET_ABOUT_CONTACT', setAboutContact);
+  // yield takeEvery('SET_ABOUT_CONTACT', setAboutContact);
   yield takeEvery('EDIT_ABOUT_CONTACT', editAboutContact);
 
 }

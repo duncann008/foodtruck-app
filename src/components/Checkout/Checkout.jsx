@@ -104,7 +104,7 @@ function Checkout() {
           menuItemArray: cartReducer
         }
       })
-      
+      history.push('/confirmation')
     }
 
   

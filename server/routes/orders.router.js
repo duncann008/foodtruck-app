@@ -22,7 +22,9 @@ const setQuery = (paramRole, paramId) =>  {
    ON "orders"."id"="order_item"."order_id"
    JOIN "menu"
    ON "order_item"."menu_id"="menu"."id"
-     WHERE "fulfilled" = false AND "user_id" = ${paramId}`;
+     WHERE "user_id" = ${paramId}
+     ORDER BY "order_item"."order_id" DESC
+     LIMIT 5;`
  }
 }
 

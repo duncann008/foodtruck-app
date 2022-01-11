@@ -7,6 +7,7 @@ import menuItemSaga from './menuItem.saga';
 import contactInfoSaga from './contactInfo.saga';
 import aboutContactSaga from './aboutContact.saga';
 import ordersSaga from './order.saga';
+import confirmationSaga from './confirmation.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     contactInfoSaga(),
     aboutContactSaga(),
     ordersSaga(),
+    confirmationSaga(),
   ]);
 }

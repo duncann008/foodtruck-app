@@ -9,6 +9,7 @@ import aboutContactReducer from './aboutContact.reducer';
 import orderReducer from './order.reducer';
 import addMenuItemReducer from './addMenuItem.reducer';
 import orderListReducer from './orderList.reducer';
+import confirmationReducer from './confirmation.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   aboutContactReducer,
   orderReducer,
   addMenuItemReducer,
-  orderListReducer
+  orderListReducer,
+  confirmationReducer
  
   
 });

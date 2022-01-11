@@ -31,7 +31,11 @@ contactRouter.post('/', (req, res) => {
   RETURNING "id";`
 
   const sqlValues = [
-      req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email, req.body.user_id
+      req.body.first_name,
+      req.body.last_name, 
+      req.body.phone_number, 
+      req.body.email, 
+      req.body.user_id
   ]
 
   pool.query(sqlText, sqlValues)

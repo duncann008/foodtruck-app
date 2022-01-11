@@ -89,13 +89,13 @@ if (user.role === 'admin')  {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       
-    
+      <div>
         <p>Current Location: {aboutContactReducer.current_location}</p>
         <p>Until: {aboutContactReducer.schedule}</p>
         <p>Next Location: {aboutContactReducer.next_location}</p>
-        
+      </div> 
       {/* <LogOutButton className="btn" /> */}
-      <p>Current Order:</p>
+      <p>Most Recent Orders:</p>
       {orderListReducer.map((item, index) =>   {
           if (timeArray.includes(item.order_id)) {
             return <p key={index}>{item.item}  -  {item.quantity}</p>;
@@ -107,7 +107,7 @@ if (user.role === 'admin')  {
               <p key={index}>{item.item}  -  {item.quantity}</p>
             </div>;
           }
-                  
+              
         })}
     </div>
     )}

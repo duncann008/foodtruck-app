@@ -27,6 +27,7 @@ import './App.css';
 import MenuItemDetails from '../MenuItemDetails/MenuItemDetails';
 import Checkout from '../Checkout/Checkout';
 import AddMenuItem from '../AddMenuItem/AddMenuItem';
+import Confirmation from '../Confirmation/Confirmation';
 
 
 function App() {
@@ -76,6 +77,10 @@ function App() {
           <ProtectedRoute 
             exact path="/checkout">
               <Checkout />
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact path="/confirmation">
+              <Confirmation />
           </ProtectedRoute>
 
           {/* For protected routes, the view could show one of several things on the same route.
