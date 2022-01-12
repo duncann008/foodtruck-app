@@ -3,9 +3,7 @@ const favoritesReducer = (state = [], action) => {
       case 'SET_FAVORITES':
         return action.payload;
       case 'GET_FAVORITES':
-        return action.payload;
-      case 'FETCH_FAVORITES':
-        return action.payload;
+        return [...action.payload];
       case 'DELETE_FAVORITE':
         let payload = action.payload;
         let updateState = [...state];

@@ -87,12 +87,9 @@ function Checkout() {
         for (let i=0; i < totalArray.length; i++)   {
             total += totalArray[i];
         }
-        let finalTotal = total.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
+        let finalTotal = total.toFixed(2);
 
-        return total;
+        return finalTotal;
     }
 
     const handleFavoritesAdd = () => {
@@ -115,15 +112,11 @@ function Checkout() {
           time_of_order: new Date().toLocaleString(),
           notes: notes,
           total_price: sumPriceTotal(),
+          favorited: favorite,
           menuItemArray: cartReducer
         }
       })
-      if (favorite === true)  {
-        dispatch({
-          type: 'SET_FAVORITE',
-          payload: favoriteArray
-        })
-      }
+    
       history.push('/confirmation')
       
     }

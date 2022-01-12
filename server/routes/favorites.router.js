@@ -6,46 +6,24 @@ const favoritesRouter = express.Router();
  * GET route template
  */
 favoritesRouter.get('/', (req, res) => {
-    const query = `SELECT * FROM "contact_info" WHERE "user_id" = $1`;
+    const query = `
+    SELECT "menu"."item", "favorites"."menu_id", "menu"."price", "favorites"."quantity" FROM "favorites"
+    JOIN "menu"
+    ON "favorites"."menu_id" = "menu"."id"
+     WHERE "user_id" = $1`;
     const values = req.user.id;
 
     pool.query(query, [values])
         .then( result => {
-        res.send(result.rows[0]);
+        res.send(result.rows);
         })
         .catch(err => {
-        console.log('ERROR: GET Contact Info', err);
+        console.log('ERROR: GET Favorites', err);
         res.sendStatus(500)
         })
 
 });
 
-/**
- * POST route template
- */
-// favoritesRouter.post('/', (req, res) => {
-//   // POST route code here
-//   {req.body.menuItemArray.map((item) =>  {  
-//     const sqlFavoriteText = `
-//   INSERT INTO "favorites" ("user_id", "order_id", "menu_id", "quantity")
-//   VALUES ($1, $2, $3, $4);`
-
-//   const sqlFavoriteValues = [
-//     req.user.id, 
-//     , 
-//     item.menu_id, 
-//     item.quantity
-//   ]
-
-//   pool.query(sqlFavoriteText, sqlFavoriteValues)
-//   console.log('POSTed to favorites');
-// })}})
-// .then(result => {
-//     console.log('Favorites Added:', result);
-// }).catch(err => {
-//     console.log(err);
-//     res.sendStatus(500)
-//   });
 
 favoritesRouter.delete('/', (req, res) => {
 

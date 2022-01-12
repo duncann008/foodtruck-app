@@ -19,6 +19,7 @@ function MyAccount() {
   const user = useSelector((store) => store.user);
   const contactInfoReducer = useSelector((store) => store.contactInfoReducer);
   const orderListReducer = useSelector(store => store.orderListReducer);
+  const favoritesReducer = useSelector(store => store.favoritesReducer);
 
   useEffect(() => {
     dispatch({
@@ -27,6 +28,9 @@ function MyAccount() {
     }),
     dispatch({
       type: 'FETCH_ORDERS'
+    }),
+    dispatch({
+      type: 'FETCH_FAVORITES'
     })
   }, [])
  
@@ -90,6 +94,7 @@ function MyAccount() {
         <input type="text" id="email" onChange={handleUserEmailChange} placeholder="Email Address(optional)" value={contactInfoReducer.email || ''}/><br />          
         <button className="saveButton" type="submit">Save</button>
       </form>
+      <h3>Favorites:</h3>
       <h3>Recent Orders</h3>
       {orderListReducer.map((item, index) =>   {
           if (timeArray.includes(item.order_id)) {
