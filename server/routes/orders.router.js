@@ -76,8 +76,26 @@ ordersRouter.get('/', (req, res) => {
 
     pool.query(sqlText, sqlValues)
     console.log('Both POSTS hit');
+})}})
+
+// Conditional of some sort.
+.then(result => {
+  console.log()
+  {req.body.menuItemArray.map((item) =>  {  
+    const sqlFavoriteText = `
+  INSERT INTO "favorites" ("user_id", "order_id", "menu_id", "quantity")
+  VALUES ($1, $2, $3, $4);`
+
+  const sqlFavoriteValues = [
+    req.user.id, 
+    // What goes here?
+    item.menu_id, 
+    item.quantity
+  ]
+
+  pool.query(sqlFavoriteText, sqlFavoriteValues)
+  console.log('POSTed to favorites');
 })}
-  
 }).catch(err => {
     console.log(err);
     res.sendStatus(500)

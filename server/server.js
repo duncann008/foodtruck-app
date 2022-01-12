@@ -15,6 +15,7 @@ const contactInfoRouter = require('./routes/contactInfo.router');
 const aboutRouter = require('./routes/aboutContact.router');
 const ordersRouter = require('./routes/orders.router');
 const confirmationRouter = require('./routes/confirmation.router');
+const favoritesRouter = require('./routes/favorites.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -35,6 +36,7 @@ app.use('/contactInfo', contactInfoRouter);
 app.use('/aboutContact', aboutRouter);
 app.use('/orders', ordersRouter);
 app.use('/confirmation', confirmationRouter);
+app.use('/favorites', favoritesRouter);
 // Serve static files
 app.use(express.static('build'));
 
