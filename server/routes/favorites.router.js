@@ -7,7 +7,7 @@ const favoritesRouter = express.Router();
  */
 favoritesRouter.get('/', (req, res) => {
     const query = `
-    SELECT "menu"."item", "favorites"."menu_id", "menu"."price", "favorites"."quantity" FROM "favorites"
+    SELECT "menu"."item", "favorites"."menu_id", "menu"."price", "favorites"."quantity", "favorites"."order_id" FROM "favorites"
     JOIN "menu"
     ON "favorites"."menu_id" = "menu"."id"
      WHERE "user_id" = $1`;
@@ -25,15 +25,16 @@ favoritesRouter.get('/', (req, res) => {
 });
 
 
-favoritesRouter.delete('/', (req, res) => {
-
+favoritesRouter.delete('/:order_id', (req, res) => {
+  console.log(req.params)
   const sqlText = `
-    DELETE "contact_info"
-      SET "first_name" = $2, "last_name" = $3, "phone_number" = $4, "email" = $5
-        WHERE "user_id" = $1;
+    DELETE FROM "favorites"
+      WHERE "order_id" = $1;
     `
 
-    const sqlValues = [req.body.user_id, req.body.first_name, req.body.last_name, req.body.phone_number, req.body.email];
+    const sqlValues = [
+      req.params.order_id
+    ];
 
     pool.query(sqlText, sqlValues)
   .then(res => {

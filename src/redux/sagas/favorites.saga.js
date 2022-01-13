@@ -36,7 +36,7 @@ function* deleteFavorite(action) {
     try {
         yield axios({
             method: 'DELETE',
-            url: `/favorites`,
+            url: `/favorites/${action.payload}`,
             data: action.payload
         })
         

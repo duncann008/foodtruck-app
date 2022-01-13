@@ -63,6 +63,33 @@ function MyAccount() {
     })
   }
 
+  const addFavoriteToCart = (param) =>  {
+    let orderArray = favoritesReducer.filter(function(thing){
+      return thing.order_id === param.order_id;
+    })
+    console.log(orderArray)
+      for (let thing of orderArray) {
+        dispatch({
+          type: 'ADD_TO_CART',
+          payload: {
+            user_id: user.id,
+            quantity: thing.quantity,
+            menu_id: thing.menu_id,
+            item: thing.item,
+            price: thing.price
+          }
+        })}
+      }  
+    
+  const removeFromFavorites = (param) => {
+    dispatch({
+      type: 'DELETE_FAVORITE',
+      payload: param.order_id
+    })
+  }
+    
+  
+
   const saveButton = (event) => {
     event.preventDefault();
     dispatch({
@@ -78,6 +105,7 @@ function MyAccount() {
   }
 
   let timeArray = [];
+  let cartArray = [];
 
   return (
     <div className="container">
@@ -95,6 +123,22 @@ function MyAccount() {
         <button className="saveButton" type="submit">Save</button>
       </form>
       <h3>Favorites:</h3>
+      {favoritesReducer.map((item, index) =>   {
+        if (cartArray.includes(item.order_id)) {
+          return <p key={index}>{item.item}  -  {item.quantity}</p>;
+        }
+        else  {
+          cartArray.push(item.order_id)
+          return <div>
+            <br /> 
+            <br />
+            <button onClick={() => addFavoriteToCart(item)}>Add to Cart</button><button onClick={() => removeFromFavorites(item)}>Remove Favorite</button>  
+            <p key={index}>{item.item}  -  {item.quantity}</p>
+            
+          </div>;
+  }
+      
+})}
       <h3>Recent Orders</h3>
       {orderListReducer.map((item, index) =>   {
           if (timeArray.includes(item.order_id)) {
@@ -114,3 +158,5 @@ function MyAccount() {
 }
 
 export default MyAccount;
+
+

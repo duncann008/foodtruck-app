@@ -5,10 +5,8 @@ const favoritesReducer = (state = [], action) => {
       case 'GET_FAVORITES':
         return [...action.payload];
       case 'DELETE_FAVORITE':
-        let payload = action.payload;
-        let updateState = [...state];
-        const finalState = updateState.filter(newThing => payload != newThing);
-        return finalState;
+        let orderArray = state.filter(thing => thing.order_id != action.payload);
+        return orderArray;
       default:
         return state;
       

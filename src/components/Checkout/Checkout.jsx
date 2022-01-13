@@ -117,7 +117,7 @@ function Checkout() {
         }
       })
     
-      history.push('/confirmation')
+      // history.push('/confirmation')
       
     }
 
