@@ -48,10 +48,31 @@ function UserPage() {
 
   const updateLocationSchedule = (event) =>  {
     event.preventDefault();
-    dispatch({
-      type: 'EDIT_ABOUT_CONTACT',
-      payload: aboutContactReducer
-    })
+    
+      Swal.fire({
+        title: `Save Changes?`,
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Save',
+        denyButtonText: 'Cancel',
+        customClass: {
+          actions: 'my-actions',
+          cancelButton: 'order-1 right-gap',
+          confirmButton: 'order-2',
+          denyButton: 'order-3',
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch({
+            type: 'EDIT_ABOUT_CONTACT',
+            payload: aboutContactReducer
+          })
+        } else if (result.isDenied) {
+          return;
+        }
+      })
+      
+  
   }
 
   
@@ -89,6 +110,7 @@ function UserPage() {
 if (user.role === 'admin')  {
   return (
     <div className="container">
+      <header><img src="https://i.imgur.com/aELXlJL.png"/></header>
       <h2>Welcome, {user.username}!</h2>
       
       <form onSubmit={(event) => updateLocationSchedule(event)}>
@@ -122,6 +144,7 @@ if (user.role === 'admin')  {
   else {
     return(
     <div className="container">
+      <header><img src="https://i.imgur.com/aELXlJL.png"/></header>
       <h2>Welcome, {user.username}!</h2>
       
       <div>

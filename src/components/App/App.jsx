@@ -28,7 +28,7 @@ import MenuItemDetails from '../MenuItemDetails/MenuItemDetails';
 import Checkout from '../Checkout/Checkout';
 import AddMenuItem from '../AddMenuItem/AddMenuItem';
 import Confirmation from '../Confirmation/Confirmation';
-
+import { createTheme, ThemeProvider } from '@material-ui/core';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        
         
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -58,7 +58,7 @@ function App() {
           </Route>
           <Route
             exact path="/menu">
-              <CartDropdown />
+              {/* <CartDropdown /> */}
               <MenuList />
           </Route>
           <ProtectedRoute
@@ -67,7 +67,7 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute
             exact path="/menuItem/:id">
-              <CartDropdown />
+              {/* <CartDropdown /> */}
               <MenuItemDetails />              
           </ProtectedRoute>
           <Route

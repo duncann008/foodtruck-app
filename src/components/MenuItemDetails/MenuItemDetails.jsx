@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Swal from 'sweetalert2';
+
 
 
 function MenuItemDetails() {
@@ -182,9 +182,9 @@ function MenuItemDetails() {
     Swal.fire({
       title: 'Do you want to save? Any unsaved changes will be lost.',
       showDenyButton: true,
-      showCancelButton: true,
+      showCancelButton: false,
       confirmButtonText: 'Save',
-      denyButtonText: 'Cancel Item Creation',
+      denyButtonText: `Don't Save`,
       customClass: {
         actions: 'my-actions',
         cancelButton: 'order-1 right-gap',

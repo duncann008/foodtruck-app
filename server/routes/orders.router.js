@@ -24,7 +24,7 @@ const setQuery = (paramRole, paramId) =>  {
    ON "order_item"."menu_id"="menu"."id"
      WHERE "user_id" = ${paramId}
      ORDER BY "order_item"."order_id" DESC
-     LIMIT 5;`
+     LIMIT 3;`
  }
 }
 

@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { resetWarningCache } from 'prop-types';
 
 function MenuItem({item}) {
     
@@ -23,11 +24,12 @@ function MenuItem({item}) {
     const deleteFromMenu = (event) =>    {
       event.preventDefault();
       Swal.fire({
-        title: `Do you want to delete ${item.item}? This cannot be undone.`,
+        title: `Do you want to delete "${item.item}" from the menu?`,
         showDenyButton: true,
         showCancelButton: false,
-        confirmButtonText: `Delete ${item.item}`,
+        confirmButtonText: `Delete "${item.item}"`,
         denyButtonText: 'Cancel',
+        icon: 'warning',
         customClass: {
           actions: 'my-actions',
           cancelButton: 'order-1 right-gap',
@@ -55,7 +57,7 @@ function MenuItem({item}) {
       <div>
       <div key={item.id}>
         <h3>{item.item}</h3>
-        <img
+        <img className='foodImage'
             src={item.image_url} 
             alt={item.item}
             height="300"
@@ -73,6 +75,7 @@ else   {
         <div onClick={goToMenuItemDetails} key={item.id}>
         <h3>{item.item}</h3>
         <img
+            className='foodImage'
             src={item.image_url} 
             alt={item.item}
             height="300"

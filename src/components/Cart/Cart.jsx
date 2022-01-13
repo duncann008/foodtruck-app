@@ -66,7 +66,7 @@ function Cart() {
   
     return  (
         <div>
-            <button onClick={backToMenu}>Back to Menu</button>
+            
             <h1>Order Details:</h1>
             <form onSubmit={goToCheckout}>
                 {cartReducer.map((item, index) =>    

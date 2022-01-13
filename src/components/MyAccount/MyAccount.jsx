@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import LogOutButton from '../LogOutButton/LogOutButton';
 
 // This is one of our simplest components
 // It doesn't have local state
@@ -20,6 +20,7 @@ function MyAccount() {
   const contactInfoReducer = useSelector((store) => store.contactInfoReducer);
   const orderListReducer = useSelector(store => store.orderListReducer);
   const favoritesReducer = useSelector(store => store.favoritesReducer);
+  const Swal = require('sweetalert2');
 
   useEffect(() => {
     dispatch({
@@ -79,6 +80,9 @@ function MyAccount() {
             price: thing.price
           }
         })}
+        Swal.fire(
+          'Added favorite to cart!'
+        )
       }  
     
   const removeFromFavorites = (param) => {
@@ -153,6 +157,7 @@ function MyAccount() {
           }
               
         })}
+        <LogOutButton />
     </div>
   );
 }
