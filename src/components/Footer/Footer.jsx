@@ -7,7 +7,7 @@ import Nav from '../Nav/Nav';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return <footer><Nav /></footer>;
+  return <footer id="footer"><Nav /></footer>;
 }
 
 export default Footer;

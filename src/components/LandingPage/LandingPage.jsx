@@ -15,7 +15,7 @@ function LandingPage() {
   };
 
   return (
-    <div className="container">
+    <div className="newForm">
       <h2>{heading}</h2>
       <img src="https://i.imgur.com/aELXlJL.png"/>
       <div className="grid">

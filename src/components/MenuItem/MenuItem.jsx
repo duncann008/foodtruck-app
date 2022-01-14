@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import './MenuItem.css';
 
 function MenuItem({item}) {
     
@@ -57,6 +58,7 @@ function MenuItem({item}) {
   if (user.role === 'admin')  {
     return (
       <div className="menuItem">
+        
       <div key={item.id}>
         <h3>{item.item}</h3>
         <img className='foodImage'
@@ -82,9 +84,10 @@ function MenuItem({item}) {
     </div>
     )
     }
-else   {
+else if (user.role === 'user')  {
     return (
         <div className="menuItem" onClick={goToMenuItemDetails} key={item.id}>
+        <p className="clickDetails">Click Anywhere for Details</p>
         <h3>{item.item}</h3>
         <img
             className='foodImage'
@@ -96,6 +99,21 @@ else   {
         <p>${item.price}</p>
       </div>
       )
+}
+else  {
+  return  (
+    <div className="menuItem" onClick={goToMenuItemDetails} key={item.id}>
+    <h3>{item.item}</h3>
+    <img
+        className='foodImage'
+        src={item.image_url} 
+        alt={item.item}
+        height="300"
+        />
+    <p>{item.description}</p>
+    <p>${item.price}</p>
+  </div>
+  )
 }
 }
     

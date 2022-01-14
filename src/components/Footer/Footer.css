@@ -4,3 +4,8 @@ footer {
   position: sticky;
   
 }
+
+#footer {
+  background-color: crimson;
+  color: red;
+}

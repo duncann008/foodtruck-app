@@ -7,19 +7,22 @@ function LoginPage() {
 
   return (
     <div>
+      <img src="https://i.imgur.com/aELXlJL.png"/>
       <LoginForm />
 
       <center>
         <button
           type="button"
-          className="btn btn_asLink"
+          className="btn btn_sizeSm"
           onClick={() => {
-            history.push('/registration');
+            history.push('/home');
           }}
         >
           Register
         </button>
+        
       </center>
+      <br /><br />
     </div>
   );
 }

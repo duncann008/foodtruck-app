@@ -4,6 +4,13 @@ import './AboutPage.css';
 import { useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import { InputAdornment } from '@mui/material';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import Icon from '@mui/material/Icon';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import PersonIcon from '@mui/icons-material/Person';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -124,7 +131,7 @@ function AboutPage() {
       <p>{aboutContactReducer.owner_name}</p>
       <p>{aboutContactReducer.truck_number}</p>
       <p>{aboutContactReducer.email}</p>
-      <p>{aboutContactReducer.instagram}</p>
+      <p><InstagramIcon /> {aboutContactReducer.instagram}</p>
       <p>{aboutContactReducer.twitter}</p>
     </div>
   </div>
@@ -143,11 +150,11 @@ function AboutPage() {
       </div>
       <div>
         <h1>Contact Us:</h1>
-        <p>{aboutContactReducer.owner_name}</p>
-        <p>{aboutContactReducer.truck_number}</p>
-        <p>{aboutContactReducer.email}</p>
-        <p>{aboutContactReducer.instagram}</p>
-        <p>{aboutContactReducer.twitter}</p>
+        <p><PersonIcon /> {aboutContactReducer.owner_name}</p>
+        <p><LocalPhoneIcon /> {aboutContactReducer.truck_number}</p>
+        <p><AlternateEmailIcon /> {aboutContactReducer.email}</p>
+        <p><InstagramIcon /> {aboutContactReducer.instagram}</p>
+        <p><TwitterIcon /> {aboutContactReducer.twitter}</p>
       </div>
     </div>
     </>
