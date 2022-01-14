@@ -2,6 +2,9 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import Button from '@mui/material/Button';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import './Cart.css';
 
 function Cart() {
     
@@ -65,12 +68,12 @@ function Cart() {
     }
   
     return  (
-        <div>
+        <div className="cartDiv">
             
-            <h1>Order Details:</h1>
+            <h1>{user.username}'s Cart:</h1>
             <form onSubmit={goToCheckout}>
                 {cartReducer.map((item, index) =>    
-                    <p key={index}>{item.item}<select name="Quantity" id="Quantity" defaultValue={item.quantity} onChange={(event) => {handleQuantityChange(event, index)}}>
+                    <p key={index}>{item.item} <select name="Quantity" id="Quantity" defaultValue={item.quantity} onChange={(event) => {handleQuantityChange(event, index)}}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -80,7 +83,12 @@ function Cart() {
                 )}
             
             <p>Total Price: {sumPriceTotal()}</p>
-            <button type="submit">Checkout</button>
+            <Button 
+              type="submit"
+              startIcon={<ShoppingCartCheckoutIcon />}
+              
+              variant="contained"
+            >Check Out</Button>
             </form>
         </div>
     )}

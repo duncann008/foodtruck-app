@@ -11,6 +11,8 @@ import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import './MyAccount.css';
 
 // This is one of our simplest components
 // It doesn't have local state
@@ -93,27 +95,47 @@ function MyAccount() {
       }  
     
   const removeFromFavorites = (param) => {
-    dispatch({
-      type: 'DELETE_FAVORITE',
-      payload: param.order_id
-    })
+    Swal.fire({
+      title: `Remove favorite?`,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: `Remove`,
+      denyButtonText: 'Cancel',
+      icon: 'warning',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({
+          type: 'DELETE_FAVORITE',
+          payload: param.order_id
+        })
+      } else if (result.isDenied) {   
+      }
+    })   
   }
     
   
 
   const saveButton = (event) => {
     event.preventDefault();
-    dispatch({
-      type: 'EDIT_CONTACT_INFO',
-      payload: {
-          first_name: contactInfoReducer.first_name,
-          last_name: contactInfoReducer.last_name,
-          phone_number: contactInfoReducer.phone_number,
-          email: contactInfoReducer.email,
-          user_id: user.id
-      }
-  })
-  }
+        dispatch({
+          type: 'EDIT_CONTACT_INFO',
+          payload: {
+              first_name: contactInfoReducer.first_name,
+              last_name: contactInfoReducer.last_name,
+              phone_number: contactInfoReducer.phone_number,
+              email: contactInfoReducer.email,
+              user_id: user.id
+          }
+      })
+    }
+    
+  
 
   let timeArray = [];
   let cartArray = [];
@@ -179,8 +201,14 @@ function MyAccount() {
           variant="outlined"
           label="Email"
           value={contactInfoReducer.email || ''}/><br /><br />          
-        <button className="saveButton" type="submit">Save</button>
+        <Button 
+              type="submit" 
+              variant="contained"
+              size="small"
+              style={{color: "white"}}
+              >Save Contact Info</Button>
       </form>
+      <br />
       <h3>Favorites:</h3>
       {favoritesReducer.map((item, index) =>   {
         if (cartArray.includes(item.order_id)) {
@@ -188,27 +216,29 @@ function MyAccount() {
         }
         else  {
           cartArray.push(item.order_id)
-          return <div>
+          return <div className="favoriteDiv">
             <br /> 
-            <br />
+            <p></p>
             <Button 
               onClick={() => addFavoriteToCart(item)}
               startIcon={<AddShoppingCartIcon />}
               variant="contained"
               size="small"
-              style={{color: "white"}}
+              color="success"
               >Add to Cart</Button>
             <Button 
               onClick={() => removeFromFavorites(item)}
-              startIcon
+              startIcon={<DeleteIcon />}
+              size="small"
+              color="error"
               >Remove Favorite</Button>  
             <p key={index}>{item.item}  -  {item.quantity}</p>
             
           </div>;
   }
       
-})}
-      <h3>Recent Orders</h3>
+})}   <br />
+      <h3 className='favoriteDiv'>Recent Orders</h3>
       {orderListReducer.map((item, index) =>   {
           if (timeArray.includes(item.order_id)) {
             return <p key={index}>{item.item}  -  {item.quantity}</p>;
