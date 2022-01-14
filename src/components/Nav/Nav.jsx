@@ -13,6 +13,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { blue } from '@material-ui/core/colors';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone'
 import InfoIcon from '@mui/icons-material/Info';
+import { styled } from '@mui/material/styles';
+import Modal from '@mui/material/Modal';
+import Cart from '../Cart/Cart';
+
 
 const useStyles = makeStyles((theme) => ({
   badge: {
@@ -26,7 +30,16 @@ function Nav() {
   const history = useHistory();
   const [value, setValue] = useState(0)
   const classes = useStyles();
-  
+  const StyledBottomNav = styled(BottomNavigation)`
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: #FFFFFF;
+`;
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
 
   const sumQuantity = () => {
@@ -48,30 +61,30 @@ function Nav() {
         {!user.id && (
           // If there's no user, show login/registration links
             <>
-              <BottomNavigation
+              <StyledBottomNav              
               showLabels
-              value={value}
-              onChange={(event, newValue) =>  {
-                setValue(newValue);
-              }}
+              // value={value}
+              // onChange={(event, newValue) =>  {
+              //   setValue(newValue);
+              // }}
               
               >
               <BottomNavigationAction 
                 label='Home' 
-                icon={<HomeIcon />}
+                icon={<HomeIcon sx={{color: 'black'}} />}
                 component={ Link }
                 to='/home' />
               <BottomNavigationAction 
                 label='Menu' 
-                icon={<RestaurantMenuIcon />}
+                icon={<RestaurantMenuIcon sx={{color: 'black'}} />}
                 component={ Link }
                 to='/menu' />
               <BottomNavigationAction 
                 label='About Us' 
-                icon={<InfoIcon />}
+                icon={<InfoIcon sx={{color: 'black'}} />}
                 component={ Link }
                 to='/about' />
-            </BottomNavigation>
+            </StyledBottomNav>
               {/* <Link className="navLink" to="/login">
                 Login / Register
               </Link> */}
@@ -84,26 +97,28 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.role === 'user' && (
           <div>
-            <BottomNavigation
+            <StyledBottomNav 
               showLabels
-              value={value}
-              onChange={(event, newValue) =>  {
-                setValue(newValue);
-              }}
+              // value={value}
+              // onChange={(event, newValue) =>  {
+              //   setValue(newValue);
+              // }}
               
               >
               <BottomNavigationAction 
                 label='Home' 
-                icon={<HomeIcon />}
+                icon={<HomeIcon sx={{color: 'black'}} />}
                 component={ Link }
                 to='/user' />
               <BottomNavigationAction 
                 label='Menu' 
-                icon={<RestaurantMenuIcon />}
+                icon={<RestaurantMenuIcon sx={{color: 'black'}} />}
                 component={ Link }
                 to='/menu' />
               <BottomNavigationAction 
                 label='Cart' 
+                component={ Link }
+                to='/cart'
                 icon={
                 <Badge 
                   className="cartBadge"
@@ -113,17 +128,17 @@ function Nav() {
                     horizontal: 'right'
                   }}
                   >
-                  <ShoppingCartIcon className="cartIcon" />
+                  <ShoppingCartIcon className="cartIcon" sx={{color: 'black'}} />
                 </Badge>
               }
-                component={ Link }
-                to='/cart' />
+                >  
+              </BottomNavigationAction>
               <BottomNavigationAction 
                 label='Account' 
-                icon={<AccountCircleIcon />}
+                icon={<AccountCircleIcon sx={{color: 'black'}} />}
                 component={ Link }
                 to='/MyAccount' />
-            </BottomNavigation>
+            </StyledBottomNav>
             {/* <Link className="navLink" to="/menu">
               Start Order
             </Link>

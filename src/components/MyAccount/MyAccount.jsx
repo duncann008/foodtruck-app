@@ -252,6 +252,7 @@ function MyAccount() {
           }
               
         })}
+        <br />
         <LogOutButton />
     </div>
   );

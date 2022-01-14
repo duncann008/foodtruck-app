@@ -1,12 +1,13 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import './Cart.css';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import IconButton from '@mui/material/IconButton'
+import IconButton from '@mui/material/IconButton';
+import Modal from '@mui/material/Modal';
 
 function Cart() {
     
@@ -15,6 +16,10 @@ function Cart() {
     const user = useSelector((store) => store.user);
     const cartReducer = useSelector(store => store.cartReducer);
     const menuItem = useSelector(store => store.menuItemReducer);
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
 
     useEffect(() => {
         dispatch({
@@ -68,11 +73,22 @@ function Cart() {
     const backToMenu = () =>  {
         history.push('/menu');
     }
+
+    const ifEmpty = () => {
+      if (cartReducer.length < 1) {
+        return <h2>Your cart is empty!</h2>
+      }
+      else  {
+        return;
+      }
+    }
   
     return  (
+      
         <div className="cartDiv">
             
-            <h1>{user.username}'s Cart:</h1>
+            
+            {ifEmpty()}
             <form onSubmit={goToCheckout}>
                 {cartReducer.map((item, index) =>    
                     <p key={index}>{item.item} <select name="Quantity" id="Quantity" defaultValue={item.quantity} onChange={(event) => {handleQuantityChange(event, index)}}>
@@ -104,6 +120,7 @@ function Cart() {
             </IconButton>
             </form>
         </div>
+        
     )}
 
     
