@@ -12,6 +12,7 @@ import HomeIcon from '@mui/icons-material/Home'
 import { makeStyles } from '@material-ui/core/styles';
 import { blue } from '@material-ui/core/colors';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone'
+import InfoIcon from '@mui/icons-material/Info';
 
 const useStyles = makeStyles((theme) => ({
   badge: {
@@ -47,12 +48,30 @@ function Nav() {
         {!user.id && (
           // If there's no user, show login/registration links
             <>
-              <Link className="navLink" to="/menu">
-                 Menu
-              </Link>
-              <Link className="navLink" to="/about">
-                About Us/Contact
-              </Link>
+              <BottomNavigation
+              showLabels
+              value={value}
+              onChange={(event, newValue) =>  {
+                setValue(newValue);
+              }}
+              
+              >
+              <BottomNavigationAction 
+                label='Home' 
+                icon={<HomeIcon />}
+                component={ Link }
+                to='/home' />
+              <BottomNavigationAction 
+                label='Menu' 
+                icon={<RestaurantMenuIcon />}
+                component={ Link }
+                to='/menu' />
+              <BottomNavigationAction 
+                label='About Us' 
+                icon={<InfoIcon />}
+                component={ Link }
+                to='/about' />
+            </BottomNavigation>
               {/* <Link className="navLink" to="/login">
                 Login / Register
               </Link> */}
@@ -65,15 +84,12 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.role === 'user' && (
           <div>
-            {/* <Link className="navLink" to="/user">
-              Home
-            </Link> */}
             <BottomNavigation
               showLabels
-              // value={value}
-              // onChange={(event, newValue) =>  {
-              //   setValue(newValue);
-              // }}
+              value={value}
+              onChange={(event, newValue) =>  {
+                setValue(newValue);
+              }}
               
               >
               <BottomNavigationAction 
