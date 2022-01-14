@@ -4,6 +4,13 @@ import {useHistory} from 'react-router-dom';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import { TextField } from '@material-ui/core';
+import { InputAdornment } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import Button from '@mui/material/Button';
 
 // This is one of our simplest components
 // It doesn't have local state
@@ -116,14 +123,62 @@ function MyAccount() {
       <h1>My Account</h1>
       <h3>Contact Info</h3>
       <form onSubmit={saveButton}>  
-        <label htmlfor="first_name">First Name</label>
-        <input type="text" id="first_name" onChange={handleFirstNameChange} placeholder="First Name" value={contactInfoReducer.first_name || ''}/><br />
-        <label htmlfor="last_name">Last Name</label>
-        <input type="text" id="last_name" onChange={handleLastNameChange} placeholder="Last Name" value={contactInfoReducer.last_name || ''}/><br />
-        <label htmlfor="phone_number">Phone Number</label>
-        <input type="number" id="phone_number" onChange={handlePhoneNumberChange} placeholder="Phone Number" value={contactInfoReducer.phone_number || ''}/><br />
-        <label htmlfor="email">Email</label>
-        <input type="text" id="email" onChange={handleUserEmailChange} placeholder="Email Address(optional)" value={contactInfoReducer.email || ''}/><br />          
+      <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PersonIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handleFirstNameChange}
+          variant="outlined"
+          label="First Name"
+          value={contactInfoReducer.first_name || ''} /><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PersonIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handleLastNameChange}
+          variant="outlined"
+          label="Last Name"
+          value={contactInfoReducer.last_name || ''}/><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PhoneAndroidIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handlePhoneNumberChange}
+          variant="outlined"
+          label="Phone Number"
+          value={contactInfoReducer.phone_number || ''}/><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AlternateEmailIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handleUserEmailChange}
+          variant="outlined"
+          label="Email"
+          value={contactInfoReducer.email || ''}/><br /><br />          
         <button className="saveButton" type="submit">Save</button>
       </form>
       <h3>Favorites:</h3>
@@ -136,7 +191,17 @@ function MyAccount() {
           return <div>
             <br /> 
             <br />
-            <button onClick={() => addFavoriteToCart(item)}>Add to Cart</button><button onClick={() => removeFromFavorites(item)}>Remove Favorite</button>  
+            <Button 
+              onClick={() => addFavoriteToCart(item)}
+              startIcon={<AddShoppingCartIcon />}
+              variant="contained"
+              size="small"
+              style={{color: "white"}}
+              >Add to Cart</Button>
+            <Button 
+              onClick={() => removeFromFavorites(item)}
+              startIcon
+              >Remove Favorite</Button>  
             <p key={index}>{item.item}  -  {item.quantity}</p>
             
           </div>;

@@ -68,7 +68,6 @@ function MenuItem({item}) {
         <p>${item.price}</p>
       </div>
       <Button 
-        classNam
         onClick={goToMenuItemDetails}
         startIcon={<EditIcon />}
         style={{color: "blue" }}
@@ -85,7 +84,7 @@ function MenuItem({item}) {
     }
 else   {
     return (
-        <div onClick={goToMenuItemDetails} key={item.id}>
+        <div className="menuItem" onClick={goToMenuItemDetails} key={item.id}>
         <h3>{item.item}</h3>
         <img
             className='foodImage'

@@ -34,18 +34,18 @@ function MenuList() {
               })}
         <br />
         <Button 
-        onClick={event => {routeToAddMenuItem(event)}}
-        variant="contained"
-        size="large"
-        color="success"
-        startIcon={<AddIcon />}
+          onClick={event => {routeToAddMenuItem(event)}}
+          variant="contained"
+          size="large"
+          color="success"
+          startIcon={<AddIcon />}
         >Add Item</Button>
         </div>
     )
   }
   else  {
     return  (
-      <div>
+      <div className="menuDiv">
           {menuList.map(item => {
             return (
               <MenuItem key={item.id} item={item} />

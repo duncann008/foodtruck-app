@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './AboutPage.css';
 import { useEffect } from 'react';
+import { TextField } from '@material-ui/core';
+import { InputAdornment } from '@mui/material';
 
 // This is one of our simplest components
 // It doesn't have local state,
