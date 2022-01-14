@@ -1,7 +1,9 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { resetWarningCache } from 'prop-types';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
 
 function MenuItem({item}) {
     
@@ -54,7 +56,7 @@ function MenuItem({item}) {
  
   if (user.role === 'admin')  {
     return (
-      <div>
+      <div className="menuItem">
       <div key={item.id}>
         <h3>{item.item}</h3>
         <img className='foodImage'
@@ -65,8 +67,19 @@ function MenuItem({item}) {
         <p>{item.description}</p>
         <p>${item.price}</p>
       </div>
-      <button onClick={goToMenuItemDetails}>Edit Item</button>
-      <button onClick={deleteFromMenu}>Delete Item</button>
+      <Button 
+        classNam
+        onClick={goToMenuItemDetails}
+        startIcon={<EditIcon />}
+        style={{color: "blue" }}
+        className="editButton"
+      >Edit Item</Button>
+      <Button 
+        onClick={deleteFromMenu}
+        startIcon={<DeleteIcon />}
+        style={{color: "red"}}
+        className="deleteButton"
+      >Delete Item</Button>
     </div>
     )
     }

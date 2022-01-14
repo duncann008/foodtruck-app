@@ -10,10 +10,31 @@ function LogOutButton(props) {
   const dispatch = useDispatch();
   const cartReducer = useSelector(store => store.cartReducer);
   const history = useHistory();
+  const Swal = require('sweetalert2');
 
   const logOut = () =>  {
-    dispatch({ type: 'LOGOUT' });
-    history.push('/home');
+    Swal.fire({
+      title: `Do you want to log out?`,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: `Log Out`,
+      denyButtonText: 'Cancel',
+      icon: 'warning',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({ type: 'LOGOUT' });
+        history.push('/home');
+      } else if (result.isDenied) {
+        
+      }
+    })
+    
     // dispatch({ type: 'CLEAR_CART'})
   }
   

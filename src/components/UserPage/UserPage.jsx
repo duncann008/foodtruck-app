@@ -3,6 +3,12 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import './UserPage.css';
+import { TextField } from '@material-ui/core';
+import { InputAdornment } from '@mui/material';
+import EditLocationIcon from '@mui/icons-material/EditLocation';
+import AssistantDirectionIcon from '@mui/icons-material/AssistantDirection';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
 function UserPage() {
@@ -11,7 +17,7 @@ function UserPage() {
   const dispatch = useDispatch();
   const orderListReducer = useSelector(store => store.orderListReducer);
   const aboutContactReducer = useSelector(store => store.aboutContactReducer);
-  const Swal = require('sweetalert2')
+  const Swal = require('sweetalert2');
 
   useEffect(() => {
     dispatch({
@@ -110,20 +116,60 @@ function UserPage() {
 if (user.role === 'admin')  {
   return (
     <div className="container">
+      <div className="logout">
+        <LogOutButton />
+      </div>
       <header><img src="https://i.imgur.com/aELXlJL.png"/></header>
-      <h2>Welcome, {user.username}!</h2>
+      <h2>Welcome, {user.username}!</h2><br />
       
       <form onSubmit={(event) => updateLocationSchedule(event)}>
-        <label htmlfor="current_location">Current Location:</label>
-        <input type="text" id="current_location" onChange={handleCurrentLocationChange} placeholder="Current Location" value={aboutContactReducer.current_location || ''}/><br />
-        <label htmlfor="next_location">Next Location:</label>
-        <input type="text" id="next_location" onChange={handleNextLocationChange} placeholder="Next Location" value={aboutContactReducer.next_location || ''}/><br />
-        <label htmlfor="schedule">Current Location Until:</label>
-        <input type="text" id="schedule" onChange={handleScheduleChange} placeholder="Time" value={aboutContactReducer.schedule || ''}/><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <EditLocationIcon />
+              </InputAdornment>
+            )
+          }}
+          type="text" 
+          id="current_location" 
+          onChange={handleCurrentLocationChange} 
+          variant="outlined"
+          label="Current Location"
+          value={aboutContactReducer.current_location || ''}/><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AssistantDirectionIcon />
+              </InputAdornment>
+            )
+          }}
+          type="text" 
+          id="next_location" 
+          onChange={handleNextLocationChange} 
+          variant="outlined" 
+          label="Next Location"
+          value={aboutContactReducer.next_location || ''}/><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccessTimeIcon />
+              </InputAdornment>
+            )
+          }}
+          type="text" 
+          id="schedule"
+          onChange={handleScheduleChange} 
+          variant="outlined"
+          label="Schedule"
+          value={aboutContactReducer.schedule || ''}/><br /><br />
         <button type="submit">Save</button>
       </form>
-      {/* <LogOutButton className="btn" /> */}
-      <p>Orders to Fill:</p>
+      
+      <br />
+      <h2>Orders to Fill:</h2>
       {orderListReducer.map((item, index) =>   {
           if (timeArray.includes(item.order_id)) {
             return <p key={index}>{item.item}  -  {item.quantity}</p>;

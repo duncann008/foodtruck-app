@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import MenuItem from '../MenuItem/MenuItem';
 import './MenuList.css'; 
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
 
 function MenuList() {
 
@@ -24,14 +26,20 @@ function MenuList() {
     
   if (user.role === 'admin')  {
     return (
-        <div>
+        <div className="menuDiv">
           {menuList.map(item => {
             return (
               <MenuItem key={item.id} item={item} />
                 );
               })}
         <br />
-        <button onClick={event => {routeToAddMenuItem(event)}}>Add Item</button>
+        <Button 
+        onClick={event => {routeToAddMenuItem(event)}}
+        variant="contained"
+        size="large"
+        color="success"
+        startIcon={<AddIcon />}
+        >Add Item</Button>
         </div>
     )
   }

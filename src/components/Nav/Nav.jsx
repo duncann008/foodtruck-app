@@ -70,10 +70,10 @@ function Nav() {
             </Link> */}
             <BottomNavigation
               showLabels
-              value={value}
-              onChange={(event, newValue) =>  {
-                setValue(newValue);
-              }}
+              // value={value}
+              // onChange={(event, newValue) =>  {
+              //   setValue(newValue);
+              // }}
               
               >
               <BottomNavigationAction 
@@ -125,12 +125,12 @@ function Nav() {
         {/* If an admin is logged in, show these links */}
         {user.role === 'admin' && (
           <BottomNavigation
-          showLabels
-          value={value}
-          onChange={(event, newValue) =>  {
-            setValue(newValue);
-          }}
-          
+            showLabels
+            value={value}
+            onChange={(event, newValue) =>  {
+              setValue(newValue);
+            }}
+            
           >
           <BottomNavigationAction 
             label='Home' 
