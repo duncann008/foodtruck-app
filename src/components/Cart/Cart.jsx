@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import './Cart.css';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import IconButton from '@mui/material/IconButton'
 
 function Cart() {
     
@@ -79,16 +81,27 @@ function Cart() {
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                  </select>   -   {item.price}<button type="button" onClick={() => {removeItemFromCart(index)}}>X</button></p>
+                  </select>   -   ${item.price}<Button 
+                    type="button" 
+                    onClick={() => {removeItemFromCart(index)}}
+                    
+                    
+                    >
+                      <RemoveCircleIcon />
+                    </Button></p>
                 )}
             
             <p>Total Price: {sumPriceTotal()}</p>
-            <Button 
+            <IconButton
               type="submit"
-              startIcon={<ShoppingCartCheckoutIcon />}
-              
-              variant="contained"
-            >Check Out</Button>
+              >
+              <ShoppingCartCheckoutIcon 
+              className="cartButton"
+              style={{
+                fontSize: 64,
+              }}
+              />
+            </IconButton>
             </form>
         </div>
     )}

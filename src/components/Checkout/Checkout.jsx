@@ -5,6 +5,14 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { TextField } from '@material-ui/core';
 import { InputAdornment } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import './Checkout.css';
 
 
 function Checkout() {
@@ -15,9 +23,10 @@ function Checkout() {
     const cartReducer = useSelector(store => store.cartReducer);
     const contactInfoReducer = useSelector((store) => store.contactInfoReducer);
     const orderReducer = useSelector(store => store.orderReducer)
-    const [notes, setNotes] = useState('');
+    const [notes, setNotes] = useState(' ');
     const [favorite, setFavorite] = useState(false);
-    
+    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
 
     useEffect(() => {
         dispatch({
@@ -131,28 +140,92 @@ function Checkout() {
         <div>
             <h1>Contact Info:</h1>
             <form onSubmit={saveButton}>  
-              <label htmlfor="first_name">First Name</label>
-              <input type="text" id="first_name" onChange={handleFirstNameChange} placeholder="First Name" value={contactInfoReducer.first_name || ''}/><br />
-              <label htmlfor="last_name">Last Name</label>
-              <input type="text" id="last_name" onChange={handleLastNameChange} placeholder="Last Name" value={contactInfoReducer.last_name || ''}/><br />
-              <label htmlfor="phone_number">Phone Number</label>
-              <input type="number" id="phone_number" onChange={handlePhoneNumberChange} placeholder="Phone Number" value={contactInfoReducer.phone_number || ''}/><br />
-              <label htmlfor="email">Email</label>
-              <input type="text" id="email" onChange={handleUserEmailChange} placeholder="Email Address(optional)" value={contactInfoReducer.email || ''}/><br />          
-              <button className="saveButton" type="submit">Save</button>
-            </form>
+      <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PersonIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handleFirstNameChange}
+          variant="outlined"
+          label="First Name"
+          value={contactInfoReducer.first_name || ''} /><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PersonIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handleLastNameChange}
+          variant="outlined"
+          label="Last Name"
+          value={contactInfoReducer.last_name || ''}/><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PhoneAndroidIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handlePhoneNumberChange}
+          variant="outlined"
+          label="Phone Number"
+          value={contactInfoReducer.phone_number || ''}/><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AlternateEmailIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handleUserEmailChange}
+          variant="outlined"
+          label="Email"
+          value={contactInfoReducer.email || ''}/><br /><br />          
+        <Button 
+              type="submit" 
+              variant="contained"
+              size="small"
+              style={{color: "white"}}
+              >Save Contact Info</Button>
+      </form>
             <h1>Order Details:</h1>
             
-                {cartReducer.map((item, index) =>    
+                {cartReducer.map((item, index) =>  
                     <p key={index}>{item.quantity}  -  {item.item}   -   ${item.price * item.quantity}</p>
-                )}
+                  )}
             
-            <p>Total Price: ${sumPriceTotal()}</p>
-            <label hmtlFor="notes">Notes, comments, requests:</label><br />
-            <textarea id="notes" onChange={handleNotesChange} value={notes} /><br />
-            <input type="checkbox" id="favorites" name="favorites" value="true" onChange={(event) => handleFavoritesAdd(event)} />
-            <label for="favorites">Favorite This Order</label><br />
-            <button>Back to Menu</button>
+            <p>Total Price: ${sumPriceTotal()}</p><br />
+            <TextField 
+              style={{width: 300}}
+              size="large"
+              multiline
+              type="text" 
+              onChange={handleNotesChange}
+              maxRows={8}
+              variant="outlined"
+              label="Notes, comments, or requests"
+              value={notes}/><br />
+            <div className="checkoutFavoriteDiv">Favorite:</div><Checkbox
+              {...label}
+              icon={<StarBorderIcon />}
+              checkedIcon={<StarIcon />}
+              onChange={(event) => handleFavoritesAdd(event)}
+            />    
             <button onClick={placeOrder}>Place Order</button>
         </div>
     )}
