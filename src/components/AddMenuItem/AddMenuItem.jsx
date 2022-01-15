@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react'
+import { TextField } from '@material-ui/core';
+import { InputAdornment } from '@mui/material';
 
 
 function AddMenuItem() {
@@ -150,8 +152,14 @@ function AddMenuItem() {
       <div>
         <p>Included Ingredients:</p>
         <form onSubmit={(event) => addItemButton(event)}>
-          <label htmlFor="Item">Name:</label>
-          <input id="Item" onChange={handleItemChange} defaultValue={addMenuItem.item || ''} /><br />
+        <TextField 
+          type="text" 
+          id="current_location" 
+          onChange={handleItemChange} 
+          variant="outlined"
+          label="Item Name"
+          size="small"
+          value={addMenuItem.item || ' '}/><br /><br />
           
             <img
                 src={addMenuItem.image_url} 

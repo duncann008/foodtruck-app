@@ -18,7 +18,7 @@ function LandingPage() {
     <div className="newForm">
       <h2>{heading}</h2>
       <img src="https://i.imgur.com/aELXlJL.png"/>
-      <div className="grid">
+      <div className="">
         <div className="grid-col grid-col_8">
           {/* <Calendar /> */}
           

@@ -161,30 +161,26 @@ function Nav() {
 
         {/* If an admin is logged in, show these links */}
         {user.role === 'admin' && (
-          <BottomNavigation
+          <StyledBottomNav
             showLabels
-            value={value}
-            onChange={(event, newValue) =>  {
-              setValue(newValue);
-            }}
             
           >
           <BottomNavigationAction 
             label='Home' 
-            icon={<HomeIcon />}
+            icon={<HomeIcon sx={{color: 'black'}} />}
             component={ Link }
             to='/user' />
           <BottomNavigationAction 
             label='Edit Menu' 
-            icon={<RestaurantMenuIcon />}
+            icon={<RestaurantMenuIcon sx={{color: 'black'}} />}
             component={ Link }
             to='/menu' />
           <BottomNavigationAction 
             label='About Us' 
-            icon={<ContactPhoneIcon />}
+            icon={<ContactPhoneIcon sx={{color: 'black'}} />}
             component={ Link }
             to='/about' />
-        </BottomNavigation>
+        </StyledBottomNav>
         )}
 
         

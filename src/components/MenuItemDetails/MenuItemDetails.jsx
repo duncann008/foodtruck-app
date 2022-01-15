@@ -253,7 +253,7 @@ function MenuItemDetails() {
   else 
     return (
       <div>
-        <p>Included Ingredients:</p>
+        <h1>Edit Page</h1>
         <form onSubmit={(event) => saveItemButton(event)}>
           <label htmlFor="Item">Name:</label>
           <input id="Item" onChange={handleItemChange} defaultValue={menuItem.item || ''} /><br />

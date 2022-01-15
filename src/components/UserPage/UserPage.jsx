@@ -13,6 +13,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useHistory } from 'react-router-dom';
+import CheckIcon from '@mui/icons-material/Check';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -171,7 +172,11 @@ if (user.role === 'admin')  {
           variant="outlined"
           label="Schedule"
           value={aboutContactReducer.schedule || ''}/><br /><br />
-        <button type="submit">Save</button>
+        <Button 
+          sx={{backgroundColor: 'blue'}}
+          variant="contained"
+          type="submit">Save
+        </Button>
       </form>
       
       <br />
@@ -185,7 +190,12 @@ if (user.role === 'admin')  {
             return <div>
               <br />
               <p>Order #{item.order_id}  Time: {item.time_of_order}<br /> Notes: {item.notes}</p>
-              <button onClick={() => fulfillOrder(item.order_id)}>COMPLETE</button>
+              <Button 
+                sx={{color: 'green', borderColor: 'green'}}
+                variant="outlined"
+                endIcon={<CheckIcon />}
+                onClick={() => fulfillOrder(item.order_id)}>Clear this order
+              </Button>
               <p key={index}>{item.item}  -  {item.quantity}</p>
             </div>;
           }
