@@ -8,6 +8,10 @@ import { InputAdornment } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Button from '@mui/material/Button';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
+
 
 function MenuItemDetails() {
   const dispatch = useDispatch();
@@ -269,51 +273,172 @@ function MenuItemDetails() {
       <div>
         <h1>Edit Page</h1>
         <form onSubmit={(event) => saveItemButton(event)}>
-          <label htmlFor="Item">Name:</label>
-          <input id="Item" onChange={handleItemChange} defaultValue={menuItem.item || ''} /><br />
-          <img
-              src={menuItem.image_url} 
-              alt={menuItem.item}
-              height="300"
-              />
+        <TextField 
+          type="text" 
+          onChange={handleItemChange} 
+          variant="outlined"
+          label="Item Name"
+          size="small"
+          value={menuItem.item || ''}/><br />
+          
+            <img 
+                className="borderImage"
+                src={menuItem.image_url} 
+                alt='Your Image Here'
+                />
           <br />
-          <label htmlFor="ImageURL">Image URL:</label>
-          <input id="ImageURL" onChange={handleImageUrlChange} defaultValue={menuItem.image_url || ''} /><br />
-          <label hmtlFor="Description">Description:</label>
-          <textarea id="Description" onChange={handleDescriptionChange} value={menuItem.description || ''} /><br />
-          <label htmlFor="Price">Price: $</label>
-          <input id="Price" onChange={handlePriceChange} defaultValue={menuItem.price || ''} /><br /><br />
-          <h4>Edit Ingredients:</h4>
+          <TextField 
+            type="text" 
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AddPhotoAlternateIcon />
+                </InputAdornment>
+              )
+            }}
+            onChange={handleImageUrlChange} 
+            variant="outlined"
+            label="Image URL"
+            size="small"
+            value={menuItem.image_url || ''}/><br /><br />
+          <TextField 
+            style={{width: 300}}
+            size="large"
+            multiline
+            type="text" 
+            onChange={handleDescriptionChange}
+            maxRows={8}
+            variant="outlined"
+            label="Item Description"
+            value={menuItem.description || ''}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handlePriceChange} 
+            variant="outlined"
+            label="Price"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AttachMoneyIcon />
+                </InputAdornment>
+              )
+            }}
+            size="small"
+            value={menuItem.price || ''}/><br /><br />
+          <h3>Ingredients:</h3>
           <p>By default, a blank input will prevent an ingredient from being included.</p>
-          <label htmlFor="Shell">Shell:</label>
-          <input id="Shell" onChange={handleShellChange} defaultValue={menuItem.Shell} /><br />
-          <label htmlFor="Meat">Meat:</label>
-          <input id="Meat" onChange={handleMeatChange} defaultValue={menuItem.Meat} /><br />
-          <label htmlFor="Beans">Beans:</label>
-          <input id="Beans" onChange={handleBeansChange} defaultValue={menuItem.Beans} /><br />
-          <label htmlFor="Cheese">Cheese:</label>
-          <input id="Cheese" onChange={handleCheeseChange} defaultValue={menuItem.Cheese} /><br />
-          <label htmlFor="Rice">Rice:</label>
-          <input id="Rice" onChange={handleRiceChange} defaultValue={menuItem.Rice} /><br />
-          <label htmlFor="Lettuce">Lettuce:</label>
-          <input id="Lettuce" onChange={handleLettuceChange} defaultValue={menuItem.Lettuce} /><br />
-          <label htmlFor="Salsa">Salsa:</label>
-          <input id="Salsa" onChange={handleSalsaChange} defaultValue={menuItem.Salsa} /><br />
-          <label htmlFor="SourCream">Sour Cream:</label>
-          <input id="SourCream" onChange={handleSourCreamChange} defaultValue={menuItem.SourCream} /><br />
-          <label htmlFor="Pico">Pico de Gallo:</label>
-          <input id="Pico" onChange={handlePicoChange} defaultValue={menuItem.PicodeGallo} /><br />
-          <label htmlFor="Cilantro">Cilantro:</label>
-          <input id="Cilantro" onChange={handleCilantroChange} defaultValue={menuItem.Cilantro} /><br />
-          <label htmlFor="DicedOnions">Diced Onions:</label>
-          <input id="DicedOnions" onChange={handleOnionsChange} defaultValue={menuItem.DicedOnions} /><br />
-          <label htmlFor="Sauce">Sauce:</label>
-          <input id="Sauce" onChange={handleSauceChange} defaultValue={menuItem.Sauce} /><br />
-          <label htmlFor="Lime">Lime:</label>
-          <input id="Lime" onChange={handleLimeChange} defaultValue={menuItem.Lime} /><br />
-          <label htmlFor="Corn">Corn:</label>
-          <input id="Corn" onChange={handleCornChange} defaultValue={menuItem.Corn} /><br />
-          <button type="submit">Save</button><button type="button" onClick={backToMenu}>Back To Menu</button>
+          <TextField 
+            type="text"  
+            onChange={handleShellChange} 
+            variant="outlined"
+            label="Shell"
+            size="small"
+            value={menuItem.Shell || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleMeatChange} 
+            variant="outlined"
+            label="Meat"
+            size="small"
+            value={menuItem.Meat || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleBeansChange} 
+            variant="outlined"
+            label="Beans"
+            size="small"
+            value={menuItem.Beans || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleCheeseChange} 
+            variant="outlined"
+            label="Cheese"
+            size="small"
+            value={menuItem.Cheese || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleRiceChange} 
+            variant="outlined"
+            label="Rice"
+            size="small"
+            value={menuItem.Rice || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleLettuceChange} 
+            variant="outlined"
+            label="Lettuce"
+            size="small"
+            value={menuItem.Lettuce || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleSalsaChange} 
+            variant="outlined"
+            label="Salsa"
+            size="small"
+            value={menuItem.Salsa || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleSourCreamChange} 
+            variant="outlined"
+            label="Sour Cream"
+            size="small"
+            value={menuItem.SourCream || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handlePicoChange} 
+            variant="outlined"
+            label="Pico de Gallo"
+            size="small"
+            value={menuItem.PicodeGallo || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleCilantroChange} 
+            variant="outlined"
+            label="Cilantro"
+            size="small"
+            value={menuItem.Cilantro || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleOnionsChange} 
+            variant="outlined"
+            label="Diced Onions"
+            size="small"
+            value={menuItem.DicedOnions || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleSauceChange} 
+            variant="outlined"
+            label="Sauce"
+            size="small"
+            value={menuItem.Sauce || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleCornChange} 
+            variant="outlined"
+            label="Corn"
+            size="small"
+            value={menuItem.Corn || ' '}/><br /><br />
+          <TextField 
+            type="text"  
+            onChange={handleLimeChange} 
+            variant="outlined"
+            label="Lime"
+            size="small"
+            value={menuItem.Lime || ' '}/><br /><br /><br />
+          <Button 
+            type="submit"
+            variant="contained"
+            size="large"
+            color="success"
+          >Save Changes</Button>
+          <Button 
+            type="button"
+            onClick={event => {backToMenu(event)}}
+            variant="contained"
+            size="large"
+            sx={{ color: "white", backgroundColor: "red" }}
+            startIcon={<CancelPresentationIcon />}
+          >Back To Menu</Button>
         </form>
       </div>
     )

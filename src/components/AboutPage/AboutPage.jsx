@@ -10,6 +10,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import PersonIcon from '@mui/icons-material/Person';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import Button from '@mui/material/Button';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 
 // This is one of our simplest components
@@ -100,23 +102,109 @@ function AboutPage() {
       return (
         <>
         <div className="updateForm">
+          <h1>About Us</h1>
           <form onSubmit={saveButton}>
-            <label htmlFor="image_url">Image URL</label>
-            <input className="aboutContact" type="text" id="image_url" onChange={handleImageUrlChange} placeholder="Image URL" value={aboutContactReducer.image_url || ''} /><br />
-            <label hmtlFor="aboutUs">About Us</label>
-            <textarea id="aboutUs" onChange={handleAboutUsChange} value={aboutContactReducer.about_us || ''} /><br />        
-            <label htmlFor="owner">Owner Name</label>
-            <input className="aboutContact" type="text" id="owner" onChange={handleOwnerNameChange} placeholder="Owner Name" value={aboutContactReducer.owner_name || ''} /><br />
-            <label htmlFor="truck_number">Truck Number</label>
-            <input className="aboutContact" type="number" id="truck_number" onChange={handleTruckNumberChange} placeholder="Truck Number" value={aboutContactReducer.truck_number || ''} /><br />
-            <label htmlFor="email">Email</label>
-            <input className="aboutContact" type="text" id="email" onChange={handleEmailChange} placeholder="Email Address" value={aboutContactReducer.email || ''} /><br />
-            <label htmlFor="Instagram">Instagram</label>
-            <input className="aboutContact" type="text" id="Instagram" onChange={handleInstagramChange} placeholder="Instagram" value={aboutContactReducer.instagram || ''} /><br />
-            <label htmlFor="Twitter">Twitter</label>
-            <input className="aboutContact" type="text" id="Twitter" onChange={handleTwitterChange} placeholder="Twitter" value={aboutContactReducer.twitter || ''} /><br />  
-            <button type="submit">Save</button>        
-            </form>
+            <TextField 
+              type="text" 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AddPhotoAlternateIcon />
+                  </InputAdornment>
+                )
+              }}
+              onChange={handleImageUrlChange} 
+              variant="outlined"
+              label="Image URL"
+              size="small"
+              defaultValue={aboutContactReducer.image_url || ''}/><br /><br />
+            <TextField 
+              style={{width: 300}}
+              size="large"
+              multiline
+              type="text" 
+              onChange={handleAboutUsChange}
+              maxRows={8}
+              variant="outlined"
+              label="About Us"
+              defaultValue={aboutContactReducer.about_us || ''}/><br /><br />        
+            <TextField 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocalPhoneIcon />
+                  </InputAdornment>
+                )
+              }}
+              type="text"  
+              onChange={handleOwnerNameChange} 
+              variant="outlined"
+              label="Owner Name"
+              size="small"
+              defaultValue={aboutContactReducer.owner_name || ' '}/><br /><br />
+            <TextField 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocalPhoneIcon />
+                  </InputAdornment>
+                )
+              }}
+              type="text"  
+              onChange={handleTruckNumberChange} 
+              variant="outlined"
+              label="Truck Number"
+              size="small"
+              defaultValue={aboutContactReducer.truck_number || ' '}/><br /><br />
+            <TextField 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AlternateEmailIcon />
+                  </InputAdornment>
+                )
+              }}
+              type="text"  
+              onChange={handleEmailChange} 
+              variant="outlined"
+              label="Email"
+              size="small"
+              defaultValue={aboutContactReducer.email || ' '}/><br /><br />
+            <TextField 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <InstagramIcon />
+                  </InputAdornment>
+                )
+              }}
+              type="text"  
+              onChange={handleInstagramChange} 
+              variant="outlined"
+              label="Instagram"
+              size="small"
+              defaultValue={aboutContactReducer.instagram || ' '}/><br /><br />
+            <TextField 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <TwitterIcon />
+                  </InputAdornment>
+                )
+              }}
+              type="text"  
+              onChange={handleTwitterChange} 
+              variant="outlined"
+              label="Twitter"
+              size="small"
+              defaultValue={aboutContactReducer.twitter || ' '}/><br /><br />  
+            <Button 
+              type="submit"
+              variant="contained"
+              size="small"
+              color="success"
+            >Save Changes</Button>        
+          </form>
         
     </div>
     <div className="previewForm">
