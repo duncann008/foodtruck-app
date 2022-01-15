@@ -8,6 +8,9 @@ import './Cart.css';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from '@mui/material/IconButton';
 import Modal from '@mui/material/Modal';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import {FormControlLabel} from '@material-ui/core';
 
 function Cart() {
     
@@ -70,13 +73,19 @@ function Cart() {
         history.push('/checkout');
     }
 
-    const backToMenu = () =>  {
-        history.push('/menu');
-    }
+    const startOrder = (event) =>  {
+      event.preventDefault();
+      history.push('/menu');
+      }
 
     const ifEmpty = () => {
       if (cartReducer.length < 1) {
-        return <h2>Your cart is empty!</h2>
+        return <div><h3>Uh oh.. There's nothing here!</h3>
+          <Button 
+            variant="contained"
+            startIcon={<ArrowBackIosIcon />}
+            onClick={(event) => startOrder(event)}>Back to menu
+          </Button></div>
       }
       else  {
         return;
@@ -87,7 +96,7 @@ function Cart() {
       
         <div className="cartDiv">
             
-            
+            <h1>Current Cart:</h1>
             {ifEmpty()}
             <form onSubmit={goToCheckout}>
                 {cartReducer.map((item, index) =>    
@@ -108,16 +117,23 @@ function Cart() {
                 )}
             
             <p>Total Price: {sumPriceTotal()}</p>
-            <IconButton
-              type="submit"
-              >
-              <ShoppingCartCheckoutIcon 
-              className="cartButton"
-              style={{
-                fontSize: 64,
-              }}
-              />
-            </IconButton>
+            <div className='goToBottom'>
+            <FormControlLabel
+              label="Check Out"
+              labelPlacement='top'
+              control={
+              <IconButton
+                type="submit"
+                >
+                <ShoppingCartCheckoutIcon 
+                className="cartButton"
+                style={{
+                  fontSize: 64,
+                }}
+                />
+              </IconButton>}>
+            </FormControlLabel>
+            </div>
             </form>
         </div>
         

@@ -182,6 +182,7 @@ function MenuItemDetails() {
   }
 
   const backToMenu = () =>  {
+    if (user.role === 'admin')  {
     Swal.fire({
       title: 'Do you want to save? Any unsaved changes will be lost.',
       showDenyButton: true,
@@ -205,7 +206,10 @@ function MenuItemDetails() {
         history.push('/menu');
       }
     })
-    
+  }
+  else  {
+    history.push('/menu');
+  }
 }
   
 
@@ -265,7 +269,7 @@ function MenuItemDetails() {
           <textarea id="Description" onChange={handleDescriptionChange} value={menuItem.description || ''} /><br />
           <label htmlFor="Price">Price: $</label>
           <input id="Price" onChange={handlePriceChange} defaultValue={menuItem.price || ''} /><br />
-          <p>If a menu item is not going to be included, set the input to "None".</p>
+          <p>By default, a blank input will prevent an ingredient from being included.</p>
           <label htmlFor="Shell">Shell:</label>
           <input id="Shell" onChange={handleShellChange} defaultValue={menuItem.Shell} /><br />
           <label htmlFor="Meat">Meat:</label>

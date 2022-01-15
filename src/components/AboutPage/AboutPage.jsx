@@ -146,7 +146,7 @@ function AboutPage() {
       <div>
       <a href={aboutContactReducer.image_url}><img height="300px" src={aboutContactReducer.image_url}/></a>
         <h1>About Us:</h1>
-        <p>{aboutContactReducer.about_us}</p>
+        <p className='padding'>{aboutContactReducer.about_us}</p>
       </div>
       <div>
         <h1>Contact Us:</h1>

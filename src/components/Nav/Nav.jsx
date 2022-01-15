@@ -37,6 +37,7 @@ function Nav() {
     background-color: red;
     color: #FFFFFF;
 `;
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -110,6 +111,11 @@ function Nav() {
                 icon={<HomeIcon sx={{color: 'black'}} />}
                 component={ Link }
                 to='/user' />
+                <BottomNavigationAction 
+                label='About Us' 
+                icon={<InfoIcon sx={{color: 'black'}} />}
+                component={ Link }
+                to='/about' />
               <BottomNavigationAction 
                 label='Menu' 
                 icon={<RestaurantMenuIcon sx={{color: 'black'}} />}

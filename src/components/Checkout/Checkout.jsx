@@ -13,7 +13,7 @@ import Checkbox from '@mui/material/Checkbox';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import './Checkout.css';
-
+import {FormControlLabel} from '@material-ui/core';
 
 function Checkout() {
     
@@ -25,7 +25,7 @@ function Checkout() {
     const orderReducer = useSelector(store => store.orderReducer)
     const [notes, setNotes] = useState(' ');
     const [favorite, setFavorite] = useState(false);
-    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+    const label = { inputProps: { 'aria-label': 'Favorite' } };
 
 
     useEffect(() => {
@@ -105,6 +105,7 @@ function Checkout() {
 
     const handleFavoritesAdd = () => {
       setFavorite(!favorite);
+      console.log('hi')
     }
 
     let favoriteArray = []
@@ -137,7 +138,7 @@ function Checkout() {
 
   
     return  (
-        <div>
+        <div id="heightFix">
             <h1>Contact Info:</h1>
             <form onSubmit={saveButton}>  
       <TextField 
@@ -220,13 +221,26 @@ function Checkout() {
               variant="outlined"
               label="Notes, comments, or requests"
               value={notes}/><br />
-            <div className="checkoutFavoriteDiv">Favorite:</div><Checkbox
-              {...label}
-              icon={<StarBorderIcon />}
-              checkedIcon={<StarIcon />}
-              onChange={(event) => handleFavoritesAdd(event)}
-            />    
-            <button onClick={placeOrder}>Place Order</button>
+            <FormControlLabel
+              label="Favorite This Order:"
+              labelPlacement='start'
+              control={<Checkbox
+                icon={<StarBorderIcon 
+                  sx={{fontSize: 35, color: "black"}}
+                />}
+                checkedIcon={<StarIcon 
+                  sx={{fontSize: 35, color: "gold"}}
+                />}
+                onChange={(event) => handleFavoritesAdd(event)}
+              />}>
+            </FormControlLabel><br /><br />
+            <div className="checkout">
+              <Button 
+                sx={{fontSize: 20, color: "white", backgroundColor: "purple"}}
+                variant="contained"
+                onClick={(event) => placeOrder(event)}>Place Order
+              </Button>
+            </div>
         </div>
     )}
 

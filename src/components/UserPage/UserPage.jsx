@@ -9,7 +9,10 @@ import { InputAdornment } from '@mui/material';
 import EditLocationIcon from '@mui/icons-material/EditLocation';
 import AssistantDirectionIcon from '@mui/icons-material/AssistantDirection';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import Button from '@mui/material/Button';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useHistory } from 'react-router-dom';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -18,6 +21,8 @@ function UserPage() {
   const orderListReducer = useSelector(store => store.orderListReducer);
   const aboutContactReducer = useSelector(store => store.aboutContactReducer);
   const Swal = require('sweetalert2');
+  const history = useHistory();
+
 
   useEffect(() => {
     dispatch({
@@ -109,8 +114,9 @@ function UserPage() {
     
 }
 
-  const startOrder = () =>  {
-    history.push('/menu')
+  const startOrder = (event) =>  {
+    event.preventDefault();
+    history.push('/menu');
     }
 
 if (user.role === 'admin')  {
@@ -194,12 +200,17 @@ if (user.role === 'admin')  {
       <h2>Welcome, {user.username}!</h2>
       
       <div>
-        <p>Current Location: {aboutContactReducer.current_location}</p>
+        <p><LocationOnIcon /> {aboutContactReducer.current_location}</p>
         <p>Until: {aboutContactReducer.schedule}</p>
-        <p>Next Location: {aboutContactReducer.next_location}</p>
+        <br />
+        {/* <p>Next Location: {aboutContactReducer.next_location}</p> */}
       </div> 
       {/* <LogOutButton className="btn" /> */}
-      <button>WHAT DO HERE?</button>
+      <Button 
+        variant="contained"
+        endIcon={<ArrowForwardIosIcon />}
+        onClick={(event) => startOrder(event)}>Start Ordering!
+      </Button>
       
     </div>
     )}
