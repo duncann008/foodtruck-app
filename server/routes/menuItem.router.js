@@ -32,13 +32,12 @@ menuItemRouter.get('/:id', (req, res) => {
  menuItemRouter.post('/', (req, res) => {
     // POST route code here
   const sqlTextPost = `
-    INSERT INTO "menu" ("id", "item", "image_url", "price", "description")
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO "menu" ("item", "image_url", "price", "description")
+    VALUES ($1, $2, $3, $4)
     RETURNING "id";
   `
 
   const sqlValues = [
-    req.body.menu_id,
     req.body.item,
     req.body.image_url, 
     req.body.price, 
@@ -47,6 +46,7 @@ menuItemRouter.get('/:id', (req, res) => {
 
   pool.query(sqlTextPost, sqlValues)
   .then(result => {
+    
     const sqlTextPost = `
     INSERT INTO "default_ingredients" ("Shell", "Meat", "Beans", "Cheese", "Rice", "Lettuce", "Salsa", "SourCream", "PicodeGallo", "Cilantro", "DicedOnions", "Sauce", "Corn", "Lime", "menu_id")
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);`
@@ -66,7 +66,7 @@ menuItemRouter.get('/:id', (req, res) => {
         req.body.Sauce,
         req.body.Corn,
         req.body.Lime,
-        req.body.menu_id
+        result.rows[0].id
     ]
   
     pool.query(sqlTextPost, sqlValues)

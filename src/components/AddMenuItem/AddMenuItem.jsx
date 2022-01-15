@@ -141,8 +141,6 @@ function AddMenuItem() {
 
   const addItemButton = (event) => {
     event.preventDefault();
-    let foreignKey = menuListReducer[menuListReducer.length -1].id + 1;
-    addMenuItem.menu_id = foreignKey;
     dispatch({
       type: 'ADD_MENU_ITEM',
       payload: addMenuItem
@@ -181,12 +179,11 @@ function AddMenuItem() {
         <form onSubmit={(event) => addItemButton(event)}>
         <TextField 
           type="text" 
-          id="current_location" 
           onChange={handleItemChange} 
           variant="outlined"
           label="Item Name"
           size="small"
-          value={addMenuItem.item || ' '}/><br />
+          defaultValue={addMenuItem.item || ''}/><br />
           
             <img 
                 className="borderImage"
@@ -207,7 +204,7 @@ function AddMenuItem() {
             variant="outlined"
             label="Image URL"
             size="small"
-            value={addMenuItem.image_url || ' '}/><br /><br />
+            defaultValue={addMenuItem.image_url || ''}/><br /><br />
           <TextField 
             style={{width: 300}}
             size="large"
@@ -217,10 +214,9 @@ function AddMenuItem() {
             maxRows={8}
             variant="outlined"
             label="Item Description"
-            value={addMenuItem.description || ' '}/><br /><br />
+            defaultValue={addMenuItem.description || ''}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handlePriceChange} 
             variant="outlined"
             label="Price"
@@ -232,121 +228,107 @@ function AddMenuItem() {
               )
             }}
             size="small"
-            value={addMenuItem.price || ' '}/><br /><br />
+            defaultValue={addMenuItem.price || ''}/><br /><br />
           <h3>Ingredients:</h3>
           <p>Leave "None" in the input field to not include an ingredient.</p>
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleShellChange} 
             variant="outlined"
             label="Shell"
             size="small"
-            value={addMenuItem.Shell || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Shell || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleMeatChange} 
             variant="outlined"
             label="Meat"
             size="small"
-            value={addMenuItem.Meat || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Meat || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleBeansChange} 
             variant="outlined"
             label="Beans"
             size="small"
-            value={addMenuItem.Beans || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Beans || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleCheeseChange} 
             variant="outlined"
             label="Cheese"
             size="small"
-            value={addMenuItem.Cheese || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Cheese || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleRiceChange} 
             variant="outlined"
             label="Rice"
             size="small"
-            value={addMenuItem.Rice || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Rice || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleLettuceChange} 
             variant="outlined"
             label="Lettuce"
             size="small"
-            value={addMenuItem.Lettuce || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Lettuce || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleSalsaChange} 
             variant="outlined"
-            label="Shell"
+            label="Salsa"
             size="small"
-            value={addMenuItem.Shell || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Salsa || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleSourCreamChange} 
             variant="outlined"
             label="Sour Cream"
             size="small"
-            value={addMenuItem.SourCream || 'None'}/><br /><br />
+            defaultValue={addMenuItem.SourCream || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handlePicoChange} 
             variant="outlined"
             label="Pico de Gallo"
             size="small"
-            value={addMenuItem.PicodeGallo || 'None'}/><br /><br />
+            defaultValue={addMenuItem.PicodeGallo || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleCilantroChange} 
             variant="outlined"
             label="Cilantro"
             size="small"
-            value={addMenuItem.Cilantro || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Cilantro || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleOnionsChange} 
             variant="outlined"
             label="Diced Onions"
             size="small"
-            value={addMenuItem.DicedOnions || 'None'}/><br /><br />
+            defaultValue={addMenuItem.DicedOnions || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleSauceChange} 
             variant="outlined"
             label="Sauce"
             size="small"
-            value={addMenuItem.Sauce || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Sauce || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleCornChange} 
             variant="outlined"
             label="Corn"
             size="small"
-            value={addMenuItem.Corn || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Corn || 'None'}/><br /><br />
           <TextField 
-            type="text" 
-            id="current_location" 
+            type="text"  
             onChange={handleLimeChange} 
             variant="outlined"
             label="Lime"
             size="small"
-            value={addMenuItem.Lime || 'None'}/><br /><br />
+            defaultValue={addMenuItem.Lime || 'None'}/><br /><br />
           <Button 
             type="submit"
             variant="contained"

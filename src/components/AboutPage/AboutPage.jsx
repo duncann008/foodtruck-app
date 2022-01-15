@@ -128,11 +128,11 @@ function AboutPage() {
     </div>
     <div>
       <h1>Contact Us:</h1>
-      <p>{aboutContactReducer.owner_name}</p>
-      <p>{aboutContactReducer.truck_number}</p>
-      <p>{aboutContactReducer.email}</p>
+      <p><PersonIcon /> {aboutContactReducer.owner_name}</p>
+      <p><LocalPhoneIcon /> {aboutContactReducer.truck_number}</p>
+      <p><AlternateEmailIcon /> {aboutContactReducer.email}</p>
       <p><InstagramIcon /> {aboutContactReducer.instagram}</p>
-      <p>{aboutContactReducer.twitter}</p>
+      <p><TwitterIcon /> {aboutContactReducer.twitter}</p>
     </div>
   </div>
   </>
