@@ -96,7 +96,7 @@ function Cart() {
       
         <div className="cartDiv">
             
-            <h1>Current Cart:</h1>
+            <h1>Cart:</h1>
             {ifEmpty()}
             <form onSubmit={goToCheckout}>
                 {cartReducer.map((item, index) =>    

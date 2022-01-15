@@ -127,6 +127,7 @@ function Nav() {
                 to='/cart'
                 icon={
                 <Badge 
+                  sx={{ color: "white"}}
                   className="cartBadge"
                   badgeContent={sumQuantity()}
                   anchorOrigin={{

@@ -5,8 +5,9 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { TextField } from '@material-ui/core';
 import { InputAdornment } from '@mui/material';
-
-
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import Button from '@mui/material/Button';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 function MenuItemDetails() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function MenuItemDetails() {
 
   const ingredients = (ingredient) => {
     switch (ingredient) {
-      case 'None':
+      case null:
         return false;
       default:
         return true;
@@ -219,23 +220,23 @@ function MenuItemDetails() {
 
     <div>
         <h1>{menuItem.item}</h1>
-        <img src={menuItem.image_url} height="200" />
-        <p>Included Ingredients:</p>
-        <ul>
-            {ingredients(menuItem.Shell) ? <li>Shell: {menuItem.Shell}</li> : ''}
-            {ingredients(menuItem.Meat) ? <li>Meat: {menuItem.Meat}</li> : ''}
-            {ingredients(menuItem.Cheese) ? <li>Cheese: {menuItem.Cheese}</li> : ''}
-            {ingredients(menuItem.Beans) ? <li>Beans: {menuItem.Beans}</li> : ''}
-            {ingredients(menuItem.Rice) ? <li>Rice: {menuItem.Rice}</li> : ''}
-            {ingredients(menuItem.Lettuce) ? <li>Lettuce: {menuItem.Lettuce}</li> : ''}
-            {ingredients(menuItem.Salsa) ? <li>Salsa: {menuItem.Salsa}</li> : ''}
-            {ingredients(menuItem.SourCream) ? <li>Sour Cream: {menuItem.SourCream}</li> : ''}
-            {ingredients(menuItem.PicodeGallo) ? <li>Pico de Gallo: {menuItem.PicodeGallo}</li> : ''}
-            {ingredients(menuItem.Cilantro) ? <li>Cilantro: {menuItem.Cilantro}</li> : ''}
-            {ingredients(menuItem.DicedOnions) ? <li>Diced Onions: {menuItem.DicedOnions}</li> : ''}
-            {ingredients(menuItem.Sauce) ? <li>Sauce: {menuItem.Sauce}</li> : ''}
-            {ingredients(menuItem.Lime) ? <li>Lime: {menuItem.Lime}</li> : ''}
-        </ul>
+        <img src={menuItem.image_url} height="250" width="200" />
+        <p>{menuItem.description}</p>
+        <p>${menuItem.price}</p>
+        <h4>Included Ingredients:</h4>
+            {ingredients(menuItem.Shell) ? <p>Shell: {menuItem.Shell}</p> : ''}
+            {ingredients(menuItem.Meat) ? <p>Meat: {menuItem.Meat}</p> : ''}
+            {ingredients(menuItem.Cheese) ? <p>Cheese: {menuItem.Cheese}</p> : ''}
+            {ingredients(menuItem.Beans) ? <p>Beans: {menuItem.Beans}</p> : ''}
+            {ingredients(menuItem.Rice) ? <p>Rice: {menuItem.Rice}</p> : ''}
+            {ingredients(menuItem.Lettuce) ? <p>Lettuce: {menuItem.Lettuce}</p> : ''}
+            {ingredients(menuItem.Salsa) ? <p>Salsa: {menuItem.Salsa}</p> : ''}
+            {ingredients(menuItem.SourCream) ? <p>Sour Cream: {menuItem.SourCream}</p> : ''}
+            {ingredients(menuItem.PicodeGallo) ? <p>Pico de Gallo: {menuItem.PicodeGallo}</p> : ''}
+            {ingredients(menuItem.Cilantro) ? <p>Cilantro: {menuItem.Cilantro}</p> : ''}
+            {ingredients(menuItem.DicedOnions) ? <p>Diced Onions: {menuItem.DicedOnions}</p> : ''}
+            {ingredients(menuItem.Sauce) ? <p>Sauce: {menuItem.Sauce}</p> : ''}
+            {ingredients(menuItem.Lime) ? <p>Lime: {menuItem.Lime}</p> : ''}
         <form onSubmit={addToCart}>
         <select name="Quantity" id="Quantity" onChange={handleQuantityChange}>
           <option value="1">1</option>
@@ -244,9 +245,22 @@ function MenuItemDetails() {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        <button type="submit">Add To Cart</button>
+        <br /><br />
+        <Button 
+              type="submit"
+              startIcon={<AddShoppingCartIcon />}
+              variant="contained"
+              sx={{width: '175px'}}
+              color="success"
+              >Add to Cart</Button>
         </form>
-        <button onClick={backToMenu}>Back to Menu</button>
+        <br />
+        <Button 
+            variant="contained"
+            sx={{width: '175px'}}
+            startIcon={<ArrowBackIosIcon />}
+            onClick={(event) => backToMenu(event)}>Back to menu
+          </Button>
     </div>
 
   )}
@@ -268,7 +282,8 @@ function MenuItemDetails() {
           <label hmtlFor="Description">Description:</label>
           <textarea id="Description" onChange={handleDescriptionChange} value={menuItem.description || ''} /><br />
           <label htmlFor="Price">Price: $</label>
-          <input id="Price" onChange={handlePriceChange} defaultValue={menuItem.price || ''} /><br />
+          <input id="Price" onChange={handlePriceChange} defaultValue={menuItem.price || ''} /><br /><br />
+          <h4>Edit Ingredients:</h4>
           <p>By default, a blank input will prevent an ingredient from being included.</p>
           <label htmlFor="Shell">Shell:</label>
           <input id="Shell" onChange={handleShellChange} defaultValue={menuItem.Shell} /><br />
