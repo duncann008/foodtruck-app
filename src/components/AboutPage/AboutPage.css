@@ -8,18 +8,7 @@
     resize: none;
 }
 
-.updateForm {
-    text-align: center;
-    float: left;
-    width: 50%;
-}
-
-.previewForm  {
-    text-align: center;
-    float: right;
-    width: 50%
-}
-
-.justBeCentered {
-    text-align: center;
+.padding  {
+  padding-right: 10%;
+  padding-left: 10%;
 }

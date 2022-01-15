@@ -1,6 +1,10 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import './MenuItem.css';
 
 function MenuItem({item}) {
     
@@ -23,11 +27,12 @@ function MenuItem({item}) {
     const deleteFromMenu = (event) =>    {
       event.preventDefault();
       Swal.fire({
-        title: `Do you want to delete ${item.item}? This cannot be undone.`,
+        title: `Do you want to delete "${item.item}" from the menu?`,
         showDenyButton: true,
         showCancelButton: false,
-        confirmButtonText: `Delete ${item.item}`,
+        confirmButtonText: `Delete "${item.item}"`,
         denyButtonText: 'Cancel',
+        icon: 'warning',
         customClass: {
           actions: 'my-actions',
           cancelButton: 'order-1 right-gap',
@@ -52,10 +57,11 @@ function MenuItem({item}) {
  
   if (user.role === 'admin')  {
     return (
-      <div>
+      <div className="menuItem">
+        
       <div key={item.id}>
         <h3>{item.item}</h3>
-        <img
+        <img className='foodImage'
             src={item.image_url} 
             alt={item.item}
             height="300"
@@ -63,16 +69,28 @@ function MenuItem({item}) {
         <p>{item.description}</p>
         <p>${item.price}</p>
       </div>
-      <button onClick={goToMenuItemDetails}>Edit Item</button>
-      <button onClick={deleteFromMenu}>Delete Item</button>
+      <Button 
+        onClick={goToMenuItemDetails}
+        startIcon={<EditIcon />}
+        style={{color: "blue" }}
+        className="editButton"
+      >Edit Item</Button>
+      <Button 
+        onClick={deleteFromMenu}
+        startIcon={<DeleteIcon />}
+        style={{color: "red"}}
+        className="deleteButton"
+      >Delete Item</Button>
     </div>
     )
     }
-else   {
+else if (user.role === 'user')  {
     return (
-        <div onClick={goToMenuItemDetails} key={item.id}>
+        <div className="menuItem" onClick={goToMenuItemDetails} key={item.id}>
+        <p className="clickDetails">Click Anywhere for Details</p>
         <h3>{item.item}</h3>
         <img
+            className='foodImage'
             src={item.image_url} 
             alt={item.item}
             height="300"
@@ -81,6 +99,21 @@ else   {
         <p>${item.price}</p>
       </div>
       )
+}
+else  {
+  return  (
+    <div className="menuItem" onClick={goToMenuItemDetails} key={item.id}>
+    <h3>{item.item}</h3>
+    <img
+        className='foodImage'
+        src={item.image_url} 
+        alt={item.item}
+        height="300"
+        />
+    <p>{item.description}</p>
+    <p>${item.price}</p>
+  </div>
+  )
 }
 }
     

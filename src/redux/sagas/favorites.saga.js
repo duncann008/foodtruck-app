@@ -2,12 +2,14 @@ import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
 function* fetchFavorites() {
+  console.log('qnkjqnefkewefknwkfn')
     try {
         const favorites = yield axios({
             method: 'GET',
-            url: `/favorites`
+            url: '/favorites'
         });
-        yield put({ type: 'SET_FAVORITES', payload: favorites.data });
+        console.log(favorites.data)
+        yield put({ type: 'GET_FAVORITES', payload: favorites.data });
 
     } catch (err) {
         console.log('GET error:', err);
@@ -34,11 +36,11 @@ function* deleteFavorite(action) {
     try {
         yield axios({
             method: 'DELETE',
-            url: `/favorites`,
+            url: `/favorites/${action.payload}`,
             data: action.payload
         })
         
-        yield put({ type: 'FETCH_ABOUT_CONTACT' });
+        yield put({ type: 'FETCH_FAVORITES' });
 
     } catch(err) {
         console.log('DELETE error', err);

@@ -1,0 +1,22 @@
+.foodImage  {
+  height: 250px;
+  width: 200px;
+}
+
+div {
+  text-align: center;
+}
+
+.editButton {
+  margin-right: 100px;
+}
+
+
+.menuItem {
+  border-style: solid;
+  
+}
+
+.menuDiv {
+  margin-bottom: 15%;
+}

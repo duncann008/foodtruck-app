@@ -1,0 +1,25 @@
+.cartDiv  {
+  margin-bottom: 100%;
+}
+
+.cartButton {
+  color: black;
+  font-size: larger;
+  border: solid 3px black;
+  
+}
+
+.cartButton:active {
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
+
+.goToBottom {
+  position: absolute;
+  bottom: 80px;
+  text-align: center;
+  width: 100%;
+}

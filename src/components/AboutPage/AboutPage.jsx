@@ -2,6 +2,17 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './AboutPage.css';
 import { useEffect } from 'react';
+import { TextField } from '@material-ui/core';
+import { InputAdornment } from '@mui/material';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import Icon from '@mui/material/Icon';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import PersonIcon from '@mui/icons-material/Person';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import Button from '@mui/material/Button';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -91,23 +102,109 @@ function AboutPage() {
       return (
         <>
         <div className="updateForm">
+          <h1>About Us</h1>
           <form onSubmit={saveButton}>
-            <label htmlFor="image_url">Image URL</label>
-            <input className="aboutContact" type="text" id="image_url" onChange={handleImageUrlChange} placeholder="Image URL" value={aboutContactReducer.image_url || ''} /><br />
-            <label hmtlFor="aboutUs">About Us</label>
-            <textarea id="aboutUs" onChange={handleAboutUsChange} value={aboutContactReducer.about_us || ''} /><br />        
-            <label htmlFor="owner">Owner Name</label>
-            <input className="aboutContact" type="text" id="owner" onChange={handleOwnerNameChange} placeholder="Owner Name" value={aboutContactReducer.owner_name || ''} /><br />
-            <label htmlFor="truck_number">Truck Number</label>
-            <input className="aboutContact" type="number" id="truck_number" onChange={handleTruckNumberChange} placeholder="Truck Number" value={aboutContactReducer.truck_number || ''} /><br />
-            <label htmlFor="email">Email</label>
-            <input className="aboutContact" type="text" id="email" onChange={handleEmailChange} placeholder="Email Address" value={aboutContactReducer.email || ''} /><br />
-            <label htmlFor="Instagram">Instagram</label>
-            <input className="aboutContact" type="text" id="Instagram" onChange={handleInstagramChange} placeholder="Instagram" value={aboutContactReducer.instagram || ''} /><br />
-            <label htmlFor="Twitter">Twitter</label>
-            <input className="aboutContact" type="text" id="Twitter" onChange={handleTwitterChange} placeholder="Twitter" value={aboutContactReducer.twitter || ''} /><br />  
-            <button type="submit">Save</button>        
-            </form>
+            <TextField 
+              type="text" 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AddPhotoAlternateIcon />
+                  </InputAdornment>
+                )
+              }}
+              onChange={handleImageUrlChange} 
+              variant="outlined"
+              label="Image URL"
+              size="small"
+              defaultValue={aboutContactReducer.image_url || ''}/><br /><br />
+            <TextField 
+              style={{width: 300}}
+              size="large"
+              multiline
+              type="text" 
+              onChange={handleAboutUsChange}
+              maxRows={8}
+              variant="outlined"
+              label="About Us"
+              defaultValue={aboutContactReducer.about_us || ''}/><br /><br />        
+            <TextField 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocalPhoneIcon />
+                  </InputAdornment>
+                )
+              }}
+              type="text"  
+              onChange={handleOwnerNameChange} 
+              variant="outlined"
+              label="Owner Name"
+              size="small"
+              defaultValue={aboutContactReducer.owner_name || ' '}/><br /><br />
+            <TextField 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocalPhoneIcon />
+                  </InputAdornment>
+                )
+              }}
+              type="text"  
+              onChange={handleTruckNumberChange} 
+              variant="outlined"
+              label="Truck Number"
+              size="small"
+              defaultValue={aboutContactReducer.truck_number || ' '}/><br /><br />
+            <TextField 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AlternateEmailIcon />
+                  </InputAdornment>
+                )
+              }}
+              type="text"  
+              onChange={handleEmailChange} 
+              variant="outlined"
+              label="Email"
+              size="small"
+              defaultValue={aboutContactReducer.email || ' '}/><br /><br />
+            <TextField 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <InstagramIcon />
+                  </InputAdornment>
+                )
+              }}
+              type="text"  
+              onChange={handleInstagramChange} 
+              variant="outlined"
+              label="Instagram"
+              size="small"
+              defaultValue={aboutContactReducer.instagram || ' '}/><br /><br />
+            <TextField 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <TwitterIcon />
+                  </InputAdornment>
+                )
+              }}
+              type="text"  
+              onChange={handleTwitterChange} 
+              variant="outlined"
+              label="Twitter"
+              size="small"
+              defaultValue={aboutContactReducer.twitter || ' '}/><br /><br />  
+            <Button 
+              type="submit"
+              variant="contained"
+              size="small"
+              color="success"
+            >Save Changes</Button>        
+          </form>
         
     </div>
     <div className="previewForm">
@@ -119,11 +216,11 @@ function AboutPage() {
     </div>
     <div>
       <h1>Contact Us:</h1>
-      <p>{aboutContactReducer.owner_name}</p>
-      <p>{aboutContactReducer.truck_number}</p>
-      <p>{aboutContactReducer.email}</p>
-      <p>{aboutContactReducer.instagram}</p>
-      <p>{aboutContactReducer.twitter}</p>
+      <p><PersonIcon /> {aboutContactReducer.owner_name}</p>
+      <p><LocalPhoneIcon /> {aboutContactReducer.truck_number}</p>
+      <p><AlternateEmailIcon /> {aboutContactReducer.email}</p>
+      <p><InstagramIcon /> {aboutContactReducer.instagram}</p>
+      <p><TwitterIcon /> {aboutContactReducer.twitter}</p>
     </div>
   </div>
   </>
@@ -137,15 +234,15 @@ function AboutPage() {
       <div>
       <a href={aboutContactReducer.image_url}><img height="300px" src={aboutContactReducer.image_url}/></a>
         <h1>About Us:</h1>
-        <p>{aboutContactReducer.about_us}</p>
+        <p className='padding'>{aboutContactReducer.about_us}</p>
       </div>
       <div>
         <h1>Contact Us:</h1>
-        <p>{aboutContactReducer.owner_name}</p>
-        <p>{aboutContactReducer.truck_number}</p>
-        <p>{aboutContactReducer.email}</p>
-        <p>{aboutContactReducer.instagram}</p>
-        <p>{aboutContactReducer.twitter}</p>
+        <p><PersonIcon /> {aboutContactReducer.owner_name}</p>
+        <p><LocalPhoneIcon /> {aboutContactReducer.truck_number}</p>
+        <p><AlternateEmailIcon /> {aboutContactReducer.email}</p>
+        <p><InstagramIcon /> {aboutContactReducer.instagram}</p>
+        <p><TwitterIcon /> {aboutContactReducer.twitter}</p>
       </div>
     </div>
     </>

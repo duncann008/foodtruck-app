@@ -24,7 +24,7 @@ const setQuery = (paramRole, paramId) =>  {
    ON "order_item"."menu_id"="menu"."id"
      WHERE "user_id" = ${paramId}
      ORDER BY "order_item"."order_id" DESC
-     LIMIT 5;`
+     LIMIT 3;`
  }
 }
 
@@ -61,7 +61,8 @@ ordersRouter.get('/', (req, res) => {
 
   pool.query(sqlText, sqlValues)
   .then(result => {
-    console.log(req.body.menuItemArray)
+    let newOrderId = result.rows[0].id;
+    if (req.body.favorited === true) {
     {req.body.menuItemArray.map((item) =>  {  
       const sqlText = `
     INSERT INTO "order_item" ("order_id", "menu_id", "quantity")
@@ -69,38 +70,62 @@ ordersRouter.get('/', (req, res) => {
     RETURNING "id";`
 
     const sqlValues = [
-        result.rows[0].id,
+        newOrderId,
         item.menu_id, 
         item.quantity
     ]
 
     pool.query(sqlText, sqlValues)
-    console.log('Both POSTS hit');
-})}})
 
-// Conditional of some sort.
-.then(result => {
-  console.log()
-  {req.body.menuItemArray.map((item) =>  {  
     const sqlFavoriteText = `
   INSERT INTO "favorites" ("user_id", "order_id", "menu_id", "quantity")
   VALUES ($1, $2, $3, $4);`
 
   const sqlFavoriteValues = [
     req.user.id, 
-    // What goes here?
+    newOrderId,
     item.menu_id, 
     item.quantity
   ]
-
+  
   pool.query(sqlFavoriteText, sqlFavoriteValues)
-  console.log('POSTed to favorites');
-})}
-}).catch(err => {
+  .then(result => {
+    console.log('POST success?')
+  })
+  .catch(err => {
     console.log(err);
     res.sendStatus(500)
-  })
-});
+  });
+    
+})}}
+
+else  {
+  
+    {req.body.menuItemArray.map((item) =>  {  
+      const sqlText = `
+    INSERT INTO "order_item" ("order_id", "menu_id", "quantity")
+    VALUES ($1, $2, $3)
+    RETURNING "id";`
+
+    const sqlValues = [
+        newOrderId,
+        item.menu_id, 
+        item.quantity
+    ]
+
+    pool.query(sqlText, sqlValues)
+    .then(result => {
+      console.log('POST success?')
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    });
+})}
+  }
+})})
+
+
 
 ordersRouter.put('/:id', (req, res) => {
   

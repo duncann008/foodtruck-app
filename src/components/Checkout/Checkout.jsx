@@ -3,7 +3,17 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useState } from 'react';
-
+import { TextField } from '@material-ui/core';
+import { InputAdornment } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import './Checkout.css';
+import {FormControlLabel} from '@material-ui/core';
 
 function Checkout() {
     
@@ -13,9 +23,10 @@ function Checkout() {
     const cartReducer = useSelector(store => store.cartReducer);
     const contactInfoReducer = useSelector((store) => store.contactInfoReducer);
     const orderReducer = useSelector(store => store.orderReducer)
-    const [notes, setNotes] = useState('');
+    const [notes, setNotes] = useState(' ');
     const [favorite, setFavorite] = useState(false);
-    
+    const label = { inputProps: { 'aria-label': 'Favorite' } };
+
 
     useEffect(() => {
         dispatch({
@@ -87,16 +98,14 @@ function Checkout() {
         for (let i=0; i < totalArray.length; i++)   {
             total += totalArray[i];
         }
-        let finalTotal = total.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
+        let finalTotal = total.toFixed(2);
 
-        return total;
+        return finalTotal;
     }
 
     const handleFavoritesAdd = () => {
       setFavorite(!favorite);
+      console.log('hi')
     }
 
     let favoriteArray = []
@@ -115,15 +124,11 @@ function Checkout() {
           time_of_order: new Date().toLocaleString(),
           notes: notes,
           total_price: sumPriceTotal(),
+          favorited: favorite,
           menuItemArray: cartReducer
         }
       })
-      if (favorite === true)  {
-        dispatch({
-          type: 'SET_FAVORITE',
-          payload: favoriteArray
-        })
-      }
+    
       history.push('/confirmation')
       
     }
@@ -133,32 +138,109 @@ function Checkout() {
 
   
     return  (
-        <div>
+        <div id="heightFix">
             <h1>Contact Info:</h1>
             <form onSubmit={saveButton}>  
-              <label htmlfor="first_name">First Name</label>
-              <input type="text" id="first_name" onChange={handleFirstNameChange} placeholder="First Name" value={contactInfoReducer.first_name || ''}/><br />
-              <label htmlfor="last_name">Last Name</label>
-              <input type="text" id="last_name" onChange={handleLastNameChange} placeholder="Last Name" value={contactInfoReducer.last_name || ''}/><br />
-              <label htmlfor="phone_number">Phone Number</label>
-              <input type="number" id="phone_number" onChange={handlePhoneNumberChange} placeholder="Phone Number" value={contactInfoReducer.phone_number || ''}/><br />
-              <label htmlfor="email">Email</label>
-              <input type="text" id="email" onChange={handleUserEmailChange} placeholder="Email Address(optional)" value={contactInfoReducer.email || ''}/><br />          
-              <button className="saveButton" type="submit">Save</button>
-            </form>
+      <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PersonIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handleFirstNameChange}
+          variant="outlined"
+          label="First Name"
+          value={contactInfoReducer.first_name || ''} /><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PersonIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handleLastNameChange}
+          variant="outlined"
+          label="Last Name"
+          value={contactInfoReducer.last_name || ''}/><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PhoneAndroidIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handlePhoneNumberChange}
+          variant="outlined"
+          label="Phone Number"
+          value={contactInfoReducer.phone_number || ''}/><br /><br />
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AlternateEmailIcon />
+              </InputAdornment>
+            )
+          }}
+          size="small"
+          type="text" 
+          onChange={handleUserEmailChange}
+          variant="outlined"
+          label="Email"
+          value={contactInfoReducer.email || ''}/><br /><br />          
+        <Button 
+              type="submit" 
+              variant="contained"
+              size="small"
+              style={{color: "white"}}
+              >Save Contact Info</Button>
+      </form>
             <h1>Order Details:</h1>
             
-                {cartReducer.map((item, index) =>    
+                {cartReducer.map((item, index) =>  
                     <p key={index}>{item.quantity}  -  {item.item}   -   ${item.price * item.quantity}</p>
-                )}
+                  )}
             
-            <p>Total Price: ${sumPriceTotal()}</p>
-            <label hmtlFor="notes">Notes, comments, requests:</label><br />
-            <textarea id="notes" onChange={handleNotesChange} value={notes} /><br />
-            <input type="checkbox" id="favorites" name="favorites" value="true" onChange={(event) => handleFavoritesAdd(event)} />
-            <label for="favorites">Favorite This Order</label><br />
-            <button>Back to Menu</button>
-            <button onClick={placeOrder}>Place Order</button>
+            <p>Total Price: ${sumPriceTotal()}</p><br />
+            <TextField 
+              style={{width: 300}}
+              size="large"
+              multiline
+              type="text" 
+              onChange={handleNotesChange}
+              maxRows={8}
+              variant="outlined"
+              label="Notes, comments, or requests"
+              value={notes}/><br />
+            <FormControlLabel
+              label="Favorite This Order:"
+              labelPlacement='start'
+              control={<Checkbox
+                icon={<StarBorderIcon 
+                  sx={{fontSize: 35, color: "black"}}
+                />}
+                checkedIcon={<StarIcon 
+                  sx={{fontSize: 35, color: "gold"}}
+                />}
+                onChange={(event) => handleFavoritesAdd(event)}
+              />}>
+            </FormControlLabel><br /><br />
+            <div className="checkout">
+              <Button 
+                sx={{fontSize: 20, color: "white", backgroundColor: "purple"}}
+                variant="contained"
+                onClick={(event) => placeOrder(event)}>Place Order
+              </Button>
+            </div>
         </div>
     )}
 

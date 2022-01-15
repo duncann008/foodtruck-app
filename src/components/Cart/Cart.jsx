@@ -1,7 +1,16 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import './Cart.css';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import IconButton from '@mui/material/IconButton';
+import Modal from '@mui/material/Modal';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import {FormControlLabel} from '@material-ui/core';
 
 function Cart() {
     
@@ -10,6 +19,10 @@ function Cart() {
     const user = useSelector((store) => store.user);
     const cartReducer = useSelector(store => store.cartReducer);
     const menuItem = useSelector(store => store.menuItemReducer);
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
 
     useEffect(() => {
         dispatch({
@@ -60,29 +73,70 @@ function Cart() {
         history.push('/checkout');
     }
 
-    const backToMenu = () =>  {
-        history.push('/menu');
+    const startOrder = (event) =>  {
+      event.preventDefault();
+      history.push('/menu');
+      }
+
+    const ifEmpty = () => {
+      if (cartReducer.length < 1) {
+        return <div><h3>Uh oh.. There's nothing here!</h3>
+          <Button 
+            variant="contained"
+            startIcon={<ArrowBackIosIcon />}
+            onClick={(event) => startOrder(event)}>Back to menu
+          </Button></div>
+      }
+      else  {
+        return;
+      }
     }
   
     return  (
-        <div>
-            <button onClick={backToMenu}>Back to Menu</button>
-            <h1>Order Details:</h1>
+      
+        <div className="cartDiv">
+            
+            <h1>Cart:</h1>
+            {ifEmpty()}
             <form onSubmit={goToCheckout}>
                 {cartReducer.map((item, index) =>    
-                    <p key={index}>{item.item}<select name="Quantity" id="Quantity" defaultValue={item.quantity} onChange={(event) => {handleQuantityChange(event, index)}}>
+                    <p key={index}>{item.item} <select name="Quantity" id="Quantity" defaultValue={item.quantity} onChange={(event) => {handleQuantityChange(event, index)}}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                  </select>   -   {item.price}<button type="button" onClick={() => {removeItemFromCart(index)}}>X</button></p>
+                  </select>   -   ${item.price}<Button 
+                    type="button" 
+                    onClick={() => {removeItemFromCart(index)}}
+                    
+                    
+                    >
+                      <RemoveCircleIcon />
+                    </Button></p>
                 )}
             
             <p>Total Price: {sumPriceTotal()}</p>
-            <button type="submit">Checkout</button>
+            <div className='goToBottom'>
+            <FormControlLabel
+              label="Check Out"
+              labelPlacement='top'
+              control={
+              <IconButton
+                type="submit"
+                >
+                <ShoppingCartCheckoutIcon 
+                className="cartButton"
+                style={{
+                  fontSize: 64,
+                }}
+                />
+              </IconButton>}>
+            </FormControlLabel>
+            </div>
             </form>
         </div>
+        
     )}
 
     
