@@ -3,6 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react'
 import { TextField } from '@material-ui/core';
 import { InputAdornment } from '@mui/material';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import './AddMenuItem.css';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+
 
 
 function AddMenuItem() {
@@ -10,7 +17,7 @@ function AddMenuItem() {
   const user = useSelector((store) => store.user);
   const history = useHistory();
   const menuListReducer = useSelector(store => store.menuListReducer);
-  
+  const Swal = require('sweetalert2');
 
   const addMenuItem = useSelector(store => store.addMenuItemReducer)
 
@@ -143,14 +150,34 @@ function AddMenuItem() {
     history.push('/menu');
   }
 
-  const backToMenu = () =>  {
-    history.push('/menu');
-}
+  const backToMenu = (event) =>  {
+    event.preventDefault();
+    Swal.fire({
+      title: `Leave the page? Any unsaved changes will be lost.`,
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: `Save and Leave`,
+      denyButtonText: `Don't Save`,
+      icon: 'warning',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-2 right-gap',
+        confirmButton: 'order-1',
+        denyButton: 'order-3',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        addItemButton(event);
+      } else if (result.isDenied) {
+        history.push('/menu');
+      }
+    })
+  }
 
 
     return (
       <div>
-        <p>Included Ingredients:</p>
+        <h1>Add Item</h1>
         <form onSubmit={(event) => addItemButton(event)}>
         <TextField 
           type="text" 
@@ -159,49 +186,181 @@ function AddMenuItem() {
           variant="outlined"
           label="Item Name"
           size="small"
-          value={addMenuItem.item || ' '}/><br /><br />
+          value={addMenuItem.item || ' '}/><br />
           
-            <img
+            <img 
+                className="borderImage"
                 src={addMenuItem.image_url} 
-                alt={addMenuItem.item}
-                height="300"
+                alt='Your Image Here'
                 />
           <br />
-          <label htmlFor="ImageURL">Image URL:</label>
-          <input id="ImageURL" onChange={handleImageUrlChange} defaultValue={addMenuItem.image_url || ''} /><br />
-          <label hmtlFor="Description">Description:</label>
-          <textarea id="Description" onChange={handleDescriptionChange} value={addMenuItem.description || ''} /><br />
-          <label htmlFor="Price">Price: $</label>
-          <input id="Price" onChange={handlePriceChange} defaultValue={addMenuItem.price || ''} /><br />
-          <label htmlFor="Shell">Shell:</label>
-          <input id="Shell" onChange={handleShellChange} defaultValue={addMenuItem.Shell} /><br />
-          <label htmlFor="Meat">Meat:</label>
-          <input id="Meat" onChange={handleMeatChange} defaultValue={addMenuItem.Meat} /><br />
-          <label htmlFor="Beans">Beans:</label>
-          <input id="Beans" onChange={handleBeansChange} defaultValue={addMenuItem.Beans} /><br />
-          <label htmlFor="Cheese">Cheese:</label>
-          <input id="Cheese" onChange={handleCheeseChange} defaultValue={addMenuItem.Cheese} /><br />
-          <label htmlFor="Rice">Rice:</label>
-          <input id="Rice" onChange={handleRiceChange} defaultValue={addMenuItem.Rice} /><br />
-          <label htmlFor="Lettuce">Lettuce:</label>
-          <input id="Lettuce" onChange={handleLettuceChange} defaultValue={addMenuItem.Lettuce} /><br />
-          <label htmlFor="Salsa">Salsa:</label>
-          <input id="Salsa" onChange={handleSalsaChange} defaultValue={addMenuItem.Salsa} /><br />
-          <label htmlFor="SourCream">Sour Cream:</label>
-          <input id="SourCream" onChange={handleSourCreamChange} defaultValue={addMenuItem.SourCream} /><br />
-          <label htmlFor="Pico">Pico de Gallo:</label>
-          <input id="Pico" onChange={handlePicoChange} defaultValue={addMenuItem.PicodeGallo} /><br />
-          <label htmlFor="Cilantro">Cilantro:</label>
-          <input id="Cilantro" onChange={handleCilantroChange} defaultValue={addMenuItem.Cilantro} /><br />
-          <label htmlFor="DicedOnions">Diced Onions:</label>
-          <input id="DicedOnions" onChange={handleOnionsChange} defaultValue={addMenuItem.DicedOnions} /><br />
-          <label htmlFor="Sauce">Sauce:</label>
-          <input id="Sauce" onChange={handleSauceChange} defaultValue={addMenuItem.Sauce} /><br />
-          <label htmlFor="Corn">Corn:</label>
-          <input id="Corn" onChange={handleCornChange} defaultValue={addMenuItem.Corn} /><br />
-          <label htmlFor="Lime">Lime:</label>
-          <input id="Lime" onChange={handleLimeChange} defaultValue={addMenuItem.Lime} /><br />
-          <button type="submit">Add To Menu</button><button type="button" onClick={backToMenu}>Back To Menu</button>
+          <TextField 
+            type="text" 
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AddPhotoAlternateIcon />
+                </InputAdornment>
+              )
+            }}
+            onChange={handleImageUrlChange} 
+            variant="outlined"
+            label="Image URL"
+            size="small"
+            value={addMenuItem.image_url || ' '}/><br /><br />
+          <TextField 
+            style={{width: 300}}
+            size="large"
+            multiline
+            type="text" 
+            onChange={handleDescriptionChange}
+            maxRows={8}
+            variant="outlined"
+            label="Item Description"
+            value={addMenuItem.description || ' '}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handlePriceChange} 
+            variant="outlined"
+            label="Price"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AttachMoneyIcon />
+                </InputAdornment>
+              )
+            }}
+            size="small"
+            value={addMenuItem.price || ' '}/><br /><br />
+          <h3>Ingredients:</h3>
+          <p>Leave "None" in the input field to not include an ingredient.</p>
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleShellChange} 
+            variant="outlined"
+            label="Shell"
+            size="small"
+            value={addMenuItem.Shell || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleMeatChange} 
+            variant="outlined"
+            label="Meat"
+            size="small"
+            value={addMenuItem.Meat || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleBeansChange} 
+            variant="outlined"
+            label="Beans"
+            size="small"
+            value={addMenuItem.Beans || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleCheeseChange} 
+            variant="outlined"
+            label="Cheese"
+            size="small"
+            value={addMenuItem.Cheese || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleRiceChange} 
+            variant="outlined"
+            label="Rice"
+            size="small"
+            value={addMenuItem.Rice || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleLettuceChange} 
+            variant="outlined"
+            label="Lettuce"
+            size="small"
+            value={addMenuItem.Lettuce || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleSalsaChange} 
+            variant="outlined"
+            label="Shell"
+            size="small"
+            value={addMenuItem.Shell || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleSourCreamChange} 
+            variant="outlined"
+            label="Sour Cream"
+            size="small"
+            value={addMenuItem.SourCream || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handlePicoChange} 
+            variant="outlined"
+            label="Pico de Gallo"
+            size="small"
+            value={addMenuItem.PicodeGallo || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleCilantroChange} 
+            variant="outlined"
+            label="Cilantro"
+            size="small"
+            value={addMenuItem.Cilantro || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleOnionsChange} 
+            variant="outlined"
+            label="Diced Onions"
+            size="small"
+            value={addMenuItem.DicedOnions || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleSauceChange} 
+            variant="outlined"
+            label="Sauce"
+            size="small"
+            value={addMenuItem.Sauce || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleCornChange} 
+            variant="outlined"
+            label="Corn"
+            size="small"
+            value={addMenuItem.Corn || 'None'}/><br /><br />
+          <TextField 
+            type="text" 
+            id="current_location" 
+            onChange={handleLimeChange} 
+            variant="outlined"
+            label="Lime"
+            size="small"
+            value={addMenuItem.Lime || 'None'}/><br /><br />
+          <Button 
+            type="submit"
+            variant="contained"
+            size="large"
+            color="success"
+          >Finish Add Item</Button>
+          <Button 
+            type="button"
+            onClick={event => {backToMenu(event)}}
+            variant="contained"
+            size="large"
+            color="error"
+            startIcon={<CancelPresentationIcon />}
+        >Cancel Item Add</Button>
         </form>
       </div>
     )
