@@ -3,7 +3,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 
 
 function* fetchMenuItem(action) {
-    
+    console.log(action.payload)
     try {
         const menuItem = yield axios({
             method: 'GET',
@@ -11,7 +11,7 @@ function* fetchMenuItem(action) {
         });
         
         yield put({ type: 'GET_MENU_ITEM', payload: menuItem.data });
-
+        console.log(menuItem.data)
     } catch {
         console.log('GET MenuItem error:', err);
     }

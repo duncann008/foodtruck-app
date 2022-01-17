@@ -236,98 +236,98 @@ function AddMenuItem() {
             variant="outlined"
             label="Shell"
             size="small"
-            defaultValue={addMenuItem.Shell || ' '}/><br /><br />
+            defaultValue={addMenuItem.Shell || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleMeatChange} 
             variant="outlined"
             label="Meat"
             size="small"
-            defaultValue={addMenuItem.Meat || ' '}/><br /><br />
+            defaultValue={addMenuItem.Meat || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleBeansChange} 
             variant="outlined"
             label="Beans"
             size="small"
-            defaultValue={addMenuItem.Beans || ' '}/><br /><br />
+            defaultValue={addMenuItem.Beans || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleCheeseChange} 
             variant="outlined"
             label="Cheese"
             size="small"
-            defaultValue={addMenuItem.Cheese || ' '}/><br /><br />
+            defaultValue={addMenuItem.Cheese || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleRiceChange} 
             variant="outlined"
             label="Rice"
             size="small"
-            defaultValue={addMenuItem.Rice || ' '}/><br /><br />
+            defaultValue={addMenuItem.Rice || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleLettuceChange} 
             variant="outlined"
             label="Lettuce"
             size="small"
-            defaultValue={addMenuItem.Lettuce || ' '}/><br /><br />
+            defaultValue={addMenuItem.Lettuce || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleSalsaChange} 
             variant="outlined"
             label="Salsa"
             size="small"
-            defaultValue={addMenuItem.Salsa || ' '}/><br /><br />
+            defaultValue={addMenuItem.Salsa || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleSourCreamChange} 
             variant="outlined"
             label="Sour Cream"
             size="small"
-            defaultValue={addMenuItem.SourCream || ' '}/><br /><br />
+            defaultValue={addMenuItem.SourCream || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handlePicoChange} 
             variant="outlined"
             label="Pico de Gallo"
             size="small"
-            defaultValue={addMenuItem.PicodeGallo || ' '}/><br /><br />
+            defaultValue={addMenuItem.PicodeGallo || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleCilantroChange} 
             variant="outlined"
             label="Cilantro"
             size="small"
-            defaultValue={addMenuItem.Cilantro || ' '}/><br /><br />
+            defaultValue={addMenuItem.Cilantro || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleOnionsChange} 
             variant="outlined"
             label="Diced Onions"
             size="small"
-            defaultValue={addMenuItem.DicedOnions || ' '}/><br /><br />
+            defaultValue={addMenuItem.DicedOnions || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleSauceChange} 
             variant="outlined"
             label="Sauce"
             size="small"
-            defaultValue={addMenuItem.Sauce || ' '}/><br /><br />
+            defaultValue={addMenuItem.Sauce || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleCornChange} 
             variant="outlined"
             label="Corn"
             size="small"
-            defaultValue={addMenuItem.Corn || ' '}/><br /><br />
+            defaultValue={addMenuItem.Corn || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleLimeChange} 
             variant="outlined"
             label="Lime"
             size="small"
-            defaultValue={addMenuItem.Lime || ' '}/><br /><br />
+            defaultValue={addMenuItem.Lime || ''}/><br /><br />
           <Button 
             type="submit"
             variant="contained"

@@ -333,98 +333,98 @@ function MenuItemDetails() {
             variant="outlined"
             label="Shell"
             size="small"
-            value={menuItem.Shell || ' '}/><br /><br />
+            value={menuItem.Shell || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleMeatChange} 
             variant="outlined"
             label="Meat"
             size="small"
-            value={menuItem.Meat || ' '}/><br /><br />
+            value={menuItem.Meat || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleBeansChange} 
             variant="outlined"
             label="Beans"
             size="small"
-            value={menuItem.Beans || ' '}/><br /><br />
+            value={menuItem.Beans || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleCheeseChange} 
             variant="outlined"
             label="Cheese"
             size="small"
-            value={menuItem.Cheese || ' '}/><br /><br />
+            value={menuItem.Cheese || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleRiceChange} 
             variant="outlined"
             label="Rice"
             size="small"
-            value={menuItem.Rice || ' '}/><br /><br />
+            value={menuItem.Rice || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleLettuceChange} 
             variant="outlined"
             label="Lettuce"
             size="small"
-            value={menuItem.Lettuce || ' '}/><br /><br />
+            value={menuItem.Lettuce || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleSalsaChange} 
             variant="outlined"
             label="Salsa"
             size="small"
-            value={menuItem.Salsa || ' '}/><br /><br />
+            value={menuItem.Salsa || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleSourCreamChange} 
             variant="outlined"
             label="Sour Cream"
             size="small"
-            value={menuItem.SourCream || ' '}/><br /><br />
+            value={menuItem.SourCream || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handlePicoChange} 
             variant="outlined"
             label="Pico de Gallo"
             size="small"
-            value={menuItem.PicodeGallo || ' '}/><br /><br />
+            value={menuItem.PicodeGallo || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleCilantroChange} 
             variant="outlined"
             label="Cilantro"
             size="small"
-            value={menuItem.Cilantro || ' '}/><br /><br />
+            value={menuItem.Cilantro || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleOnionsChange} 
             variant="outlined"
             label="Diced Onions"
             size="small"
-            value={menuItem.DicedOnions || ' '}/><br /><br />
+            value={menuItem.DicedOnions || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleSauceChange} 
             variant="outlined"
             label="Sauce"
             size="small"
-            value={menuItem.Sauce || ' '}/><br /><br />
+            value={menuItem.Sauce || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleCornChange} 
             variant="outlined"
             label="Corn"
             size="small"
-            value={menuItem.Corn || ' '}/><br /><br />
+            value={menuItem.Corn || ''}/><br /><br />
           <TextField 
             type="text"  
             onChange={handleLimeChange} 
             variant="outlined"
             label="Lime"
             size="small"
-            value={menuItem.Lime || ' '}/><br /><br /><br />
+            value={menuItem.Lime || ''}/><br /><br /><br />
           <Button 
             type="submit"
             variant="contained"
