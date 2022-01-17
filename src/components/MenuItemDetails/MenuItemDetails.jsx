@@ -206,6 +206,7 @@ function MenuItemDetails() {
           type: 'EDIT_MENU_ITEM',
           payload: menuItem
       })
+        history.push('/menu');
         Swal.fire('Saved!', '', 'success')
       } else if (result.isDenied) {
         history.push('/menu');
