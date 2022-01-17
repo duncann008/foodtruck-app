@@ -10,6 +10,7 @@ function Confirmation() {
     const cartReducer = useSelector(store => store.cartReducer);
     const user = useSelector((store) => store.user);
     const confirmationReducer = useSelector(store => store.confirmationReducer);
+    const orderReducer = useSelector(store => store.orderReducer)
 
 
     useEffect(() => {
@@ -36,7 +37,7 @@ function Confirmation() {
                     <p key={index}>{item.quantity}  -  {item.item}   -   ${item.price * item.quantity}</p>
                 )}
           <p>Notes, comments, requests: {confirmationReducer.notes}</p>
-          
+          <p>Total Price: ${orderReducer.total_price}</p>
         </div>
     )
 }

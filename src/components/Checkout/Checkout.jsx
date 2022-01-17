@@ -23,7 +23,7 @@ function Checkout() {
     const cartReducer = useSelector(store => store.cartReducer);
     const contactInfoReducer = useSelector((store) => store.contactInfoReducer);
     const orderReducer = useSelector(store => store.orderReducer)
-    const [notes, setNotes] = useState(' ');
+    const [notes, setNotes] = useState('');
     const [favorite, setFavorite] = useState(false);
     const label = { inputProps: { 'aria-label': 'Favorite' } };
 
@@ -206,9 +206,11 @@ function Checkout() {
       </form>
             <h1>Order Details:</h1>
             
-                {cartReducer.map((item, index) =>  
-                    <p key={index}>{item.quantity}  -  {item.item}   -   ${item.price * item.quantity}</p>
-                  )}
+                {cartReducer.map((item, index) =>  {
+                  let thePrice = item.price * item.quantity
+                  let itemPrices =  thePrice.toFixed(2)
+                  return <p key={index}>{item.quantity}  -  {item.item}   -   ${itemPrices}</p>
+                })}
             
             <p>Total Price: ${sumPriceTotal()}</p><br />
             <TextField 
